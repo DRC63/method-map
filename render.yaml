@@ -1,0 +1,25 @@
+# Render Blueprint for the P3MAI Method Map.
+#
+# Deploy: Render Dashboard -> New + -> Blueprint -> connect the DRC63/method-map
+# repo -> Apply. Render reads this file, builds the Docker image and runs it.
+# You'll be prompted for ADMIN_PASSWORD (sync:false) during apply.
+#
+# Blueprint spec: https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: method-map
+    runtime: docker
+    plan: free
+    # NOTE: set this to match the PMO app's region. A service's region CANNOT be
+    # changed after it's created, so confirm before applying.
+    region: frankfurt
+    dockerfilePath: ./Dockerfile
+    # Build context is the repo root (where the Dockerfile lives) - the default.
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      # The authoring-mode password. Set the real value in the Render dashboard;
+      # sync:false keeps it out of the repo. If unset, the app falls back to the
+      # insecure default "change-me" from app/security.py.
+      - key: ADMIN_PASSWORD
+        sync: false
