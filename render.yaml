@@ -10,9 +10,9 @@ services:
     name: method-map
     runtime: docker
     plan: free
-    # NOTE: set this to match the PMO app's region. A service's region CANNOT be
-    # changed after it's created, so confirm before applying.
-    region: frankfurt
+    # Matches the PMO app (app.p3mai.com) region. A service's region CANNOT be
+    # changed after it's created.
+    region: oregon
     dockerfilePath: ./Dockerfile
     # Build context is the repo root (where the Dockerfile lives) - the default.
     healthCheckPath: /api/health
