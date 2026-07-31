@@ -1,0 +1,11 @@
+backend/venv/
+backend/**/__pycache__/
+backend/.pytest_cache/
+backend/*.db
+backend/*.db-wal
+backend/*.db-shm
+backend/.env
+frontend/node_modules/
+frontend/dist/
+.git/
+README.md

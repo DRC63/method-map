@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 76">
+  <defs>
+    <filter id="softShadow" x="-50%" y="-50%" width="220%" height="220%">
+      <feDropShadow dx="3" dy="5" stdDeviation="3" flood-color="#000000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  <g filter="url(#softShadow)">
+    <polygon points="16,14 66,14 37,26" fill="#E7C65C" stroke="#E7C65C" stroke-width="1"/>
+    <polygon points="16,14 41,58 37,26" fill="#C9A227" stroke="#C9A227" stroke-width="1"/>
+    <polygon points="66,14 41,58 37,26" fill="#8A6B14" stroke="#8A6B14" stroke-width="1"/>
+  </g>
+  <text x="100" y="48" font-family="Poppins, 'Segoe UI', system-ui, -apple-system, sans-serif" font-size="34" font-weight="700" fill="#ffffff">P3MAI</text>
+</svg>

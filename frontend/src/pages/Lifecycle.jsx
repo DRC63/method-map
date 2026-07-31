@@ -1,0 +1,172 @@
+import { useEffect, useMemo, useState } from 'react';
+import { useNavigate } from 'react-router';
+import { api } from '../api/client';
+
+// The four timeline columns the swimlane grid renders. "stage-boundary" folds
+// into the delivery column; "throughout" (DP) is drawn as a spanning bar.
+const PHASE_COLS = ['pre-project', 'initiation', 'delivery', 'final'];
+const columnOf = (phase) => {
+  if (phase === 'stage-boundary') return 'delivery';
+  if (phase === 'throughout') return null;
+  return phase;
+};
+
+function ProcessCard({ p, active, onClick }) {
+  return (
+    <button
+      className={`process-card ${p.lifecycle_phase === 'throughout' ? 'dp-bar' : ''} ${active ? 'active' : ''}`}
+      onClick={() => onClick(p)}
+    >
+      <span className="pc-code">{p.code}</span>
+      <span className="pc-name">{p.name}</span>
+      <span className="pc-meta">
+        <span>{p.activities.length} activities</span>
+        {p.repeats && <span className="pc-repeat">⟳ repeats each stage</span>}
+      </span>
+    </button>
+  );
+}
+
+export default function Lifecycle() {
+  const navigate = useNavigate();
+  const [data, setData] = useState(null);
+  const [selected, setSelected] = useState(null);
+
+  useEffect(() => {
+    api.listFrameworks().then((list) => {
+      const fw = list[0];
+      if (!fw) return;
+      api.getLifecycle(fw.key).then((lc) => {
+        setData(lc);
+        setSelected(lc.processes[0] || null);
+      });
+    });
+  }, []);
+
+  const byLevel = useMemo(() => {
+    if (!data) return {};
+    const out = {};
+    data.level_order.forEach((lv) => {
+      const procs = data.processes.filter((p) => p.lifecycle_level === lv);
+      out[lv] = {
+        throughout: procs.filter((p) => p.lifecycle_phase === 'throughout'),
+        cols: PHASE_COLS.map((col) =>
+          procs.filter((p) => columnOf(p.lifecycle_phase) === col),
+        ),
+      };
+    });
+    return out;
+  }, [data]);
+
+  if (!data) return <div className="graph-empty">Loading lifecycle…</div>;
+
+  const laneClass = { directing: 'lane-directing', managing: 'lane-managing', delivering: 'lane-delivering' };
+
+  return (
+    <div className="lifecycle-wrap">
+      <div className="lifecycle-intro">
+        <h2>{data.framework.name} — the project lifecycle</h2>
+        <p>
+          Time flows left to right across the project. Each swimlane is a level of
+          responsibility; a process sits where it runs on the timeline. Delivery
+          stages repeat until the project is done. Click any process to see its
+          activities in sequence.
+        </p>
+      </div>
+
+      <div className="time-arrow">
+        <span>Start</span>
+        <span className="line" />
+        <span>Time →</span>
+        <span className="line" />
+        <span>Close</span>
+      </div>
+
+      <div className="swimlane-grid">
+        {/* header row */}
+        <div className="grid-corner" />
+        {PHASE_COLS.map((col) => (
+          <div key={col} className={`phase-header ${col === 'delivery' ? 'repeats' : ''}`}>
+            {data.phases[col] || col}
+            {col === 'delivery' && <span className="phase-note">⟳ one or more, repeating</span>}
+          </div>
+        ))}
+
+        {/* swimlane rows */}
+        {data.level_order.map((lv) => {
+          const lane = byLevel[lv];
+          const hasSpan = lane.throughout.length > 0;
+          return (
+            <div key={lv} style={{ display: 'contents' }}>
+              <div className={`lane-label ${laneClass[lv]}`}>
+                {data.levels[lv]?.split(' (')[0] || lv}
+                <small>{data.levels[lv]?.match(/\((.*)\)/)?.[1]}</small>
+              </div>
+
+              {hasSpan ? (
+                <>
+                  <div className="lane-cell empty" />
+                  <div className="lane-cell span" style={{ gridColumn: 'span 3' }}>
+                    {lane.throughout.map((p) => (
+                      <ProcessCard
+                        key={p.id}
+                        p={p}
+                        active={selected?.id === p.id}
+                        onClick={setSelected}
+                      />
+                    ))}
+                  </div>
+                </>
+              ) : (
+                lane.cols.map((procs, i) => (
+                  <div key={i} className={`lane-cell ${procs.length ? '' : 'empty'}`}>
+                    {procs.map((p) => (
+                      <ProcessCard
+                        key={p.id}
+                        p={p}
+                        active={selected?.id === p.id}
+                        onClick={setSelected}
+                      />
+                    ))}
+                  </div>
+                ))
+              )}
+            </div>
+          );
+        })}
+      </div>
+
+      {selected && (
+        <div className="lifecycle-detail">
+          <h3>
+            <span style={{ color: 'var(--color-primary)' }}>{selected.code}</span> ·{' '}
+            {selected.name} — activities in sequence
+          </h3>
+          {selected.description && <p style={{ maxWidth: 800 }}>{selected.description}</p>}
+          <div className="activity-flow">
+            {selected.activities.map((a) => (
+              <div
+                key={a.id}
+                className="activity-step"
+                onClick={() => navigate(`/?focus=${a.id}`)}
+                style={{ cursor: 'pointer' }}
+                title="Open in the graph"
+              >
+                <span className="step-num">{a.sequence}</span>
+                <span className="step-name">{a.name}</span>
+              </div>
+            ))}
+          </div>
+          <div className="admin-actions">
+            <button
+              className="btn btn-primary btn-sm"
+              onClick={() => navigate(`/?focus=${selected.id}`)}
+            >
+              Open “{selected.code}” in the graph →
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}

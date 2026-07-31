@@ -1,0 +1,2432 @@
+{
+  "framework": {
+    "key": "prince2-7",
+    "name": "PRINCE2 7",
+    "edition": "7th edition (PeopleCert, 2023)",
+    "description": "PRINCE2 7 method map: 7 processes and their activities cross-referenced to management team roles, practices, management approaches and management products. Role/practice/approach codes: C=Responsible, P=Participates, N=Assists. Product codes: I=Input, O=Output, U=Update, A=Authorise. Activity rows and their codes are a best-effort reconstruction from public sources (prince2.wiki, CC-BY 4.0) and should be SME-verified before formal use.",
+    "sort_order": 1
+  },
+  "entities": [
+    {
+      "type": "role",
+      "name": "Executive",
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "sort_order": 1,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "role",
+      "name": "Senior User",
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "sort_order": 2,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "role",
+      "name": "Senior Supplier",
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "sort_order": 3,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "role",
+      "name": "Project Manager",
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "sort_order": 4,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "role",
+      "name": "Team Manager",
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "sort_order": 5,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "role",
+      "name": "Project Assurance",
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "sort_order": 6,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "role",
+      "name": "Project Support",
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "sort_order": 7,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "practice",
+      "name": "Business Case",
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "sort_order": 1,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "practice",
+      "name": "Organizing",
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "sort_order": 2,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "practice",
+      "name": "Plans",
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "sort_order": 3,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "practice",
+      "name": "Quality",
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "sort_order": 4,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "practice",
+      "name": "Risk",
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "sort_order": 5,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "practice",
+      "name": "Issues",
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "sort_order": 6,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "practice",
+      "name": "Progress",
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "sort_order": 7,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "approach",
+      "name": "Benefits MA",
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "sort_order": 1,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "approach",
+      "name": "Change MA",
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "sort_order": 2,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "approach",
+      "name": "Commercial MA",
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "sort_order": 3,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "approach",
+      "name": "Communication MA",
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "sort_order": 4,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "approach",
+      "name": "Digital & Data MA",
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "sort_order": 5,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "approach",
+      "name": "Issue MA",
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "sort_order": 6,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "approach",
+      "name": "Quality MA",
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "sort_order": 7,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "approach",
+      "name": "Risk MA",
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "sort_order": 8,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "approach",
+      "name": "Sustainability MA",
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "sort_order": 9,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "product",
+      "name": "Business Case",
+      "code": null,
+      "subgroup": "baseline",
+      "parent": null,
+      "confidence": "confirmed",
+      "sort_order": 1,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "product",
+      "name": "Plan",
+      "code": null,
+      "subgroup": "baseline",
+      "parent": null,
+      "confidence": "confirmed",
+      "sort_order": 2,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "product",
+      "name": "Product Description",
+      "code": null,
+      "subgroup": "baseline",
+      "parent": null,
+      "confidence": "confirmed",
+      "sort_order": 3,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "product",
+      "name": "Project Brief",
+      "code": null,
+      "subgroup": "baseline",
+      "parent": null,
+      "confidence": "confirmed",
+      "sort_order": 4,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "product",
+      "name": "Project Initiation Documentation",
+      "code": null,
+      "subgroup": "baseline",
+      "parent": null,
+      "confidence": "confirmed",
+      "sort_order": 5,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "product",
+      "name": "Project Product Description",
+      "code": null,
+      "subgroup": "baseline",
+      "parent": null,
+      "confidence": "confirmed",
+      "sort_order": 6,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "product",
+      "name": "Work Package",
+      "code": null,
+      "subgroup": "baseline",
+      "parent": null,
+      "confidence": "confirmed",
+      "sort_order": 7,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "product",
+      "name": "Daily Log",
+      "code": null,
+      "subgroup": "log",
+      "parent": null,
+      "confidence": "confirmed",
+      "sort_order": 8,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "product",
+      "name": "Issue Register",
+      "code": null,
+      "subgroup": "log",
+      "parent": null,
+      "confidence": "confirmed",
+      "sort_order": 9,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "product",
+      "name": "Lessons Log",
+      "code": null,
+      "subgroup": "log",
+      "parent": null,
+      "confidence": "confirmed",
+      "sort_order": 10,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "product",
+      "name": "Product Register",
+      "code": null,
+      "subgroup": "log",
+      "parent": null,
+      "confidence": "confirmed",
+      "sort_order": 11,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "product",
+      "name": "Quality Register",
+      "code": null,
+      "subgroup": "log",
+      "parent": null,
+      "confidence": "confirmed",
+      "sort_order": 12,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "product",
+      "name": "Risk Register",
+      "code": null,
+      "subgroup": "log",
+      "parent": null,
+      "confidence": "confirmed",
+      "sort_order": 13,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "product",
+      "name": "Checkpoint Report",
+      "code": null,
+      "subgroup": "report",
+      "parent": null,
+      "confidence": "confirmed",
+      "sort_order": 14,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "product",
+      "name": "End Project Report",
+      "code": null,
+      "subgroup": "report",
+      "parent": null,
+      "confidence": "confirmed",
+      "sort_order": 15,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "product",
+      "name": "End Stage Report",
+      "code": null,
+      "subgroup": "report",
+      "parent": null,
+      "confidence": "confirmed",
+      "sort_order": 16,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "product",
+      "name": "Exception Report",
+      "code": null,
+      "subgroup": "report",
+      "parent": null,
+      "confidence": "confirmed",
+      "sort_order": 17,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "product",
+      "name": "Highlight Report",
+      "code": null,
+      "subgroup": "report",
+      "parent": null,
+      "confidence": "confirmed",
+      "sort_order": 18,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "product",
+      "name": "Issue Report",
+      "code": null,
+      "subgroup": "report",
+      "parent": null,
+      "confidence": "confirmed",
+      "sort_order": 19,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "product",
+      "name": "Lessons Report",
+      "code": null,
+      "subgroup": "report",
+      "parent": null,
+      "confidence": "confirmed",
+      "sort_order": 20,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "process",
+      "name": "Starting Up A Project",
+      "code": "SU",
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "sort_order": 1,
+      "lifecycle_level": "managing",
+      "lifecycle_phase": "pre-project",
+      "sequence": 1,
+      "repeats": false
+    },
+    {
+      "type": "activity",
+      "name": "Appoint the Executive and the Project Manager",
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Starting Up A Project",
+      "confidence": "indicative",
+      "sort_order": 1,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "activity",
+      "name": "Capture previous lessons",
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Starting Up A Project",
+      "confidence": "indicative",
+      "sort_order": 2,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "activity",
+      "name": "Design and appoint the project management team",
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Starting Up A Project",
+      "confidence": "indicative",
+      "sort_order": 3,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "activity",
+      "name": "Prepare the outline Business Case and Project Product Description",
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Starting Up A Project",
+      "confidence": "indicative",
+      "sort_order": 4,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "activity",
+      "name": "Select the project approach and assemble the Project Brief",
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Starting Up A Project",
+      "confidence": "indicative",
+      "sort_order": 5,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "activity",
+      "name": "Plan the initiation stage",
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Starting Up A Project",
+      "confidence": "indicative",
+      "sort_order": 6,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "process",
+      "name": "Initiating A Project",
+      "code": "IP",
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "sort_order": 2,
+      "lifecycle_level": "managing",
+      "lifecycle_phase": "initiation",
+      "sequence": 3,
+      "repeats": false
+    },
+    {
+      "type": "activity",
+      "name": "Agree tailoring requirements",
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Initiating A Project",
+      "confidence": "indicative",
+      "sort_order": 7,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "activity",
+      "name": "Agree the management approaches",
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Initiating A Project",
+      "confidence": "indicative",
+      "sort_order": 8,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "activity",
+      "name": "Establish project controls",
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Initiating A Project",
+      "confidence": "indicative",
+      "sort_order": 9,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "activity",
+      "name": "Prepare the project plan",
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Initiating A Project",
+      "confidence": "indicative",
+      "sort_order": 10,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "activity",
+      "name": "Prepare the full Business Case",
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Initiating A Project",
+      "confidence": "indicative",
+      "sort_order": 11,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "activity",
+      "name": "Assemble the Project Initiation Documentation",
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Initiating A Project",
+      "confidence": "indicative",
+      "sort_order": 12,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "activity",
+      "name": "Request project authorization",
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Initiating A Project",
+      "confidence": "indicative",
+      "sort_order": 13,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "process",
+      "name": "Directing A Project",
+      "code": "DP",
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "sort_order": 3,
+      "lifecycle_level": "directing",
+      "lifecycle_phase": "throughout",
+      "sequence": 2,
+      "repeats": false
+    },
+    {
+      "type": "activity",
+      "name": "Authorizing initiation",
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Directing A Project",
+      "confidence": "indicative",
+      "sort_order": 14,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "activity",
+      "name": "Authorizing the project",
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Directing A Project",
+      "confidence": "indicative",
+      "sort_order": 15,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "activity",
+      "name": "Authorizing a stage or exception plan",
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Directing A Project",
+      "confidence": "indicative",
+      "sort_order": 16,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "activity",
+      "name": "Giving ad hoc direction",
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Directing A Project",
+      "confidence": "indicative",
+      "sort_order": 17,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "activity",
+      "name": "Authorizing project closure",
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Directing A Project",
+      "confidence": "indicative",
+      "sort_order": 18,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "process",
+      "name": "Controlling A Stage",
+      "code": "CS",
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "sort_order": 4,
+      "lifecycle_level": "managing",
+      "lifecycle_phase": "delivery",
+      "sequence": 4,
+      "repeats": true
+    },
+    {
+      "type": "activity",
+      "name": "Authorize a work package",
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Controlling A Stage",
+      "confidence": "indicative",
+      "sort_order": 19,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "activity",
+      "name": "Evaluate work package status",
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Controlling A Stage",
+      "confidence": "indicative",
+      "sort_order": 20,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "activity",
+      "name": "Receive completed work package",
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Controlling A Stage",
+      "confidence": "indicative",
+      "sort_order": 21,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "activity",
+      "name": "Evaluate stage status",
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Controlling A Stage",
+      "confidence": "indicative",
+      "sort_order": 22,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "activity",
+      "name": "Capture issues and risks",
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Controlling A Stage",
+      "confidence": "indicative",
+      "sort_order": 23,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "activity",
+      "name": "Take corrective action",
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Controlling A Stage",
+      "confidence": "indicative",
+      "sort_order": 24,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "activity",
+      "name": "Escalate issues and risks",
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Controlling A Stage",
+      "confidence": "indicative",
+      "sort_order": 25,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "activity",
+      "name": "Report highlights",
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Controlling A Stage",
+      "confidence": "indicative",
+      "sort_order": 26,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "process",
+      "name": "Managing Product Delivery",
+      "code": "MP",
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "sort_order": 5,
+      "lifecycle_level": "delivering",
+      "lifecycle_phase": "delivery",
+      "sequence": 5,
+      "repeats": true
+    },
+    {
+      "type": "activity",
+      "name": "Accepting a work package",
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Managing Product Delivery",
+      "confidence": "indicative",
+      "sort_order": 27,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "activity",
+      "name": "Executing a work package",
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Managing Product Delivery",
+      "confidence": "indicative",
+      "sort_order": 28,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "activity",
+      "name": "Evaluate a work package",
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Managing Product Delivery",
+      "confidence": "indicative",
+      "sort_order": 29,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "activity",
+      "name": "Notify work package completion",
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Managing Product Delivery",
+      "confidence": "indicative",
+      "sort_order": 30,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "process",
+      "name": "Managing A Stage Boundary",
+      "code": "SB",
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "sort_order": 6,
+      "lifecycle_level": "managing",
+      "lifecycle_phase": "stage-boundary",
+      "sequence": 6,
+      "repeats": true
+    },
+    {
+      "type": "activity",
+      "name": "Prepare the next stage plan",
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Managing A Stage Boundary",
+      "confidence": "indicative",
+      "sort_order": 31,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "activity",
+      "name": "Prepare the exception plan",
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Managing A Stage Boundary",
+      "confidence": "indicative",
+      "sort_order": 32,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "activity",
+      "name": "Update the project plan",
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Managing A Stage Boundary",
+      "confidence": "indicative",
+      "sort_order": 33,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "activity",
+      "name": "Update the Business Case",
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Managing A Stage Boundary",
+      "confidence": "indicative",
+      "sort_order": 34,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "activity",
+      "name": "Evaluate the stage",
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Managing A Stage Boundary",
+      "confidence": "indicative",
+      "sort_order": 35,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "activity",
+      "name": "Request the next stage",
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Managing A Stage Boundary",
+      "confidence": "indicative",
+      "sort_order": 36,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "process",
+      "name": "Closing A Project",
+      "code": "CP",
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "sort_order": 7,
+      "lifecycle_level": "managing",
+      "lifecycle_phase": "final",
+      "sequence": 7,
+      "repeats": false
+    },
+    {
+      "type": "activity",
+      "name": "Prepare planned closure",
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Closing A Project",
+      "confidence": "indicative",
+      "sort_order": 37,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "activity",
+      "name": "Prepare premature closure",
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Closing A Project",
+      "confidence": "indicative",
+      "sort_order": 38,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "activity",
+      "name": "Confirm project acceptance",
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Closing A Project",
+      "confidence": "indicative",
+      "sort_order": 39,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "activity",
+      "name": "Evaluate the project",
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Closing A Project",
+      "confidence": "indicative",
+      "sort_order": 40,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    },
+    {
+      "type": "activity",
+      "name": "Request project closure",
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Closing A Project",
+      "confidence": "indicative",
+      "sort_order": 41,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false
+    }
+  ],
+  "relationships": [
+    {
+      "from": "activity::Appoint the Executive and the Project Manager",
+      "to": "role::Executive",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Appoint the Executive and the Project Manager",
+      "to": "role::Project Manager",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Appoint the Executive and the Project Manager",
+      "to": "practice::Organizing",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Capture previous lessons",
+      "to": "role::Project Manager",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Capture previous lessons",
+      "to": "role::Team Manager",
+      "code": "N",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Capture previous lessons",
+      "to": "product::Lessons Log",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Design and appoint the project management team",
+      "to": "role::Executive",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Design and appoint the project management team",
+      "to": "role::Senior User",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Design and appoint the project management team",
+      "to": "role::Senior Supplier",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Design and appoint the project management team",
+      "to": "role::Project Manager",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Design and appoint the project management team",
+      "to": "role::Team Manager",
+      "code": "N",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Design and appoint the project management team",
+      "to": "practice::Organizing",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Prepare the outline Business Case and Project Product Description",
+      "to": "role::Executive",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Prepare the outline Business Case and Project Product Description",
+      "to": "role::Senior User",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Prepare the outline Business Case and Project Product Description",
+      "to": "role::Project Manager",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Prepare the outline Business Case and Project Product Description",
+      "to": "practice::Business Case",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Prepare the outline Business Case and Project Product Description",
+      "to": "practice::Quality",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Prepare the outline Business Case and Project Product Description",
+      "to": "product::Business Case",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Prepare the outline Business Case and Project Product Description",
+      "to": "product::Product Description",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Select the project approach and assemble the Project Brief",
+      "to": "role::Senior Supplier",
+      "code": "N",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Select the project approach and assemble the Project Brief",
+      "to": "role::Project Manager",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Select the project approach and assemble the Project Brief",
+      "to": "role::Team Manager",
+      "code": "N",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Select the project approach and assemble the Project Brief",
+      "to": "practice::Plans",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Select the project approach and assemble the Project Brief",
+      "to": "product::Project Brief",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Select the project approach and assemble the Project Brief",
+      "to": "product::Project Product Description",
+      "code": "U",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Plan the initiation stage",
+      "to": "role::Project Manager",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Plan the initiation stage",
+      "to": "practice::Plans",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Plan the initiation stage",
+      "to": "product::Plan",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Plan the initiation stage",
+      "to": "product::Project Brief",
+      "code": "U",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Agree tailoring requirements",
+      "to": "role::Executive",
+      "code": "N",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Agree tailoring requirements",
+      "to": "role::Project Manager",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Agree tailoring requirements",
+      "to": "role::Project Assurance",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Agree tailoring requirements",
+      "to": "product::Project Initiation Documentation",
+      "code": "U",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Agree the management approaches",
+      "to": "role::Project Manager",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Agree the management approaches",
+      "to": "practice::Quality",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Agree the management approaches",
+      "to": "practice::Risk",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Agree the management approaches",
+      "to": "practice::Issues",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Agree the management approaches",
+      "to": "approach::Benefits MA",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Agree the management approaches",
+      "to": "approach::Change MA",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Agree the management approaches",
+      "to": "approach::Commercial MA",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Agree the management approaches",
+      "to": "approach::Communication MA",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Agree the management approaches",
+      "to": "approach::Digital & Data MA",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Agree the management approaches",
+      "to": "approach::Issue MA",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Agree the management approaches",
+      "to": "approach::Quality MA",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Agree the management approaches",
+      "to": "approach::Risk MA",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Agree the management approaches",
+      "to": "approach::Sustainability MA",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Establish project controls",
+      "to": "role::Executive",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Establish project controls",
+      "to": "role::Project Manager",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Establish project controls",
+      "to": "practice::Progress",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Establish project controls",
+      "to": "product::Project Initiation Documentation",
+      "code": "U",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Prepare the project plan",
+      "to": "role::Senior User",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Prepare the project plan",
+      "to": "role::Senior Supplier",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Prepare the project plan",
+      "to": "role::Project Manager",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Prepare the project plan",
+      "to": "role::Team Manager",
+      "code": "N",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Prepare the project plan",
+      "to": "practice::Plans",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Prepare the project plan",
+      "to": "product::Plan",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Prepare the project plan",
+      "to": "product::Product Description",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Prepare the full Business Case",
+      "to": "role::Executive",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Prepare the full Business Case",
+      "to": "role::Project Manager",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Prepare the full Business Case",
+      "to": "practice::Business Case",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Prepare the full Business Case",
+      "to": "product::Business Case",
+      "code": "U",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Assemble the Project Initiation Documentation",
+      "to": "role::Project Manager",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Assemble the Project Initiation Documentation",
+      "to": "role::Project Assurance",
+      "code": "N",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Assemble the Project Initiation Documentation",
+      "to": "product::Business Case",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Assemble the Project Initiation Documentation",
+      "to": "product::Plan",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Assemble the Project Initiation Documentation",
+      "to": "product::Project Brief",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Assemble the Project Initiation Documentation",
+      "to": "product::Project Initiation Documentation",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Request project authorization",
+      "to": "role::Executive",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Request project authorization",
+      "to": "role::Senior User",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Request project authorization",
+      "to": "role::Senior Supplier",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Request project authorization",
+      "to": "role::Project Manager",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Request project authorization",
+      "to": "product::Plan",
+      "code": "A",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Request project authorization",
+      "to": "product::Project Initiation Documentation",
+      "code": "A",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Authorizing initiation",
+      "to": "role::Executive",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Authorizing initiation",
+      "to": "role::Senior User",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Authorizing initiation",
+      "to": "role::Senior Supplier",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Authorizing initiation",
+      "to": "role::Project Manager",
+      "code": "N",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Authorizing initiation",
+      "to": "product::Plan",
+      "code": "A",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Authorizing initiation",
+      "to": "product::Project Brief",
+      "code": "A",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Authorizing the project",
+      "to": "role::Executive",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Authorizing the project",
+      "to": "role::Senior User",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Authorizing the project",
+      "to": "role::Senior Supplier",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Authorizing the project",
+      "to": "product::Business Case",
+      "code": "A",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Authorizing the project",
+      "to": "product::Project Initiation Documentation",
+      "code": "A",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Authorizing a stage or exception plan",
+      "to": "role::Executive",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Authorizing a stage or exception plan",
+      "to": "role::Senior User",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Authorizing a stage or exception plan",
+      "to": "role::Senior Supplier",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Authorizing a stage or exception plan",
+      "to": "product::Business Case",
+      "code": "U",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Authorizing a stage or exception plan",
+      "to": "product::Plan",
+      "code": "A",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Authorizing a stage or exception plan",
+      "to": "product::Risk Register",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Giving ad hoc direction",
+      "to": "role::Executive",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Giving ad hoc direction",
+      "to": "role::Senior User",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Giving ad hoc direction",
+      "to": "role::Senior Supplier",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Giving ad hoc direction",
+      "to": "role::Project Manager",
+      "code": "N",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Giving ad hoc direction",
+      "to": "product::Issue Register",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Giving ad hoc direction",
+      "to": "product::Exception Report",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Authorizing project closure",
+      "to": "role::Executive",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Authorizing project closure",
+      "to": "role::Senior User",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Authorizing project closure",
+      "to": "role::Senior Supplier",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Authorizing project closure",
+      "to": "product::Project Product Description",
+      "code": "A",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Authorizing project closure",
+      "to": "product::End Project Report",
+      "code": "A",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Authorize a work package",
+      "to": "role::Project Manager",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Authorize a work package",
+      "to": "role::Team Manager",
+      "code": "N",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Authorize a work package",
+      "to": "product::Plan",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Authorize a work package",
+      "to": "product::Project Initiation Documentation",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Authorize a work package",
+      "to": "product::Work Package",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Evaluate work package status",
+      "to": "role::Project Manager",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Evaluate work package status",
+      "to": "role::Team Manager",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Evaluate work package status",
+      "to": "product::Plan",
+      "code": "U",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Evaluate work package status",
+      "to": "product::Daily Log",
+      "code": "U",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Receive completed work package",
+      "to": "role::Project Manager",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Receive completed work package",
+      "to": "role::Team Manager",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Receive completed work package",
+      "to": "product::Plan",
+      "code": "U",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Receive completed work package",
+      "to": "product::Product Register",
+      "code": "U",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Evaluate stage status",
+      "to": "role::Project Manager",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Evaluate stage status",
+      "to": "practice::Progress",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Evaluate stage status",
+      "to": "product::Plan",
+      "code": "U",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Capture issues and risks",
+      "to": "role::Project Manager",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Capture issues and risks",
+      "to": "practice::Risk",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Capture issues and risks",
+      "to": "practice::Issues",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Capture issues and risks",
+      "to": "approach::Issue MA",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Capture issues and risks",
+      "to": "approach::Risk MA",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Capture issues and risks",
+      "to": "product::Issue Register",
+      "code": "U",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Capture issues and risks",
+      "to": "product::Risk Register",
+      "code": "U",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Take corrective action",
+      "to": "role::Project Manager",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Take corrective action",
+      "to": "practice::Issues",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Take corrective action",
+      "to": "product::Plan",
+      "code": "U",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Take corrective action",
+      "to": "product::Issue Register",
+      "code": "U",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Escalate issues and risks",
+      "to": "role::Executive",
+      "code": "N",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Escalate issues and risks",
+      "to": "role::Project Manager",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Escalate issues and risks",
+      "to": "approach::Issue MA",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Escalate issues and risks",
+      "to": "approach::Risk MA",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Escalate issues and risks",
+      "to": "product::Issue Register",
+      "code": "U",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Escalate issues and risks",
+      "to": "product::Exception Report",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Escalate issues and risks",
+      "to": "product::Issue Report",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Report highlights",
+      "to": "role::Executive",
+      "code": "N",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Report highlights",
+      "to": "role::Senior User",
+      "code": "N",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Report highlights",
+      "to": "role::Senior Supplier",
+      "code": "N",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Report highlights",
+      "to": "role::Project Manager",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Report highlights",
+      "to": "practice::Progress",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Report highlights",
+      "to": "product::Checkpoint Report",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Report highlights",
+      "to": "product::Highlight Report",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Accepting a work package",
+      "to": "role::Project Manager",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Accepting a work package",
+      "to": "role::Team Manager",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Accepting a work package",
+      "to": "product::Product Description",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Accepting a work package",
+      "to": "product::Work Package",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Executing a work package",
+      "to": "role::Team Manager",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Executing a work package",
+      "to": "approach::Issue MA",
+      "code": "N",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Executing a work package",
+      "to": "approach::Risk MA",
+      "code": "N",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Executing a work package",
+      "to": "product::Issue Register",
+      "code": "U",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Executing a work package",
+      "to": "product::Risk Register",
+      "code": "U",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Evaluate a work package",
+      "to": "role::Project Manager",
+      "code": "N",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Evaluate a work package",
+      "to": "role::Team Manager",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Evaluate a work package",
+      "to": "practice::Quality",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Evaluate a work package",
+      "to": "product::Quality Register",
+      "code": "U",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Evaluate a work package",
+      "to": "product::Checkpoint Report",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Notify work package completion",
+      "to": "role::Project Manager",
+      "code": "N",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Notify work package completion",
+      "to": "role::Team Manager",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Notify work package completion",
+      "to": "product::Work Package",
+      "code": "U",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Notify work package completion",
+      "to": "product::Product Register",
+      "code": "U",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Notify work package completion",
+      "to": "product::Quality Register",
+      "code": "U",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Prepare the next stage plan",
+      "to": "role::Project Manager",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Prepare the next stage plan",
+      "to": "role::Team Manager",
+      "code": "N",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Prepare the next stage plan",
+      "to": "practice::Plans",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Prepare the next stage plan",
+      "to": "product::Plan",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Prepare the exception plan",
+      "to": "role::Project Manager",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Prepare the exception plan",
+      "to": "practice::Plans",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Prepare the exception plan",
+      "to": "product::Plan",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Prepare the exception plan",
+      "to": "product::Exception Report",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Update the project plan",
+      "to": "role::Project Manager",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Update the project plan",
+      "to": "practice::Plans",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Update the project plan",
+      "to": "product::Plan",
+      "code": "U",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Update the Business Case",
+      "to": "role::Executive",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Update the Business Case",
+      "to": "role::Project Manager",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Update the Business Case",
+      "to": "practice::Business Case",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Update the Business Case",
+      "to": "approach::Benefits MA",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Update the Business Case",
+      "to": "product::Business Case",
+      "code": "U",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Evaluate the stage",
+      "to": "role::Project Manager",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Evaluate the stage",
+      "to": "practice::Progress",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Evaluate the stage",
+      "to": "product::Lessons Log",
+      "code": "U",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Evaluate the stage",
+      "to": "product::End Stage Report",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Request the next stage",
+      "to": "role::Executive",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Request the next stage",
+      "to": "role::Project Manager",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Request the next stage",
+      "to": "product::Plan",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Request the next stage",
+      "to": "product::End Stage Report",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Prepare planned closure",
+      "to": "role::Project Manager",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Prepare planned closure",
+      "to": "role::Project Support",
+      "code": "N",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Prepare planned closure",
+      "to": "product::Daily Log",
+      "code": "U",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Prepare planned closure",
+      "to": "product::Lessons Log",
+      "code": "U",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Prepare premature closure",
+      "to": "role::Project Manager",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Prepare premature closure",
+      "to": "product::Product Register",
+      "code": "U",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Confirm project acceptance",
+      "to": "role::Senior User",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Confirm project acceptance",
+      "to": "role::Project Manager",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Confirm project acceptance",
+      "to": "approach::Benefits MA",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Confirm project acceptance",
+      "to": "product::Business Case",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Confirm project acceptance",
+      "to": "product::Project Product Description",
+      "code": "A",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Evaluate the project",
+      "to": "role::Project Manager",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Evaluate the project",
+      "to": "practice::Progress",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Evaluate the project",
+      "to": "approach::Benefits MA",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Evaluate the project",
+      "to": "approach::Quality MA",
+      "code": "N",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Evaluate the project",
+      "to": "product::End Project Report",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Evaluate the project",
+      "to": "product::Lessons Report",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Request project closure",
+      "to": "role::Executive",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Request project closure",
+      "to": "role::Project Manager",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Request project closure",
+      "to": "product::Project Product Description",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Request project closure",
+      "to": "product::End Project Report",
+      "code": "I",
+      "confidence": "indicative"
+    }
+  ]
+}
