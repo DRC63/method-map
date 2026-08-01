@@ -113,6 +113,9 @@ class GraphNode(BaseModel):
     direct_degree: int = 0
     parent_id: int | None = None
     sort_order: int = 0
+    sequence: int | None = None
+    lifecycle_level: str | None = None
+    lifecycle_phase: str | None = None
 
 
 class GraphLink(BaseModel):

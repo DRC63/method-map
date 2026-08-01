@@ -37,19 +37,27 @@ also lists its child activities in sequence (processes have no relationship rows
 only `parent_id` containment — handled in `serialize_entity_detail`).
 
 ## Explorer layout (`components/GraphCanvas.jsx`, `theme/graphLayout.js`)
-Two layouts, toggled in the control panel (default **Matrix**):
-- **Matrix** — a fixed positional hierarchy: processes across the top, each
-  process's activities stacked beneath it, products in a band below, roles pinned
-  left, practices right, management approaches along the bottom. Implemented by
-  `computeStructuredLayout` assigning `fx`/`fy` to every node (d3-force pins them).
-  Big, colour-coded, horizontal zone labels (one per entity type, in the clear
-  band gaps) drawn via `onRenderFramePre` → `paintZones`. Needs `parent_id` +
-  `sort_order` on graph nodes (added to `GraphNode`/`build_graph`).
-  Node size in this layout is weighted by **`direct_degree`** — the count of real
-  C/P/N/I/O/U/A relationships a node has (processes: child-activity count),
-  computed view-independently in `build_graph` so it doesn't change with the
-  layer/derived toggles. Sqrt scale (`5 + √direct_degree·2.9`).
-- **Force** — original free-floating physics (strips `fx`/`fy`).
+Two **fixed** layouts (no force/physics option), toggled in the control panel
+(default **Matrix**). Both pin every node's `fx`/`fy`; GraphCanvas's positioning
+effect picks the layout fn by `layout`. `cooldownTicks={0}` (pinned),
+`autoPauseRedraw={false}` (highlight changes always repaint). Node size weighted
+by **`direct_degree`** in both (sqrt scale `6.5 + √direct_degree·3.3`), computed
+view-independently in `build_graph`. Colour-coded zone labels via
+`onRenderFramePre` → `paintZones` (per-zone `scale` shrinks secondary labels).
+Graph nodes carry `parent_id`, `sort_order`, `sequence`, `lifecycle_level`,
+`lifecycle_phase` (all added to `GraphNode`/`build_graph`).
+- **Matrix** (`computeStructuredLayout`) — hierarchy: processes top, activities
+  beneath, products band below; roles left, practices right, approaches bottom.
+- **Timeline** (`computeTimelineLayout`) — echoes the Project Lifecycle view:
+  processes in three **swimlanes** (Directing / Managing / Delivering by
+  `lifecycle_level`) laid left→right by `sequence`; activities stack in each
+  process's time-column; roles / practices / approaches / products are static
+  resource bands below. Plus a scrubber (`TimelineScrubber.jsx`), one stage per
+  process. Each stage's highlight set = process + its activities + everything they
+  link to; **spotlight** vs **cumulative** toggle + play button (`STAGE_MS`). Set
+  computed in `Explorer.jsx`, passed to GraphCanvas as `timelineSet`, feeding the
+  same dim/highlight machinery as hover/selection — nodes light up in place across
+  the swimlanes + bands as you scrub.
 
 ## The graph builder (`app/graph.py`)
 Given the selected entity-type layers it emits three link kinds:

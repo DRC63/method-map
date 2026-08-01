@@ -161,6 +161,9 @@ def build_graph(
                 ),
                 "parent_id": e.parent_id,
                 "sort_order": e.sort_order,
+                "sequence": e.sequence,
+                "lifecycle_level": e.lifecycle_level,
+                "lifecycle_phase": e.lifecycle_phase,
             }
         )
     nodes.sort(key=lambda n: (n["type"], n["name"]))

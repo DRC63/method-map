@@ -6,7 +6,10 @@ import GraphCanvas from '../components/GraphCanvas';
 import EntityDetailPanel from '../components/EntityDetailPanel';
 import EntityForm from '../components/EntityForm';
 import RelationshipForm from '../components/RelationshipForm';
+import TimelineScrubber from '../components/TimelineScrubber';
 import { useAdmin } from '../context/AdminContext';
+
+const STAGE_MS = 1600; // auto-play dwell per lifecycle stage
 
 const ALL_TYPES = ['process', 'activity', 'role', 'practice', 'approach', 'product'];
 
@@ -22,6 +25,11 @@ export default function Explorer() {
   const [selectedId, setSelectedId] = useState(null);
   const [loadingGraph, setLoadingGraph] = useState(true);
   const [dataToken, setDataToken] = useState(0);
+
+  // timeline mode
+  const [timelineIndex, setTimelineIndex] = useState(0);
+  const [timelineMode, setTimelineMode] = useState('spotlight');
+  const [playing, setPlaying] = useState(false);
 
   // admin modals
   const [editingEntity, setEditingEntity] = useState(null);
@@ -70,6 +78,80 @@ export default function Explorer() {
     () => entities.filter((e) => e.type === 'process'),
     [entities],
   );
+
+  // ----- Timeline mode: one stage per process, in lifecycle sequence. Each
+  // stage's highlight set = the process + its activities + every node those
+  // activities connect to (roles / practices / approaches / products). -----
+  const timelineStages = useMemo(() => {
+    const nodes = graphData.nodes;
+    if (!nodes.length) return [];
+    const procs = nodes
+      .filter((n) => n.type === 'process')
+      .sort(
+        (a, b) =>
+          (a.sequence ?? a.sort_order ?? 0) - (b.sequence ?? b.sort_order ?? 0),
+      );
+    const actsByProc = new Map();
+    nodes.forEach((n) => {
+      if (n.type === 'activity' && n.parent_id != null) {
+        if (!actsByProc.has(n.parent_id)) actsByProc.set(n.parent_id, []);
+        actsByProc.get(n.parent_id).push(n.id);
+      }
+    });
+    const nbr = new Map();
+    graphData.links.forEach((l) => {
+      const s = typeof l.source === 'object' ? l.source.id : l.source;
+      const t = typeof l.target === 'object' ? l.target.id : l.target;
+      if (!nbr.has(s)) nbr.set(s, new Set());
+      if (!nbr.has(t)) nbr.set(t, new Set());
+      nbr.get(s).add(t);
+      nbr.get(t).add(s);
+    });
+    return procs.map((p) => {
+      const ids = new Set([p.id]);
+      (actsByProc.get(p.id) || []).forEach((aid) => {
+        ids.add(aid);
+        (nbr.get(aid) || []).forEach((x) => ids.add(x));
+      });
+      return { process: p, ids };
+    });
+  }, [graphData]);
+
+  const timelineSet = useMemo(() => {
+    if (layout !== 'timeline' || !timelineStages.length) return null;
+    const i = Math.min(timelineIndex, timelineStages.length - 1);
+    if (timelineMode === 'cumulative') {
+      const set = new Set();
+      for (let k = 0; k <= i; k++) timelineStages[k].ids.forEach((x) => set.add(x));
+      return set;
+    }
+    return timelineStages[i].ids;
+  }, [layout, timelineStages, timelineIndex, timelineMode]);
+
+  // Reset the scrubber whenever timeline mode is (re)entered.
+  useEffect(() => {
+    if (layout === 'timeline') {
+      setTimelineIndex(0);
+      setPlaying(false);
+    } else {
+      setPlaying(false);
+    }
+  }, [layout]);
+
+  // Auto-play: advance one stage at a time, stopping at the end.
+  useEffect(() => {
+    if (!playing || layout !== 'timeline' || timelineStages.length === 0) return;
+    const id = setInterval(() => {
+      setTimelineIndex((i) => {
+        if (i >= timelineStages.length - 1) {
+          setPlaying(false);
+          return i;
+        }
+        return i + 1;
+      });
+    }, STAGE_MS);
+    return () => clearInterval(id);
+  }, [playing, layout, timelineStages.length]);
 
   const toggleType = useCallback((type) => {
     setVisibleTypes((prev) => {
@@ -122,11 +204,28 @@ export default function Explorer() {
           onSelectNode={setSelectedId}
           search={search}
           layout={layout}
+          timelineSet={timelineSet}
         />
-        <div className="graph-hint">
-          {graphData.nodes.length} nodes · {graphData.links.length} links · drag to
-          pan, scroll to zoom, click a node for detail
-        </div>
+        {layout !== 'timeline' && (
+          <div className="graph-hint">
+            {graphData.nodes.length} nodes · {graphData.links.length} links · drag to
+            pan, scroll to zoom, click a node for detail
+          </div>
+        )}
+        {layout === 'timeline' && (
+          <TimelineScrubber
+            stages={timelineStages}
+            index={timelineIndex}
+            onIndex={(i) => {
+              setPlaying(false);
+              setTimelineIndex(i);
+            }}
+            playing={playing}
+            onTogglePlay={() => setPlaying((p) => !p)}
+            mode={timelineMode}
+            onSetMode={setTimelineMode}
+          />
+        )}
         {isAdmin && (
           <button
             className="btn btn-accent btn-sm"

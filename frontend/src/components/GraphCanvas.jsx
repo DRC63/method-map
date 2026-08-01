@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useImperativeHandle, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import ForceGraph2D from 'react-force-graph-2d';
 import { codeColors, entityColors, linkKindColors } from '../theme/theme';
-import { computeStructuredLayout } from '../theme/graphLayout';
+import { computeStructuredLayout, computeTimelineLayout } from '../theme/graphLayout';
 
 // Renders the node/link graph. Handles sizing, neighbour highlighting on
 // hover/selection, per-type node colouring, and code-coloured edges. In
@@ -9,7 +9,7 @@ import { computeStructuredLayout } from '../theme/graphLayout';
 // activities below, products under them, roles left, practices right, approaches
 // bottom); in 'force' layout they float freely. Exposes `exportPng()` and
 // `zoomToFit()` to the parent via ref.
-export default function GraphCanvas({ ref, data, selectedId, onSelectNode, search, layout = 'structured' }) {
+export default function GraphCanvas({ ref, data, selectedId, onSelectNode, search, layout = 'structured', timelineSet = null }) {
   const wrapRef = useRef(null);
   const fgRef = useRef(null);
   const zonesRef = useRef([]);
@@ -44,8 +44,14 @@ export default function GraphCanvas({ ref, data, selectedId, onSelectNode, searc
   // avoid link source/target aliasing, then reheat and refit.
   useEffect(() => {
     if (!data.nodes.length) return;
-    if (layout === 'structured') {
-      const { pos, zones } = computeStructuredLayout(data.nodes);
+    const layoutFn =
+      layout === 'timeline'
+        ? computeTimelineLayout
+        : layout === 'structured'
+          ? computeStructuredLayout
+          : null;
+    if (layoutFn) {
+      const { pos, zones } = layoutFn(data.nodes);
       zonesRef.current = zones;
       data.nodes.forEach((n) => {
         const p = pos.get(n.id);
@@ -54,6 +60,9 @@ export default function GraphCanvas({ ref, data, selectedId, onSelectNode, searc
           n.fy = p.y;
           n.x = p.x;
           n.y = p.y;
+        } else {
+          delete n.fx;
+          delete n.fy;
         }
       });
     } else {
@@ -68,18 +77,19 @@ export default function GraphCanvas({ ref, data, selectedId, onSelectNode, searc
     return () => clearTimeout(t);
   }, [data, layout]);
 
-  // Draw the horizontal, colour-coded zone labels behind the nodes (structured
-  // layout only). Large, bold and tinted to each region's entity colour.
+  // Draw the horizontal, colour-coded zone labels behind the nodes (fixed
+  // layouts only). Large, bold and tinted to each region's entity colour; a
+  // per-zone `scale` shrinks secondary labels (swimlanes, phase headers).
   const paintZones = useCallback((ctx, globalScale) => {
     const zones = zonesRef.current;
     if (!zones.length) return;
-    const fontSize = Math.max(26 / globalScale, 13);
+    const base = Math.max(26 / globalScale, 13);
     ctx.save();
-    ctx.font = `800 ${fontSize}px Poppins, sans-serif`;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.globalAlpha = 0.9;
     zones.forEach((z) => {
+      ctx.font = `800 ${base * (z.scale || 1)}px Poppins, sans-serif`;
       ctx.fillStyle = z.color || 'rgba(11, 37, 69, 0.6)';
       ctx.fillText(z.label, z.x, z.y);
     });
@@ -109,13 +119,24 @@ export default function GraphCanvas({ ref, data, selectedId, onSelectNode, searc
     );
   }, [data, searchLower]);
 
-  const focusId = hoverId ?? selectedId;
-  const highlightSet = useMemo(() => {
-    if (focusId == null) return null;
-    const set = new Set([focusId]);
-    (adjacency.get(focusId) || new Set()).forEach((id) => set.add(id));
-    return set;
-  }, [focusId, adjacency]);
+  // Neighbourhood of a single focus node (for hover / selection highlighting).
+  const neighbours = useCallback(
+    (id) => {
+      if (id == null) return null;
+      const set = new Set([id]);
+      (adjacency.get(id) || new Set()).forEach((n) => set.add(n));
+      return set;
+    },
+    [adjacency],
+  );
+
+  // Effective dimming set: hovering refines to that node's neighbourhood;
+  // otherwise the timeline stage set (when scrubbing) is the base; otherwise the
+  // selected node's neighbourhood.
+  const highlightSet = useMemo(
+    () => neighbours(hoverId) || timelineSet || neighbours(selectedId),
+    [neighbours, hoverId, timelineSet, selectedId],
+  );
 
   useImperativeHandle(ref, () => ({
     zoomToFit: () => fgRef.current?.zoomToFit(500, 60),
@@ -126,26 +147,33 @@ export default function GraphCanvas({ ref, data, selectedId, onSelectNode, searc
     },
   }));
 
-  // Node size weighting. The matrix layout sizes by DIRECT responsibilities —
-  // the count of real C/P/N/I/O/U/A relationships the node takes part in (for
-  // processes: how many activities they contain), independent of the visible
-  // layers and the indirect-links toggle. Full-range sqrt scale (area ∝ count)
-  // sized up to read at the zoomed-out matrix scale. The force layout keeps its
-  // original degree-based capped scaling.
-  const nodeVal = useCallback(
-    (n) => {
-      if (layout === 'structured') return 6.5 + Math.sqrt(n.direct_degree || 0) * 3.3;
-      return 3 + Math.min(n.degree || 0, 12) * 0.8;
-    },
-    [layout],
-  );
+  // Node size is weighted by DIRECT responsibilities — the count of real
+  // C/P/N/I/O/U/A relationships the node takes part in (for processes: how many
+  // activities they contain), independent of the visible layers and the
+  // indirect-links toggle. Full-range sqrt scale (area ∝ count), sized up to read
+  // at the zoomed-out scale of both fixed layouts.
+  const nodeVal = useCallback((n) => 6.5 + Math.sqrt(n.direct_degree || 0) * 3.3, []);
 
   const paintNode = useCallback(
     (node, ctx, globalScale) => {
-      const r = nodeVal(node);
+      const baseR = nodeVal(node);
       const dimmed = highlightSet && !highlightSet.has(node.id);
       const isSearchHit = searchMatches && searchMatches.has(node.id);
       const isSelected = node.id === selectedId;
+      // The selected node is enlarged and gets a glowing gold halo so it stands
+      // out clearly from its highlighted neighbours.
+      const r = isSelected ? baseR * 1.4 + 1.5 / globalScale : baseR;
+
+      if (isSelected) {
+        ctx.save();
+        ctx.shadowColor = 'rgba(201, 162, 39, 0.95)';
+        ctx.shadowBlur = 22 / globalScale;
+        ctx.beginPath();
+        ctx.arc(node.x, node.y, r + 8 / globalScale, 0, 2 * Math.PI);
+        ctx.fillStyle = 'rgba(201, 162, 39, 0.32)';
+        ctx.fill();
+        ctx.restore();
+      }
 
       ctx.globalAlpha = dimmed ? 0.15 : 1;
       ctx.beginPath();
@@ -153,13 +181,26 @@ export default function GraphCanvas({ ref, data, selectedId, onSelectNode, searc
       ctx.fillStyle = entityColors[node.type] || '#888';
       ctx.fill();
 
-      if (isSelected || isSearchHit) {
+      if (isSelected) {
+        // bold gold ring + white separator for a crisp "pinned" look
+        ctx.beginPath();
+        ctx.arc(node.x, node.y, r + 3.5 / globalScale, 0, 2 * Math.PI);
+        ctx.lineWidth = 4 / globalScale;
+        ctx.strokeStyle = '#C9A227';
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(node.x, node.y, r + 1 / globalScale, 0, 2 * Math.PI);
         ctx.lineWidth = 2 / globalScale;
-        ctx.strokeStyle = isSelected ? '#0B2545' : '#C9A227';
+        ctx.strokeStyle = '#ffffff';
+        ctx.stroke();
+      } else if (isSearchHit) {
+        ctx.lineWidth = 2 / globalScale;
+        ctx.strokeStyle = '#C9A227';
         ctx.stroke();
       }
-      // indicative entities get a subtle dashed ring
-      if (node.confidence === 'indicative' && !dimmed) {
+      // indicative entities get a subtle dashed ring (skipped when selected - the
+      // selection styling takes precedence)
+      if (node.confidence === 'indicative' && !dimmed && !isSelected) {
         ctx.beginPath();
         ctx.arc(node.x, node.y, r + 1.6 / globalScale, 0, 2 * Math.PI);
         ctx.setLineDash([1.5 / globalScale, 1.5 / globalScale]);
@@ -172,7 +213,8 @@ export default function GraphCanvas({ ref, data, selectedId, onSelectNode, searc
       // In the structured matrix the "axis" nodes (everything but activities)
       // are always labelled so the regions read clearly; activities label on
       // zoom/hover/select to avoid clutter.
-      const alwaysLabel = layout === 'structured' && node.type !== 'activity';
+      const alwaysLabel =
+        (layout === 'structured' || layout === 'timeline') && node.type !== 'activity';
       const showLabel =
         alwaysLabel ||
         globalScale > 1.6 ||
@@ -181,12 +223,13 @@ export default function GraphCanvas({ ref, data, selectedId, onSelectNode, searc
         isSearchHit;
       if (showLabel) {
         const label = node.code ? `${node.code} · ${node.name}` : node.name;
-        const fontSize = Math.max(10 / globalScale, 2.2);
-        ctx.font = `${fontSize}px Poppins, sans-serif`;
+        const fontSize = Math.max((isSelected ? 12 : 10) / globalScale, 2.2);
+        ctx.font = `${isSelected ? '700 ' : ''}${fontSize}px Poppins, sans-serif`;
         ctx.textAlign = 'center';
         ctx.textBaseline = 'top';
-        ctx.fillStyle = dimmed ? 'rgba(28,43,58,0.3)' : '#1C2B3A';
-        ctx.fillText(label, node.x, node.y + r + 1);
+        ctx.fillStyle = dimmed ? 'rgba(28,43,58,0.3)' : isSelected ? '#0B2545' : '#1C2B3A';
+        // clear the gold ring/halo on the selected node
+        ctx.fillText(label, node.x, node.y + r + (isSelected ? 6 : 1) / globalScale);
       }
       ctx.globalAlpha = 1;
     },
@@ -245,7 +288,8 @@ export default function GraphCanvas({ ref, data, selectedId, onSelectNode, searc
         linkWidth={linkWidth}
         linkDirectionalArrowLength={(l) => (l.kind === 'direct' ? 2.5 : 0)}
         linkDirectionalArrowRelPos={1}
-        cooldownTicks={layout === 'structured' ? 0 : 120}
+        cooldownTicks={0}
+        autoPauseRedraw={false}
         onRenderFramePre={paintZones}
         onNodeHover={(n) => setHoverId(n ? n.id : null)}
         onNodeClick={(n) => onSelectNode(n ? n.id : null)}

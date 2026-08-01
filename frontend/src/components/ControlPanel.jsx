@@ -38,16 +38,16 @@ export default function ControlPanel({
             Matrix
           </button>
           <button
-            className={`layout-opt ${layout === 'force' ? 'active' : ''}`}
-            onClick={() => onSetLayout('force')}
+            className={`layout-opt ${layout === 'timeline' ? 'active' : ''}`}
+            onClick={() => onSetLayout('timeline')}
           >
-            Force
+            Timeline
           </button>
         </div>
         <p className="muted" style={{ marginTop: 8, fontSize: '0.76rem' }}>
-          {layout === 'structured'
-            ? 'Fixed hierarchy: processes top, activities below, products under; roles left, practices right, approaches bottom.'
-            : 'Free-floating physics layout — drag nodes to explore clusters.'}
+          {layout === 'timeline'
+            ? 'Lifecycle swimlanes (Directing / Managing / Delivering) left→right in sequence, with resource bands below. Scrub the timeline to light up each stage.'
+            : 'Fixed hierarchy: processes top, activities below, products under; roles left, practices right, approaches bottom.'}
         </p>
       </div>
 
