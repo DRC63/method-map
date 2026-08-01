@@ -160,6 +160,41 @@ data = {
             "sources (prince2.wiki, CC-BY 4.0) and should be SME-verified before formal use."
         ),
         "sort_order": 1,
+        # Framework definition: entity types (with colour, kind and layout zone),
+        # relationship codes, and lifecycle lanes/phases. This is what makes the
+        # app framework-agnostic — a new framework (e.g. MSP) supplies its own.
+        # kind: container (owns children via parent_id) · hub (carries the coded
+        # relationships) · node (a relationship target). zone: Matrix placement.
+        "config": {
+            "types": [
+                {"key": "process", "label": "Processes", "color": "#0B2545", "kind": "container", "zone": "top", "order": 1},
+                {"key": "activity", "label": "Activities", "color": "#3D5A80", "kind": "hub", "zone": "center", "order": 2},
+                {"key": "role", "label": "Management Team Roles", "color": "#C9A227", "kind": "node", "code_group": "role", "zone": "left", "order": 3},
+                {"key": "practice", "label": "Practices", "color": "#2E7D5B", "kind": "node", "code_group": "role", "zone": "right", "order": 4},
+                {"key": "approach", "label": "Management Approaches", "color": "#8E5BE0", "kind": "node", "code_group": "role", "zone": "bottom", "order": 5},
+                {"key": "product", "label": "Products", "color": "#C0392B", "kind": "node", "code_group": "product", "zone": "below", "order": 6},
+            ],
+            "codes": {
+                "role": {"C": "Responsible", "P": "Participates", "N": "Assists"},
+                "product": {"I": "Input", "O": "Output", "U": "Update", "A": "Authorise"},
+            },
+            "lanes": [
+                {"key": "directing", "label": "Directing (Project Board)"},
+                {"key": "managing", "label": "Managing (Project Manager)"},
+                {"key": "delivering", "label": "Delivering (Team)"},
+            ],
+            # `column`/`header` mark phases that get a Timeline column header
+            # (and its short label). Phases without them (stage-boundary, throughout)
+            # don't head a time column.
+            "phases": [
+                {"key": "pre-project", "label": "Pre-project", "column": True, "header": "Pre-project"},
+                {"key": "initiation", "label": "Initiation stage", "column": True, "header": "Initiation"},
+                {"key": "delivery", "label": "Delivery stage(s)", "column": True, "header": "Delivery ⟳"},
+                {"key": "stage-boundary", "label": "Stage boundary"},
+                {"key": "final", "label": "Final delivery stage", "column": True, "header": "Final"},
+                {"key": "throughout", "label": "Throughout"},
+            ],
+        },
     },
     "entities": list(entities.values()),
     "relationships": relationships,

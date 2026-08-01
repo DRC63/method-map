@@ -1,4 +1,4 @@
-from sqlalchemy import Boolean, ForeignKey, Integer, String, Text, UniqueConstraint
+from sqlalchemy import JSON, Boolean, ForeignKey, Integer, String, Text, UniqueConstraint
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from .database import Base
@@ -14,6 +14,9 @@ class Framework(Base):
     edition: Mapped[str | None] = mapped_column(String, nullable=True)
     description: Mapped[str | None] = mapped_column(Text, nullable=True)
     sort_order: Mapped[int] = mapped_column(Integer, default=0)
+    # Per-framework definition: entity types (label/colour/kind/zone), relationship
+    # codes, and lifecycle lanes/phases. Makes the app framework-agnostic.
+    config: Mapped[dict] = mapped_column(JSON, default=dict)
 
     entities: Mapped[list["Entity"]] = relationship(
         "Entity", back_populates="framework", cascade="all, delete-orphan"

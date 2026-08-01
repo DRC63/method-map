@@ -33,3 +33,36 @@ export const entityTypeLabels = {
   approach: 'Management Approaches',
   product: 'Products',
 };
+
+// The PRINCE2 type catalog, used as a fallback when a framework carries no config
+// (keeps the app working if config is ever missing).
+const DEFAULT_TYPES = [
+  { key: 'process', label: 'Processes', color: entityColors.process, kind: 'container', zone: 'top', order: 1 },
+  { key: 'activity', label: 'Activities', color: entityColors.activity, kind: 'hub', zone: 'center', order: 2 },
+  { key: 'role', label: 'Management Team Roles', color: entityColors.role, kind: 'node', zone: 'left', order: 3 },
+  { key: 'practice', label: 'Practices', color: entityColors.practice, kind: 'node', zone: 'right', order: 4 },
+  { key: 'approach', label: 'Management Approaches', color: entityColors.approach, kind: 'node', zone: 'bottom', order: 5 },
+  { key: 'product', label: 'Products', color: entityColors.product, kind: 'node', zone: 'below', order: 6 },
+];
+
+// Build a per-framework theme from framework.config. Everything the UI needs to
+// render an arbitrary framework: type colours, labels, kinds, zones and lanes.
+export function makeFrameworkTheme(framework) {
+  const cfg = framework?.config || {};
+  const types = (cfg.types && cfg.types.length ? cfg.types : DEFAULT_TYPES)
+    .slice()
+    .sort((a, b) => (a.order || 0) - (b.order || 0));
+  const colorMap = Object.fromEntries(types.map((t) => [t.key, t.color]));
+  const labelMap = Object.fromEntries(types.map((t) => [t.key, t.label]));
+  return {
+    types,
+    lanes: cfg.lanes || [],
+    phases: cfg.phases || [],
+    container: types.find((t) => t.kind === 'container')?.key,
+    hub: types.find((t) => t.kind === 'hub')?.key,
+    nodeTypes: types.filter((t) => t.kind === 'node'),
+    typesInZone: (z) => types.filter((t) => t.kind === 'node' && t.zone === z),
+    colorOf: (t) => colorMap[t] || entityColors[t] || '#888',
+    labelOf: (t) => labelMap[t] || entityTypeLabels[t] || t,
+  };
+}

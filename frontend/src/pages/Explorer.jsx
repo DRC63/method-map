@@ -7,18 +7,17 @@ import EntityDetailPanel from '../components/EntityDetailPanel';
 import EntityForm from '../components/EntityForm';
 import RelationshipForm from '../components/RelationshipForm';
 import TimelineScrubber from '../components/TimelineScrubber';
+import { makeFrameworkTheme } from '../theme/theme';
 import { useAdmin } from '../context/AdminContext';
 
 const STAGE_MS = 1600; // auto-play dwell per lifecycle stage
-
-const ALL_TYPES = ['process', 'activity', 'role', 'practice', 'approach', 'product'];
 
 export default function Explorer() {
   const { isAdmin } = useAdmin();
   const [framework, setFramework] = useState(null);
   const [entities, setEntities] = useState([]);
   const [graphData, setGraphData] = useState({ nodes: [], links: [] });
-  const [visibleTypes, setVisibleTypes] = useState(new Set(ALL_TYPES));
+  const [visibleTypes, setVisibleTypes] = useState(new Set());
   const [derived, setDerived] = useState(true);
   const [layout, setLayout] = useState('structured');
   const [search, setSearch] = useState('');
@@ -39,10 +38,26 @@ export default function Explorer() {
   const graphRef = useRef(null);
   const [searchParams, setSearchParams] = useSearchParams();
 
-  // Load framework + entities once (and after admin edits via dataToken).
+  // Load the framework (a single-framework deployment names its default via
+  // FRAMEWORK_KEY / /api/meta; otherwise use the first one).
   useEffect(() => {
-    api.listFrameworks().then((list) => setFramework(list[0] || null));
+    Promise.all([api.listFrameworks(), api.getMeta()]).then(([list, meta]) => {
+      const def = meta.default_framework
+        ? list.find((f) => f.key === meta.default_framework)
+        : null;
+      setFramework(def || list[0] || null);
+    });
   }, []);
+
+  const theme = useMemo(
+    () => (framework ? makeFrameworkTheme(framework) : null),
+    [framework],
+  );
+
+  // Default all layers on once the framework's type catalog is known.
+  useEffect(() => {
+    if (theme) setVisibleTypes(new Set(theme.types.map((t) => t.key)));
+  }, [theme]);
 
   // Deep-link support: /?focus=<entityId> (e.g. from the Lifecycle view) selects
   // that node on arrival, then clears the param so it doesn't stick.
@@ -64,36 +79,41 @@ export default function Explorer() {
 
   // (Re)load graph whenever the framework, visible layers or derived toggle change.
   useEffect(() => {
-    if (!fkey) return;
+    if (!fkey || !theme || visibleTypes.size === 0) return;
     setLoadingGraph(true);
-    const types = ALL_TYPES.filter((t) => visibleTypes.has(t)).join(',');
+    const types = theme.types
+      .map((t) => t.key)
+      .filter((t) => visibleTypes.has(t))
+      .join(',');
     api
       .getGraph(fkey, { types, derived })
       .then((g) => setGraphData({ nodes: g.nodes, links: g.links }))
       .finally(() => setLoadingGraph(false));
-  }, [fkey, visibleTypes, derived, dataToken]);
+  }, [fkey, theme, visibleTypes, derived, dataToken]);
 
   const counts = framework?.entity_counts || {};
+  const containerType = theme?.container ?? 'process';
+  const hubType = theme?.hub ?? 'activity';
   const processes = useMemo(
-    () => entities.filter((e) => e.type === 'process'),
-    [entities],
+    () => entities.filter((e) => e.type === containerType),
+    [entities, containerType],
   );
 
-  // ----- Timeline mode: one stage per process, in lifecycle sequence. Each
-  // stage's highlight set = the process + its activities + every node those
-  // activities connect to (roles / practices / approaches / products). -----
+  // ----- Timeline mode: one stage per container (process), in lifecycle
+  // sequence. Each stage's highlight set = the container + its hubs (activities)
+  // + every node those hubs connect to. -----
   const timelineStages = useMemo(() => {
     const nodes = graphData.nodes;
     if (!nodes.length) return [];
     const procs = nodes
-      .filter((n) => n.type === 'process')
+      .filter((n) => n.type === containerType)
       .sort(
         (a, b) =>
           (a.sequence ?? a.sort_order ?? 0) - (b.sequence ?? b.sort_order ?? 0),
       );
     const actsByProc = new Map();
     nodes.forEach((n) => {
-      if (n.type === 'activity' && n.parent_id != null) {
+      if (n.type === hubType && n.parent_id != null) {
         if (!actsByProc.has(n.parent_id)) actsByProc.set(n.parent_id, []);
         actsByProc.get(n.parent_id).push(n.id);
       }
@@ -115,7 +135,7 @@ export default function Explorer() {
       });
       return { process: p, ids };
     });
-  }, [graphData]);
+  }, [graphData, containerType, hubType]);
 
   const timelineSet = useMemo(() => {
     if (layout !== 'timeline' || !timelineStages.length) return null;
@@ -181,6 +201,7 @@ export default function Explorer() {
     <div className="explorer">
       <ControlPanel
         frameworkKey={fkey}
+        theme={theme}
         counts={counts}
         visibleTypes={visibleTypes}
         onToggleType={toggleType}
@@ -205,6 +226,7 @@ export default function Explorer() {
           search={search}
           layout={layout}
           timelineSet={timelineSet}
+          theme={theme}
         />
         {layout !== 'timeline' && (
           <div className="graph-hint">
@@ -240,6 +262,7 @@ export default function Explorer() {
       {selectedId != null && (
         <EntityDetailPanel
           frameworkKey={fkey}
+          theme={theme}
           entityId={selectedId}
           reloadToken={dataToken}
           onSelect={setSelectedId}

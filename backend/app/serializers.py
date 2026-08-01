@@ -2,7 +2,7 @@
 labels, relationship direction) that aren't plain columns.
 """
 from . import crud, models, schemas
-from .enums import CODE_LABELS
+from .graph import _framework_meta
 
 
 def serialize_framework(
@@ -16,6 +16,7 @@ def serialize_framework(
         description=framework.description,
         sort_order=framework.sort_order,
         entity_counts=counts or {},
+        config=framework.config or {},
     )
 
 
@@ -44,14 +45,16 @@ def serialize_entity_detail(
 ) -> schemas.EntityDetailOut:
     base = serialize_entity(entity)
     related: list[schemas.RelatedEntityOut] = []
+    framework = crud.get_framework(db, entity.framework_id)
+    container_type, hub_type, code_labels = _framework_meta(framework)
 
-    # A process has no relationships of its own — it *contains* activities. Surface
-    # those (in sequence) so a process node isn't a dead end in the graph.
-    if entity.type == "process":
+    # A container (process) has no relationships of its own — it *contains* hubs
+    # (activities). Surface those in sequence so it isn't a dead end in the graph.
+    if entity.type == container_type:
         children = sorted(
             (
                 e
-                for e in crud.list_entities(db, entity.framework_id, type="activity")
+                for e in crud.list_entities(db, entity.framework_id, type=hub_type)
                 if e.parent_id == entity.id
             ),
             key=lambda a: a.sort_order,
@@ -61,7 +64,7 @@ def serialize_entity_detail(
                 schemas.RelatedEntityOut(
                     relationship_id=-child.id,
                     entity_id=child.id,
-                    type="activity",
+                    type=hub_type,
                     name=child.name,
                     code=str(i),
                     code_label=f"step {i}",
@@ -94,7 +97,7 @@ def serialize_entity_detail(
                 type=other.type,
                 name=other.name,
                 code=rel.code,
-                code_label=CODE_LABELS.get(rel.code, rel.code),
+                code_label=code_labels.get(rel.code, rel.code),
                 confidence=rel.confidence,
                 direction=direction,
                 via_process=via_process,

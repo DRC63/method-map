@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useImperativeHandle, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import ForceGraph2D from 'react-force-graph-2d';
-import { codeColors, entityColors, linkKindColors } from '../theme/theme';
+import { codeColors, linkKindColors } from '../theme/theme';
 import { computeStructuredLayout, computeTimelineLayout } from '../theme/graphLayout';
 
 // Renders the node/link graph. Handles sizing, neighbour highlighting on
@@ -9,7 +9,7 @@ import { computeStructuredLayout, computeTimelineLayout } from '../theme/graphLa
 // activities below, products under them, roles left, practices right, approaches
 // bottom); in 'force' layout they float freely. Exposes `exportPng()` and
 // `zoomToFit()` to the parent via ref.
-export default function GraphCanvas({ ref, data, selectedId, onSelectNode, search, layout = 'structured', timelineSet = null }) {
+export default function GraphCanvas({ ref, data, selectedId, onSelectNode, search, layout = 'structured', timelineSet = null, theme }) {
   const wrapRef = useRef(null);
   const fgRef = useRef(null);
   const zonesRef = useRef([]);
@@ -50,8 +50,8 @@ export default function GraphCanvas({ ref, data, selectedId, onSelectNode, searc
         : layout === 'structured'
           ? computeStructuredLayout
           : null;
-    if (layoutFn) {
-      const { pos, zones } = layoutFn(data.nodes);
+    if (layoutFn && theme) {
+      const { pos, zones } = layoutFn(data.nodes, theme);
       zonesRef.current = zones;
       data.nodes.forEach((n) => {
         const p = pos.get(n.id);
@@ -75,7 +75,7 @@ export default function GraphCanvas({ ref, data, selectedId, onSelectNode, searc
     fgRef.current?.d3ReheatSimulation?.();
     const t = setTimeout(() => fgRef.current?.zoomToFit(500, 70), 120);
     return () => clearTimeout(t);
-  }, [data, layout]);
+  }, [data, layout, theme]);
 
   // Draw the horizontal, colour-coded zone labels behind the nodes (fixed
   // layouts only). Large, bold and tinted to each region's entity colour; a
@@ -178,7 +178,7 @@ export default function GraphCanvas({ ref, data, selectedId, onSelectNode, searc
       ctx.globalAlpha = dimmed ? 0.15 : 1;
       ctx.beginPath();
       ctx.arc(node.x, node.y, r, 0, 2 * Math.PI);
-      ctx.fillStyle = entityColors[node.type] || '#888';
+      ctx.fillStyle = theme ? theme.colorOf(node.type) : '#888';
       ctx.fill();
 
       if (isSelected) {
@@ -233,7 +233,7 @@ export default function GraphCanvas({ ref, data, selectedId, onSelectNode, searc
       }
       ctx.globalAlpha = 1;
     },
-    [highlightSet, searchMatches, selectedId, nodeVal, layout],
+    [highlightSet, searchMatches, selectedId, nodeVal, layout, theme],
   );
 
   const paintPointerArea = useCallback(

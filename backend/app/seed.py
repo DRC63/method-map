@@ -39,6 +39,7 @@ def seed_framework(db: Session, data: dict) -> models.Framework:
         edition=fw_data.get("edition"),
         description=fw_data.get("description"),
         sort_order=fw_data.get("sort_order", 0),
+        config=fw_data.get("config", {}),
     )
     db.add(framework)
     db.flush()  # assign framework.id
@@ -93,8 +94,13 @@ def seed_framework(db: Session, data: dict) -> models.Framework:
 
 def seed(db: Session, force: bool = False) -> None:
     files = _load_files()
+    # A single-framework deployment can set FRAMEWORK_KEY to seed only that one
+    # (e.g. a dedicated MSP instance). Unset = seed everything (local dev).
+    only = os.getenv("FRAMEWORK_KEY")
     for data in files:
         key = data["framework"]["key"]
+        if only and key != only:
+            continue
         existing = (
             db.query(models.Framework).filter(models.Framework.key == key).first()
         )

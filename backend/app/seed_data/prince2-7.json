@@ -4,7 +4,124 @@
     "name": "PRINCE2 7",
     "edition": "7th edition (PeopleCert, 2023)",
     "description": "PRINCE2 7 method map: 7 processes and their activities cross-referenced to management team roles, practices, management approaches and management products. Role/practice/approach codes: C=Responsible, P=Participates, N=Assists. Product codes: I=Input, O=Output, U=Update, A=Authorise. Activity rows and their codes are a best-effort reconstruction from public sources (prince2.wiki, CC-BY 4.0) and should be SME-verified before formal use.",
-    "sort_order": 1
+    "sort_order": 1,
+    "config": {
+      "types": [
+        {
+          "key": "process",
+          "label": "Processes",
+          "color": "#0B2545",
+          "kind": "container",
+          "zone": "top",
+          "order": 1
+        },
+        {
+          "key": "activity",
+          "label": "Activities",
+          "color": "#3D5A80",
+          "kind": "hub",
+          "zone": "center",
+          "order": 2
+        },
+        {
+          "key": "role",
+          "label": "Management Team Roles",
+          "color": "#C9A227",
+          "kind": "node",
+          "code_group": "role",
+          "zone": "left",
+          "order": 3
+        },
+        {
+          "key": "practice",
+          "label": "Practices",
+          "color": "#2E7D5B",
+          "kind": "node",
+          "code_group": "role",
+          "zone": "right",
+          "order": 4
+        },
+        {
+          "key": "approach",
+          "label": "Management Approaches",
+          "color": "#8E5BE0",
+          "kind": "node",
+          "code_group": "role",
+          "zone": "bottom",
+          "order": 5
+        },
+        {
+          "key": "product",
+          "label": "Products",
+          "color": "#C0392B",
+          "kind": "node",
+          "code_group": "product",
+          "zone": "below",
+          "order": 6
+        }
+      ],
+      "codes": {
+        "role": {
+          "C": "Responsible",
+          "P": "Participates",
+          "N": "Assists"
+        },
+        "product": {
+          "I": "Input",
+          "O": "Output",
+          "U": "Update",
+          "A": "Authorise"
+        }
+      },
+      "lanes": [
+        {
+          "key": "directing",
+          "label": "Directing (Project Board)"
+        },
+        {
+          "key": "managing",
+          "label": "Managing (Project Manager)"
+        },
+        {
+          "key": "delivering",
+          "label": "Delivering (Team)"
+        }
+      ],
+      "phases": [
+        {
+          "key": "pre-project",
+          "label": "Pre-project",
+          "column": true,
+          "header": "Pre-project"
+        },
+        {
+          "key": "initiation",
+          "label": "Initiation stage",
+          "column": true,
+          "header": "Initiation"
+        },
+        {
+          "key": "delivery",
+          "label": "Delivery stage(s)",
+          "column": true,
+          "header": "Delivery ⟳"
+        },
+        {
+          "key": "stage-boundary",
+          "label": "Stage boundary"
+        },
+        {
+          "key": "final",
+          "label": "Final delivery stage",
+          "column": true,
+          "header": "Final"
+        },
+        {
+          "key": "throughout",
+          "label": "Throughout"
+        }
+      ]
+    }
   },
   "entities": [
     {

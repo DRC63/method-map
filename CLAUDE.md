@@ -12,6 +12,23 @@ quick orientation + the decisions that aren't obvious from the code.
   `.claude/launch.json` as `method-map-backend` / `method-map-frontend`).
   PMO uses 8000/5173, p3m3 uses 8001/5174 — don't collide.
 
+## Framework config (per-framework definition — the generalization)
+Each framework carries a `config` JSON (on the `frameworks` row, seeded from the
+JSON's `framework.config`) that makes the whole app framework-agnostic:
+- `types`: ordered `[{key,label,color,kind,zone,code_group}]`. **kind**: `container`
+  (owns children via parent_id) · `hub` (carries the coded relationships) · `node`
+  (a relationship target). **zone**: Matrix placement (`top`/`center`/`below`/`left`/
+  `right`/`bottom`). The graph builder derives container/hub from `kind` (no
+  hardcoded process/activity); the frontend derives colours/labels/layout from this.
+- `codes`: `{group:{code:label}}` (role → C/P/N, product → I/O/U/A).
+- `lanes`: Timeline swimlanes `[{key,label}]`; `phases`: `[{key,label,column?,header?}]`.
+Frontend builds a theme from it via `makeFrameworkTheme` (theme/theme.js), threaded
+through GraphCanvas/ControlPanel/EntityDetailPanel and the layout fns (graphLayout.js,
+now zone/lane-driven). **A new framework (MSP) = a new seed JSON with its own config;
+no code change.** Env `FRAMEWORK_KEY` makes a deployment seed+default to one framework
+(exposed via `/api/meta` `default_framework`) — this is how PRINCE2 and MSP deploy
+separately from one codebase.
+
 ## Data model (framework-agnostic on purpose)
 `frameworks` → `entities` → `relationships`.
 - `entities.type` ∈ process | activity | role | practice | approach | product.

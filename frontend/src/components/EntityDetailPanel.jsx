@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { api } from '../api/client';
-import { codeColors, entityColors, entityTypeLabels } from '../theme/theme';
+import { codeColors } from '../theme/theme';
 import { useAdmin } from '../context/AdminContext';
 
-function RelatedRow({ rel, onSelect }) {
+function RelatedRow({ rel, onSelect, colorOf }) {
   // Known relationship codes get their code colour; numeric "step N" pills
-  // (a process's child activities) get the activity colour instead.
-  const pillColor = codeColors[rel.code] || entityColors.activity;
+  // (a container's child hubs) get the related node's own type colour.
+  const pillColor = codeColors[rel.code] || colorOf(rel.type);
   return (
     <div className="related-row" onClick={() => onSelect(rel.entity_id)}>
       <span className="code-pill" style={{ background: pillColor }}>
@@ -21,7 +21,7 @@ function RelatedRow({ rel, onSelect }) {
       </div>
       <span
         className="layer-swatch"
-        style={{ background: entityColors[rel.type], borderRadius: '50%' }}
+        style={{ background: colorOf(rel.type), borderRadius: '50%' }}
         title={rel.type}
       />
     </div>
@@ -30,6 +30,7 @@ function RelatedRow({ rel, onSelect }) {
 
 export default function EntityDetailPanel({
   frameworkKey,
+  theme,
   entityId,
   onSelect,
   onClose,
@@ -78,13 +79,13 @@ export default function EntityDetailPanel({
     <aside className="detail-panel">
       <div className="detail-header">
         <button className="detail-close" onClick={onClose} aria-label="Close">×</button>
-        <span className="detail-type-chip" style={{ background: entityColors[detail.type] }}>
+        <span className="detail-type-chip" style={{ background: theme.colorOf(detail.type) }}>
           {detail.type}
         </span>
         <h2>{detail.name}</h2>
         <div className="detail-meta">
           {detail.code ? `${detail.code} · ` : ''}
-          {entityTypeLabels[detail.type]}
+          {theme.labelOf(detail.type)}
           {detail.parent_name ? ` · ${detail.parent_name}` : ''}
         </div>
         <div style={{ marginTop: 8 }}>
@@ -115,22 +116,22 @@ export default function EntityDetailPanel({
       </div>
 
       <div className="detail-body">
-        {detail.type === 'process' ? (
+        {detail.type === theme.container ? (
           <>
             <div className="detail-section-title">
               Activities in sequence ({outgoing.length})
             </div>
             {outgoing.length === 0 && <p className="muted">No activities recorded.</p>}
             {outgoing.map((r) => (
-              <RelatedRow key={r.relationship_id} rel={r} onSelect={onSelect} />
+              <RelatedRow key={r.relationship_id} rel={r} onSelect={onSelect} colorOf={theme.colorOf} />
             ))}
           </>
-        ) : detail.type === 'activity' ? (
+        ) : detail.type === theme.hub ? (
           <>
             <div className="detail-section-title">Uses / produces ({outgoing.length})</div>
             {outgoing.length === 0 && <p className="muted">No links recorded.</p>}
             {outgoing.map((r) => (
-              <RelatedRow key={r.relationship_id} rel={r} onSelect={onSelect} />
+              <RelatedRow key={r.relationship_id} rel={r} onSelect={onSelect} colorOf={theme.colorOf} />
             ))}
           </>
         ) : (
@@ -140,15 +141,15 @@ export default function EntityDetailPanel({
             </div>
             {incoming.length === 0 && <p className="muted">No links recorded.</p>}
             {incoming.map((r) => (
-              <RelatedRow key={r.relationship_id} rel={r} onSelect={onSelect} />
+              <RelatedRow key={r.relationship_id} rel={r} onSelect={onSelect} colorOf={theme.colorOf} />
             ))}
           </>
         )}
-        {detail.type !== 'activity' && detail.type !== 'process' && outgoing.length > 0 && (
+        {detail.type !== theme.hub && detail.type !== theme.container && outgoing.length > 0 && (
           <>
             <div className="detail-section-title">Also links to ({outgoing.length})</div>
             {outgoing.map((r) => (
-              <RelatedRow key={r.relationship_id} rel={r} onSelect={onSelect} />
+              <RelatedRow key={r.relationship_id} rel={r} onSelect={onSelect} colorOf={theme.colorOf} />
             ))}
           </>
         )}

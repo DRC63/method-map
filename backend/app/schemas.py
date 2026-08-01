@@ -11,6 +11,7 @@ class FrameworkOut(BaseModel):
     description: str | None = None
     sort_order: int = 0
     entity_counts: dict[str, int] = {}
+    config: dict = {}
 
 
 # ---------- Entity ----------

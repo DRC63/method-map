@@ -1,3 +1,5 @@
+import os
+
 from fastapi import APIRouter
 from pydantic import BaseModel
 
@@ -22,6 +24,9 @@ def get_meta():
         "role_codes": ROLE_CODES,
         "product_codes": PRODUCT_CODES,
         "product_subgroups": PRODUCT_SUBGROUPS,
+        # Which framework a single-framework deployment should default to
+        # (null = show the first / let the client choose).
+        "default_framework": os.getenv("FRAMEWORK_KEY"),
     }
 
 

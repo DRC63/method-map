@@ -1,10 +1,9 @@
 import { api } from '../api/client';
-import { codeColors, entityColors, entityTypeLabels } from '../theme/theme';
-
-const TYPE_ORDER = ['process', 'activity', 'role', 'practice', 'approach', 'product'];
+import { codeColors } from '../theme/theme';
 
 export default function ControlPanel({
   frameworkKey,
+  theme,
   counts,
   visibleTypes,
   onToggleType,
@@ -53,14 +52,14 @@ export default function ControlPanel({
 
       <div className="control-group">
         <h3>Layers</h3>
-        {TYPE_ORDER.map((type) => {
-          const on = visibleTypes.has(type);
+        {(theme?.types || []).map((t) => {
+          const on = visibleTypes.has(t.key);
           return (
-            <label key={type} className={`layer-toggle ${on ? '' : 'off'}`}>
-              <input type="checkbox" checked={on} onChange={() => onToggleType(type)} />
-              <span className="layer-swatch" style={{ background: entityColors[type] }} />
-              <span className="layer-name">{entityTypeLabels[type]}</span>
-              <span className="layer-count">{counts[type] ?? 0}</span>
+            <label key={t.key} className={`layer-toggle ${on ? '' : 'off'}`}>
+              <input type="checkbox" checked={on} onChange={() => onToggleType(t.key)} />
+              <span className="layer-swatch" style={{ background: t.color }} />
+              <span className="layer-name">{t.label}</span>
+              <span className="layer-count">{counts[t.key] ?? 0}</span>
             </label>
           );
         })}

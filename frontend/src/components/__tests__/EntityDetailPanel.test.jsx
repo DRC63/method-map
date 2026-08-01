@@ -2,6 +2,9 @@ import { render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import EntityDetailPanel from '../EntityDetailPanel';
 import { AdminProvider } from '../../context/AdminContext';
+import { makeFrameworkTheme } from '../../theme/theme';
+
+const theme = makeFrameworkTheme(null); // PRINCE2 defaults
 
 vi.mock('../../api/client', () => ({
   getAdminPassword: () => '',
@@ -43,6 +46,7 @@ describe('EntityDetailPanel', () => {
       <AdminProvider>
         <EntityDetailPanel
           frameworkKey="prince2-7"
+          theme={theme}
           entityId={10}
           onSelect={noop}
           onClose={noop}

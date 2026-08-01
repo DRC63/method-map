@@ -62,17 +62,19 @@ def list_relationships(key: str, db: Session = Depends(get_db)):
 def get_graph(
     key: str,
     types: str = Query(
-        default=",".join(t.value for t in EntityType),
-        description="Comma-separated entity types to include as nodes.",
+        default="",
+        description="Comma-separated entity types to include as nodes (default: all).",
     ),
     derived: bool = Query(
         default=True,
-        description="Include co-occurrence links between non-activity entities.",
+        description="Include co-occurrence links between non-hub entities.",
     ),
     db: Session = Depends(get_db),
 ):
     fw = _framework_or_404(db, key)
-    valid = {t.value for t in EntityType}
+    valid = {t["key"] for t in (fw.config or {}).get("types", [])} or {
+        t.value for t in EntityType
+    }
     selected = {t.strip() for t in types.split(",") if t.strip() in valid}
     if not selected:
         selected = valid
@@ -89,13 +91,14 @@ def get_lifecycle(key: str, db: Session = Depends(get_db)):
     """Processes in timeline order, each with its activities in sequence — the
     data behind the Lifecycle (process-model) view."""
     fw = _framework_or_404(db, key)
+    container_type, hub_type, _ = graph._framework_meta(fw)
     all_entities = crud.list_entities(db, fw.id)
     activities_by_process: dict[int, list] = {}
     for e in all_entities:
-        if e.type == EntityType.ACTIVITY.value and e.parent_id is not None:
+        if e.type == hub_type and e.parent_id is not None:
             activities_by_process.setdefault(e.parent_id, []).append(e)
 
-    processes = [e for e in all_entities if e.type == EntityType.PROCESS.value]
+    processes = [e for e in all_entities if e.type == container_type]
     processes.sort(key=lambda p: (p.sequence if p.sequence is not None else p.sort_order))
 
     out_processes = []
@@ -119,12 +122,19 @@ def get_lifecycle(key: str, db: Session = Depends(get_db)):
                 ],
             )
         )
+    cfg = fw.config or {}
+    lanes = cfg.get("lanes") or [
+        {"key": k, "label": v} for k, v in LIFECYCLE_LEVELS.items()
+    ]
+    phases = cfg.get("phases") or [
+        {"key": k, "label": v} for k, v in LIFECYCLE_PHASES.items()
+    ]
     return schemas.LifecycleOut(
         framework=serializers.serialize_framework(fw, crud.entity_counts(db, fw.id)),
-        levels=LIFECYCLE_LEVELS,
-        level_order=LIFECYCLE_LEVEL_ORDER,
-        phases=LIFECYCLE_PHASES,
-        phase_order=LIFECYCLE_PHASE_ORDER,
+        levels={l["key"]: l["label"] for l in lanes},
+        level_order=[l["key"] for l in lanes],
+        phases={p["key"]: p["label"] for p in phases},
+        phase_order=[p["key"] for p in phases],
         processes=out_processes,
     )
 
