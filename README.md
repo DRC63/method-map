@@ -7,31 +7,48 @@ management products — the relationships from the PRINCE2/MSP cross-reference
 skeleton, made explorable.
 
 Built to match the PMO Service app (FastAPI + SQLite backend, React/Vite
-frontend, single-origin Docker deploy) and cross-linked with the P3MAI website.
+frontend, single-origin Docker deploy); the app links back to the P3MAI website
+(a link from the website to here is still to be added).
 
 ## What it does
 
-Two complementary views over the same data:
+Sidebar views: **Method Explorer**, **Project Lifecycle**, a **Guide**, and an
+**Authoring & Admin** page.
 
-- **Method Explorer** — the interdependency **network graph** (below).
-- **Project Lifecycle** — the same processes laid out **in time**: the canonical
-  PRINCE2 process model, with time running left→right (Pre-project → Initiation →
-  Delivery stages ⟳ → Final stage) across three swimlanes (Directing / Managing /
-  Delivering). Click a process to see its activities in sequence; jump straight to
-  any of them in the graph.
+### Method Explorer — the interdependency network graph
+`react-force-graph-2d`, colour-coded nodes per entity type, with two **fixed
+layouts** (toggle in the control panel):
 
-- **Layered network graph** (`react-force-graph-2d`) — colour-coded nodes per
-  entity type; toggle any layer on/off. With Activities hidden, the graph shows
-  **indirect (co-occurrence) links** — two elements connect when they share an
-  activity — so you can study Roles↔Practices, Roles↔Products, etc. on their own.
-- **Detail panel** — click a node to see every relationship, grouped and labelled
-  with the standard codes (C/P/N for roles/practices/approaches; I/O/U/A for
-  products), with the owning process for incoming links.
-- **Search** across all entities; **confidence flags** ("indicative" vs
-  "confirmed") surfaced as a dashed ring, per the cross-reference caveats.
-- **Authoring mode** — a single admin password unlocks add/edit/delete of
-  entities and relationships (e.g. to populate a future MSP framework, or
-  overtype an indicative code once SME-verified).
+- **Matrix** — a positional hierarchy: processes across the top, activities
+  stacked beneath, products in a band below; roles pinned left, practices right,
+  management approaches along the bottom, with big colour-coded zone labels.
+- **Timeline** — echoes the Project Lifecycle: processes in three swimlanes
+  (Directing / Managing / Delivering) laid left→right in lifecycle sequence,
+  activities in each process's time-column, and roles / practices / approaches /
+  products as static resource bands below. A **scrubber** (play/pause + slider +
+  stage ticks) walks the lifecycle stage by stage, lighting up each stage's
+  process, activities and everything they touch — in **spotlight** (current stage)
+  or **cumulative** (everything so far) mode.
+
+Shared across both layouts: toggle any entity **layer** on/off; **indirect
+(co-occurrence) links** when activities are hidden (two elements connect when they
+share an activity); **search**; node **size weighted by direct responsibilities**
+(the real C/P/N/I/O/U/A relationship count); a prominent **selection highlight**
+(click a node → gold halo + neighbour highlighting); and **confidence flags**
+(dashed ring on "indicative" data).
+
+### Project Lifecycle — the canonical PRINCE2 process model
+Time runs left→right (Pre-project → Initiation → Delivery stages ⟳ → Final) across
+the three swimlanes. Click a process to see its activities in sequence; jump
+straight into the graph.
+
+### Detail panel, authoring, exports
+- **Detail panel** — click a node for every relationship, grouped and code-labelled
+  (C/P/N for roles/practices/approaches; I/O/U/A for products), with the owning
+  process for incoming links; a process lists its activities in sequence.
+- **Authoring mode** — a single admin password unlocks add/edit/delete of entities
+  and relationships (e.g. to populate a future MSP framework, or overtype an
+  indicative code once SME-verified).
 - **Exports** — graph as PNG, per-entity branded PDF summary, and the (optionally
   focused) cross-reference data as CSV / Excel.
 
@@ -40,8 +57,10 @@ Two complementary views over the same data:
 - **Data model** is framework-agnostic: `frameworks` → `entities` (typed:
   process / activity / role / practice / approach / product; activities point at
   their process via `parent_id`) → `relationships` (from an activity to a target,
-  with a code + confidence). MSP or any other framework drops in as another seed
-  file with zero code changes.
+  with a code + confidence). Processes carry lifecycle metadata
+  (`lifecycle_level`, `lifecycle_phase`, `sequence`, `repeats`) that powers the
+  Project Lifecycle view and the Explorer's Timeline layout. MSP or any other
+  framework drops in as another seed file with zero code changes.
 - **Seed** is a self-contained JSON file per framework in
   `backend/app/seed_data/` (generated from the source spreadsheet). The app
   auto-seeds an empty database on first boot, so a fresh/ephemeral deploy comes
@@ -102,15 +121,23 @@ npm test
 
 ## Production deployment
 
-Same single-origin pattern as the PMO app: the backend serves the built React
-frontend from `frontend/dist`, so the whole app lives behind one origin. The
-`Dockerfile` builds the frontend then runs uvicorn. Planned hosting: Render
-(Docker), a `map.` / dedicated subdomain, cross-linked from p3mai.com.
+**Live** on Render at **https://method-map.onrender.com** — a Docker web service
+(Starter plan, Oregon) defined by `render.yaml` (Blueprint). Same single-origin
+pattern as the PMO app: the backend serves the built React frontend from
+`frontend/dist`, so the whole app lives behind one origin. `autoDeploy` is on, so
+pushing to `main` redeploys. Health check: `/api/health`. `ADMIN_PASSWORD` is set
+as a dashboard secret (`sync: false` in the blueprint).
 
-Note: on an ephemeral-disk host (Render free tier) `methodmap.db` resets on
-restart — harmless, because the app re-seeds from the bundled JSON on boot. Any
-**authoring-mode edits are stored only in that database**, so move to a
-persistent disk or Postgres before relying on in-app edits surviving a redeploy.
+Custom domain **prince2.p3mai.com** is attached in Render; it goes live once a DNS
+`CNAME prince2 → method-map.onrender.com` is added at the p3mai.com DNS provider
+(then Render auto-verifies + issues SSL).
+
+Note: on Render's disk `methodmap.db` resets on each redeploy/restart — harmless,
+because the app re-seeds from the bundled JSON on boot. Any **authoring-mode edits
+are stored only in that database**, so move to a persistent disk or Postgres
+before relying on in-app edits surviving a redeploy.
+
+Still open: cross-link the "Method Map" from the p3mai.com Services page.
 
 ## Data provenance
 

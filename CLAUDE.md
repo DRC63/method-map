@@ -23,7 +23,8 @@ quick orientation + the decisions that aren't obvious from the code.
 - Processes carry lifecycle/timeline metadata: `lifecycle_level`
   (directing/managing/delivering), `lifecycle_phase`
   (pre-project/initiation/delivery/stage-boundary/final/throughout), `sequence`
-  (left→right order), `repeats` (per delivery stage). Powers the Lifecycle view.
+  (left→right order), `repeats` (per delivery stage). Powers the Lifecycle view
+  and the Explorer's Timeline layout.
 - MSP (or any framework) is added purely as another seed JSON — no code changes.
 
 ## Lifecycle view (`GET /frameworks/{key}/lifecycle`, `pages/Lifecycle.jsx`)
@@ -73,12 +74,28 @@ Given the selected entity-type layers it emits three link kinds:
 - `prince2-7.json` was generated from
   `OneDrive/Documents/Methodologies/PRINCE2_MSP_Updated_Cross_Reference_Skeleton.xlsx`
   by `backend/scripts/extract_prince2.py`. Re-run that if the spreadsheet changes.
+- Manual corrections/additions not in the source spreadsheet go in the
+  `CORRECTIONS` list in `extract_prince2.py` (so they survive regeneration), then
+  re-run the extractor + `python -m app.seed --force`. Schema changes need the
+  local `methodmap.db` deleted first (create_all won't alter columns).
 - Entities are referenced in the JSON by a composite `"type::name"` key.
 
 ## Auth (`app/security.py`)
 Single shared password (`ADMIN_PASSWORD`, default `change-me`). Read = open;
 writes require the `X-Admin-Password` header. Frontend stores it in localStorage
 and gates authoring UI via `AdminContext`. Not real accounts — deliberate for v1.
+
+## Deployment
+- GitHub: `https://github.com/DRC63/method-map` (private, DRC63). Pushing to
+  `main` **auto-deploys** (Render `autoDeploy: true`) — a push redeploys prod.
+- **LIVE** on Render at `https://method-map.onrender.com` (Docker web service,
+  Starter plan, region oregon) via the `render.yaml` Blueprint. Health check
+  `/api/health`; `ADMIN_PASSWORD` is a dashboard secret (`sync: false`).
+- Custom domain **prince2.p3mai.com** added in Render — live once a DNS
+  `CNAME prince2 → method-map.onrender.com` exists at the p3mai.com DNS provider.
+- Render disk is ephemeral → app auto-seeds on boot; authoring edits don't survive
+  a redeploy (use a persistent disk / Postgres if they must).
+- TODO: cross-link "Method Map" from the p3mai.com Services page (website side).
 
 ## Known environment gotchas
 - The graph uses `requestAnimationFrame`; in a **non-displayed browser pane** the
