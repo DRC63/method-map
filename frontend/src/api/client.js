@@ -1,4 +1,7 @@
-const BASE = '/api';
+// API + export URLs live under the app's base path so they survive being served
+// behind the shared front door: '/api' at the root, '/prince2/api' (or '/msp/api')
+// when built with APP_BASE. The csvUrl/xlsxUrl/pdfUrl builders below inherit it.
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, '') + '/api';
 
 // Admin password (for authoring mode) is held in localStorage and sent as a
 // header on write requests. Read requests never need it.

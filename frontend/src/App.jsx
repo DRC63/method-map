@@ -6,10 +6,14 @@ import Lifecycle from './pages/Lifecycle';
 import Guide from './pages/Guide';
 import Admin from './pages/Admin';
 
+// Serve under the Vite base path (e.g. '/prince2') when deployed behind the
+// shared apps.p3mai.com front door; '/' (default) locally and at the root.
+const basename = import.meta.env.BASE_URL.replace(/\/$/, '') || undefined;
+
 export default function App() {
   return (
     <AdminProvider>
-      <BrowserRouter>
+      <BrowserRouter basename={basename}>
         <Routes>
           <Route
             path="/"

@@ -4,6 +4,11 @@ WORKDIR /app/frontend
 COPY frontend/package.json frontend/package-lock.json ./
 RUN npm ci
 COPY frontend/ ./
+# Base path the SPA is built under. Default '/' (root deploy). Render passes the
+# service's APP_BASE env var as a build arg, so setting APP_BASE=/prince2/ (or
+# /msp/) makes this build serve behind the shared apps.p3mai.com front door.
+ARG APP_BASE=/
+ENV APP_BASE=$APP_BASE
 RUN npm run build
 
 # Stage 2: Python backend, serving the built frontend from Stage 1
