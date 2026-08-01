@@ -104,6 +104,16 @@ and gates authoring UI via `AdminContext`. Not real accounts — deliberate for 
 - Project tree is under OneDrive: expect a ~2s write-commit tax on SQLite that
   pragmas can't remove (it's OneDrive's sync driver). WAL keeps reads snappy.
 
+## Documentation (`docs/`)
+Formal doc set organised like the *Microsoft Ecosystem – PMO Project*: numbered
+Word docs each paired with a PowerPoint summary, a house style, and generated
+diagrams. **DOC-01 Architecture & Design**, **DOC-02 User Manual**, **DOC-03
+Operation Manual** (`.docx` + `_Summary.pptx`). The Office files are generated
+from Python (`docs/_source/`: `docstyle.py`/`deckstyle.py` helpers + `gen_*.py`,
+using python-docx / python-pptx / matplotlib) — edit the scripts and re-run to
+rebuild. `docs/README.md` indexes them; `DOCUMENT_HOUSE_STYLE.md` is the
+P3MAI-branded style. Word TOCs are auto-fields (press F9 to populate on first open).
+
 ## Tests
 - Backend: `pytest` (isolated per-test SQLite DB; seeds the real framework).
 - Frontend: `npm test` (Vitest). DetailPanel test mocks the api client.
