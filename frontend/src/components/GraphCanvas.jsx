@@ -115,7 +115,9 @@ export default function GraphCanvas({ ref, data, selectedId, onSelectNode, searc
   const searchMatches = useMemo(() => {
     if (!searchLower) return null;
     return new Set(
-      data.nodes.filter((n) => n.name.toLowerCase().includes(searchLower)).map((n) => n.id),
+      data.nodes
+        .filter((n) => (n.name || '').toLowerCase().includes(searchLower))
+        .map((n) => n.id),
     );
   }, [data, searchLower]);
 
@@ -131,11 +133,12 @@ export default function GraphCanvas({ ref, data, selectedId, onSelectNode, searc
   );
 
   // Effective dimming set: hovering refines to that node's neighbourhood;
-  // otherwise the timeline stage set (when scrubbing) is the base; otherwise the
-  // selected node's neighbourhood.
+  // otherwise the timeline stage set (when scrubbing); otherwise an active search
+  // spotlights just the matches (dim everything else); otherwise the selected
+  // node's neighbourhood.
   const highlightSet = useMemo(
-    () => neighbours(hoverId) || timelineSet || neighbours(selectedId),
-    [neighbours, hoverId, timelineSet, selectedId],
+    () => neighbours(hoverId) || timelineSet || searchMatches || neighbours(selectedId),
+    [neighbours, hoverId, timelineSet, searchMatches, selectedId],
   );
 
   useImperativeHandle(ref, () => ({
