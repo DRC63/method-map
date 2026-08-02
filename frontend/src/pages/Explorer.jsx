@@ -7,6 +7,7 @@ import EntityDetailPanel from '../components/EntityDetailPanel';
 import EntityForm from '../components/EntityForm';
 import RelationshipForm from '../components/RelationshipForm';
 import TimelineScrubber from '../components/TimelineScrubber';
+import TimelineSwimlane from '../components/TimelineSwimlane';
 import { makeFrameworkTheme } from '../theme/theme';
 import { useAdmin } from '../context/AdminContext';
 
@@ -29,6 +30,9 @@ export default function Explorer() {
   const [timelineIndex, setTimelineIndex] = useState(0);
   const [timelineMode, setTimelineMode] = useState('spotlight');
   const [playing, setPlaying] = useState(false);
+  // The swimlane shows every stage at full strength until the scrubber is used;
+  // once touched, the current stage is spotlit and the rest dim.
+  const [timelineTouched, setTimelineTouched] = useState(false);
 
   // admin modals
   const [editingEntity, setEditingEntity] = useState(null);
@@ -138,7 +142,7 @@ export default function Explorer() {
   }, [graphData, containerType, hubType]);
 
   const timelineSet = useMemo(() => {
-    if (layout !== 'timeline' || !timelineStages.length) return null;
+    if (layout !== 'timeline' || !timelineStages.length || !timelineTouched) return null;
     const i = Math.min(timelineIndex, timelineStages.length - 1);
     if (timelineMode === 'cumulative') {
       const set = new Set();
@@ -146,13 +150,14 @@ export default function Explorer() {
       return set;
     }
     return timelineStages[i].ids;
-  }, [layout, timelineStages, timelineIndex, timelineMode]);
+  }, [layout, timelineStages, timelineIndex, timelineMode, timelineTouched]);
 
   // Reset the scrubber whenever timeline mode is (re)entered.
   useEffect(() => {
     if (layout === 'timeline') {
       setTimelineIndex(0);
       setPlaying(false);
+      setTimelineTouched(false);
     } else {
       setPlaying(false);
     }
@@ -245,24 +250,34 @@ export default function Explorer() {
       />
 
       <div className="graph-stage">
-        {graphData.nodes.length === 0 && !loadingGraph && (
+        {graphData.nodes.length === 0 && !loadingGraph && layout !== 'timeline' && (
           <div className="graph-empty">No entities in the selected layers.</div>
         )}
-        <GraphCanvas
-          ref={graphRef}
-          data={graphData}
-          selectedId={selectedId}
-          onSelectNode={setSelectedId}
-          search={search}
-          layout={layout}
-          timelineSet={timelineSet}
-          theme={theme}
-        />
-        {layout !== 'timeline' && (
-          <div className="graph-hint">
-            {graphData.nodes.length} nodes · {graphData.links.length} links · drag to
-            pan, scroll to zoom, click a node for detail
-          </div>
+        {layout === 'timeline' ? (
+          <TimelineSwimlane
+            data={graphData}
+            theme={theme}
+            selectedId={selectedId}
+            onSelectNode={setSelectedId}
+            timelineSet={timelineSet}
+          />
+        ) : (
+          <>
+            <GraphCanvas
+              ref={graphRef}
+              data={graphData}
+              selectedId={selectedId}
+              onSelectNode={setSelectedId}
+              search={search}
+              layout={layout}
+              timelineSet={timelineSet}
+              theme={theme}
+            />
+            <div className="graph-hint">
+              {graphData.nodes.length} nodes · {graphData.links.length} links · drag to
+              pan, scroll to zoom, click a node for detail
+            </div>
+          </>
         )}
         {layout === 'timeline' && (
           <TimelineScrubber
@@ -270,12 +285,19 @@ export default function Explorer() {
             index={timelineIndex}
             onIndex={(i) => {
               setPlaying(false);
+              setTimelineTouched(true);
               setTimelineIndex(i);
             }}
             playing={playing}
-            onTogglePlay={() => setPlaying((p) => !p)}
+            onTogglePlay={() => {
+              setTimelineTouched(true);
+              setPlaying((p) => !p);
+            }}
             mode={timelineMode}
-            onSetMode={setTimelineMode}
+            onSetMode={(m) => {
+              setTimelineTouched(true);
+              setTimelineMode(m);
+            }}
           />
         )}
         {isAdmin && (
