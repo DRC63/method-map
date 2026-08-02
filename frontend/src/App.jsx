@@ -5,10 +5,23 @@ import Explorer from './pages/Explorer';
 import Lifecycle from './pages/Lifecycle';
 import Guide from './pages/Guide';
 import Admin from './pages/Admin';
+import { useDeploymentFramework } from './lib/useDeploymentFramework';
+import { lifecycleLabel } from './theme/labels';
 
 // Serve under the Vite base path (e.g. '/prince2') when deployed behind the
 // shared apps.p3mai.com front door; '/' (default) locally and at the root.
 const basename = import.meta.env.BASE_URL.replace(/\/$/, '') || undefined;
+
+// The lifecycle page's header follows the framework: "Project Lifecycle" for
+// PRINCE2, "Programme Lifecycle" for MSP.
+function LifecycleLayout({ children }) {
+  const fw = useDeploymentFramework();
+  return (
+    <AppLayout title={lifecycleLabel(fw)} fluid>
+      {children}
+    </AppLayout>
+  );
+}
 
 export default function App() {
   return (
@@ -26,9 +39,9 @@ export default function App() {
           <Route
             path="/lifecycle"
             element={
-              <AppLayout title="Project Lifecycle" fluid>
+              <LifecycleLayout>
                 <Lifecycle />
-              </AppLayout>
+              </LifecycleLayout>
             }
           />
           <Route

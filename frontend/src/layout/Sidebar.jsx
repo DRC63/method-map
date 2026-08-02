@@ -3,6 +3,7 @@ import { NavLink } from 'react-router';
 import logo from '../assets/logo-triangle-white.svg';
 import { api } from '../api/client';
 import { useAdmin } from '../context/AdminContext';
+import { lifecycleLabel } from '../theme/labels';
 
 const LINKS = [
   { to: '/', label: 'Method Explorer', end: true },
@@ -24,11 +25,14 @@ export default function Sidebar() {
   // Each deployment is a single framework; label the app with it so PRINCE2 vs
   // MSP is clear in the title (and the browser tab), not just the graph content.
   const [title, setTitle] = useState('Method Map');
+  const [lifecycleLbl, setLifecycleLbl] = useState('Project Lifecycle');
   useEffect(() => {
     api
       .listFrameworks()
       .then((list) => {
-        const name = list?.[0]?.name;
+        const fw = list?.[0];
+        setLifecycleLbl(lifecycleLabel(fw));
+        const name = fw?.name;
         if (name) {
           const t = `${name} Method Map`;
           setTitle(t);
@@ -38,6 +42,10 @@ export default function Sidebar() {
       .catch(() => {});
   }, []);
 
+  const links = LINKS.map((l) =>
+    l.to === '/lifecycle' ? { ...l, label: lifecycleLbl } : l,
+  );
+
   return (
     <aside className="sidebar">
       <div className="sidebar-logo">
@@ -45,7 +53,7 @@ export default function Sidebar() {
         <span>{title}</span>
       </div>
       <nav className="sidebar-nav">
-        {LINKS.map((link) => (
+        {links.map((link) => (
           <NavLink
             key={link.to}
             to={link.to}

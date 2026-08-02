@@ -1,8 +1,11 @@
 import { entityColors, entityTypeLabels } from '../theme/theme';
+import { useDeploymentFramework } from '../lib/useDeploymentFramework';
+import { lifecycleLabel } from '../theme/labels';
 
 const TYPES = ['process', 'activity', 'role', 'practice', 'approach', 'product'];
 
 export default function Guide() {
+  const fw = useDeploymentFramework();
   return (
     <div className="prose">
       <div className="card section-gap">
@@ -21,7 +24,7 @@ export default function Guide() {
         <h2 style={{ marginTop: 0 }}>Two ways to look at it</h2>
         <ul className="bullets">
           <li><strong>Method Explorer</strong> — the interdependency network. Best for "what connects to what": pick any element and trace its links across the whole method.</li>
-          <li><strong>Project Lifecycle</strong> — the same processes laid out in time. The classic PRINCE2 process model: time runs left→right (Pre-project → Initiation → Delivery stages ⟳ → Final stage) across three swimlanes (Directing / Managing / Delivering). Click a process to see its activities in sequence.</li>
+          <li><strong>{lifecycleLabel(fw)}</strong> — the same processes laid out in time. The classic PRINCE2 process model: time runs left→right (Pre-project → Initiation → Delivery stages ⟳ → Final stage) across three swimlanes (Directing / Managing / Delivering). Click a process to see its activities in sequence.</li>
         </ul>
       </div>
 

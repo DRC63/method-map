@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { api } from '../api/client';
+import { lifecycleNoun } from '../theme/labels';
 
 // Timeline columns come from the framework config: the phases flagged
 // `column: true`, in order. "throughout" is drawn as a spanning bar; any other
@@ -76,15 +77,16 @@ export default function Lifecycle() {
 
   const laneClassFor = (lv) => LANE_CLASSES[data.level_order.indexOf(lv) % LANE_CLASSES.length];
   const spanCols = Math.max(1, phaseCols.length - 1);
+  const noun = lifecycleNoun(data.framework);
 
   return (
     <div className="lifecycle-wrap">
       <div className="lifecycle-intro">
-        <h2>{data.framework.name} — the project lifecycle</h2>
+        <h2>{data.framework.name} — the {noun} lifecycle</h2>
         <p>
-          Time flows left to right across the project. Each swimlane is a level of
+          Time flows left to right across the {noun}. Each swimlane is a level of
           responsibility; a process sits where it runs on the timeline. Delivery
-          stages repeat until the project is done. Click any process to see its
+          stages repeat until the {noun} is done. Click any process to see its
           activities in sequence.
         </p>
       </div>
