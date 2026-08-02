@@ -24,10 +24,15 @@ JSON's `framework.config`) that makes the whole app framework-agnostic:
 - `lanes`: Timeline swimlanes `[{key,label}]`; `phases`: `[{key,label,column?,header?}]`.
 Frontend builds a theme from it via `makeFrameworkTheme` (theme/theme.js), threaded
 through GraphCanvas/ControlPanel/EntityDetailPanel and the layout fns (graphLayout.js,
-now zone/lane-driven). **A new framework (MSP) = a new seed JSON with its own config;
-no code change.** Env `FRAMEWORK_KEY` makes a deployment seed+default to one framework
-(exposed via `/api/meta` `default_framework`) — this is how PRINCE2 and MSP deploy
-separately from one codebase.
+now zone/lane-driven). **A new framework = a new seed JSON with its own config; no
+code change** for the graph/Explorer/Lifecycle/swimlane. The **only** hand-written
+per-framework code is in `pages/Guide.jsx` → `FRAMEWORK_PROSE[key]` = `{modelName,
+accuracy, related}`: a framework missing a key falls back to generic prose, but the
+**`related` cross-links are hardcoded** (each framework's Guide links to the other
+live apps — currently 3-way PRINCE2↔MSP↔SAFe), so adding a 4th framework means
+editing every existing entry's `related`. Env `FRAMEWORK_KEY` makes a deployment
+seed+default to one framework (exposed via `/api/meta` `default_framework`) — this
+is how PRINCE2, MSP and SAFe deploy separately from one codebase.
 
 ## Data model (framework-agnostic on purpose)
 `frameworks` → `entities` → `relationships`.
@@ -42,7 +47,8 @@ separately from one codebase.
   (pre-project/initiation/delivery/stage-boundary/final/throughout), `sequence`
   (left→right order), `repeats` (per delivery stage). Powers the Lifecycle view
   and the Explorer's Timeline layout.
-- MSP (or any framework) is added purely as another seed JSON — no code changes.
+- MSP (or any framework) is added purely as another seed JSON — no code changes
+  (except the Guide's per-framework prose + `related` cross-links; see Framework config above).
 
 ## Lifecycle view (`GET /frameworks/{key}/lifecycle`, `pages/Lifecycle.jsx`)
 The canonical PRINCE2 process model as a CSS-grid swimlane: 3 lanes (levels) ×
