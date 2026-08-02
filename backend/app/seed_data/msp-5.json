@@ -1,0 +1,2101 @@
+{
+  "framework": {
+    "key": "msp-5",
+    "name": "MSP",
+    "edition": "5th edition (Managing Successful Programmes, 2020)",
+    "description": "MSP 5th-edition Method Map: the 7 programme processes and their activities cross-referenced to roles, themes, products and the 7 principles. Role/theme codes: C=Responsible, P=Related, N=Assists. Product codes: CO=Confirmed, CR=Created, RF=Refined, RV=Reviewed, UP=Updated, IM=Implemented. The activity breakdown and every cross-reference mark are an indicative, best-effort reconstruction and must be SME-verified against the licensed MSP manual before formal use.",
+    "sort_order": 2,
+    "config": {
+      "types": [
+        {
+          "key": "process",
+          "label": "Programme Processes",
+          "color": "#0B2545",
+          "kind": "container",
+          "zone": "top",
+          "order": 1
+        },
+        {
+          "key": "activity",
+          "label": "Activities",
+          "color": "#3D5A80",
+          "kind": "hub",
+          "zone": "center",
+          "order": 2
+        },
+        {
+          "key": "role",
+          "label": "Roles",
+          "color": "#C9A227",
+          "kind": "node",
+          "code_group": "role",
+          "zone": "left",
+          "order": 3
+        },
+        {
+          "key": "theme",
+          "label": "Themes",
+          "color": "#2E7D5B",
+          "kind": "node",
+          "code_group": "role",
+          "zone": "right",
+          "order": 4
+        },
+        {
+          "key": "product",
+          "label": "Products",
+          "color": "#C0392B",
+          "kind": "node",
+          "code_group": "product",
+          "zone": "below",
+          "order": 5
+        },
+        {
+          "key": "principle",
+          "label": "Principles",
+          "color": "#8E5BE0",
+          "kind": "node",
+          "code_group": "principle",
+          "zone": "bottom",
+          "order": 6
+        }
+      ],
+      "codes": {
+        "role": {
+          "C": "Responsible",
+          "P": "Related",
+          "N": "Assists"
+        },
+        "product": {
+          "CO": "Confirmed",
+          "CR": "Created",
+          "RF": "Refined",
+          "RV": "Reviewed",
+          "UP": "Updated",
+          "IM": "Implemented"
+        },
+        "principle": {
+          "E": "Embodies"
+        }
+      },
+      "lanes": [
+        {
+          "key": "sponsoring",
+          "label": "Sponsoring (SRO / Sponsoring Group)"
+        },
+        {
+          "key": "managing",
+          "label": "Managing (Programme Manager / Office)"
+        },
+        {
+          "key": "delivering",
+          "label": "Delivering (Business Change)"
+        }
+      ],
+      "phases": [
+        {
+          "key": "identify",
+          "label": "Identify",
+          "column": true,
+          "header": "Identify"
+        },
+        {
+          "key": "definition",
+          "label": "Definition (Design & Plan)",
+          "column": true,
+          "header": "Definition"
+        },
+        {
+          "key": "delivery",
+          "label": "Delivery tranches",
+          "column": true,
+          "header": "Delivery ⟳"
+        },
+        {
+          "key": "close",
+          "label": "Close",
+          "column": true,
+          "header": "Close"
+        },
+        {
+          "key": "throughout",
+          "label": "Throughout"
+        }
+      ]
+    }
+  },
+  "entities": [
+    {
+      "code": "IP",
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": "Confirm the programme mandate and its justification, and appoint the initial leadership so the programme can be sanctioned to start.",
+      "sort_order": 1,
+      "lifecycle_level": "sponsoring",
+      "lifecycle_phase": "identify",
+      "sequence": 1,
+      "repeats": false,
+      "type": "process",
+      "name": "Identify the Programme"
+    },
+    {
+      "code": "DO",
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": "Shape the change: define the target operating model, the benefits and the full business case.",
+      "sort_order": 2,
+      "lifecycle_level": "managing",
+      "lifecycle_phase": "definition",
+      "sequence": 2,
+      "repeats": false,
+      "type": "process",
+      "name": "Design the Outcomes"
+    },
+    {
+      "code": "PP",
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": "Plan how the change will be delivered incrementally through tranches, and set up the management approaches.",
+      "sort_order": 3,
+      "lifecycle_level": "managing",
+      "lifecycle_phase": "definition",
+      "sequence": 3,
+      "repeats": false,
+      "type": "process",
+      "name": "Plan Progressive Delivery"
+    },
+    {
+      "code": "DC",
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": "Coordinate the projects and other work that create the capabilities the programme needs.",
+      "sort_order": 4,
+      "lifecycle_level": "delivering",
+      "lifecycle_phase": "delivery",
+      "sequence": 4,
+      "repeats": true,
+      "type": "process",
+      "name": "Deliver the Capabilities"
+    },
+    {
+      "code": "EO",
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": "Transition new capabilities into business-as-usual and realize the intended benefits.",
+      "sort_order": 5,
+      "lifecycle_level": "delivering",
+      "lifecycle_phase": "delivery",
+      "sequence": 5,
+      "repeats": true,
+      "type": "process",
+      "name": "Embed the Outcomes"
+    },
+    {
+      "code": "EN",
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": "Review progress and new information, respond to risk and change, and decide whether to continue.",
+      "sort_order": 6,
+      "lifecycle_level": "managing",
+      "lifecycle_phase": "delivery",
+      "sequence": 6,
+      "repeats": true,
+      "type": "process",
+      "name": "Evaluate New Information"
+    },
+    {
+      "code": "CP",
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": "Confirm the outcomes and benefits, hand over ongoing realization, and disband the programme.",
+      "sort_order": 7,
+      "lifecycle_level": "managing",
+      "lifecycle_phase": "close",
+      "sequence": 7,
+      "repeats": false,
+      "type": "process",
+      "name": "Close the Programme"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 1,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "role",
+      "name": "Sponsoring Group"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 2,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "role",
+      "name": "Senior Responsible Owner"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 3,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "role",
+      "name": "Programme Manager"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 4,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "role",
+      "name": "Business Change Manager"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 5,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "role",
+      "name": "Programme Office"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 1,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "theme",
+      "name": "Organization"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 2,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "theme",
+      "name": "Design"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 3,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "theme",
+      "name": "Justification"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 4,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "theme",
+      "name": "Structure"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 5,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "theme",
+      "name": "Knowledge"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 6,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "theme",
+      "name": "Assurance"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 7,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "theme",
+      "name": "Decisions"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 1,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "principle",
+      "name": "Lead with purpose"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 2,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "principle",
+      "name": "Collaborate across boundaries"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 3,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "principle",
+      "name": "Deal with ambiguity"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 4,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "principle",
+      "name": "Align with priorities"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 5,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "principle",
+      "name": "Deploy diverse skills"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 6,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "principle",
+      "name": "Realize measurable benefits"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 7,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "principle",
+      "name": "Bring pace and value"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 1,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "product",
+      "name": "Organisation Structure & RACI"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 2,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "product",
+      "name": "Vision Statement"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 3,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "product",
+      "name": "Target Operating Model"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 4,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "product",
+      "name": "Business Case"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 5,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "product",
+      "name": "Benefit Profile(s)"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 6,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "product",
+      "name": "Benefits Realisation Plan"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 7,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "product",
+      "name": "Programme Plan"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 8,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "product",
+      "name": "Tranche / Stage Plan"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 9,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "product",
+      "name": "Information Mgmt Approach"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 10,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "product",
+      "name": "Lessons Log"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 11,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "product",
+      "name": "Quality & Assurance Approach"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 12,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "product",
+      "name": "Audit / Assurance Log"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 13,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "product",
+      "name": "Programme Board Decision Log"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 14,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "product",
+      "name": "Risk & Issue Register"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Identify the Programme",
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 1,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "activity",
+      "name": "Sponsor the programme mandate"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Identify the Programme",
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 2,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "activity",
+      "name": "Appoint the SRO and initial leadership"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Identify the Programme",
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 3,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "activity",
+      "name": "Develop the programme brief and outline vision"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Identify the Programme",
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 4,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "activity",
+      "name": "Confirm justification to proceed"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Design the Outcomes",
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 1,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "activity",
+      "name": "Define the target operating model"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Design the Outcomes",
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 2,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "activity",
+      "name": "Define benefits and benefit profiles"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Design the Outcomes",
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 3,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "activity",
+      "name": "Develop the full business case"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Design the Outcomes",
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 4,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "activity",
+      "name": "Confirm the programme organization and governance"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Plan Progressive Delivery",
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 1,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "activity",
+      "name": "Develop the programme plan"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Plan Progressive Delivery",
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 2,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "activity",
+      "name": "Define tranches and the delivery approach"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Plan Progressive Delivery",
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 3,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "activity",
+      "name": "Establish the management approaches"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Plan Progressive Delivery",
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 4,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "activity",
+      "name": "Set up risk and issue management"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Deliver the Capabilities",
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 1,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "activity",
+      "name": "Commission and coordinate the projects"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Deliver the Capabilities",
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 2,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "activity",
+      "name": "Manage tranche delivery"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Deliver the Capabilities",
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 3,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "activity",
+      "name": "Assure delivery quality"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Deliver the Capabilities",
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 4,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "activity",
+      "name": "Maintain stakeholder engagement and communications"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Embed the Outcomes",
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 1,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "activity",
+      "name": "Transition capability into operations"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Embed the Outcomes",
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 2,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "activity",
+      "name": "Realize and measure benefits"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Embed the Outcomes",
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 3,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "activity",
+      "name": "Confirm outcomes achieved"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Evaluate New Information",
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 1,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "activity",
+      "name": "Review programme progress and performance"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Evaluate New Information",
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 2,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "activity",
+      "name": "Assess risks, issues and change"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Evaluate New Information",
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 3,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "activity",
+      "name": "Re-confirm justification at tranche end"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Evaluate New Information",
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 4,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "activity",
+      "name": "Capture and apply lessons"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Close the Programme",
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 1,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "activity",
+      "name": "Confirm programme objectives are met"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Close the Programme",
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 2,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "activity",
+      "name": "Hand over ongoing benefits realization"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Close the Programme",
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 3,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "activity",
+      "name": "Disband the programme organization"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": "process::Close the Programme",
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 4,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "activity",
+      "name": "Finalize lessons and assurance"
+    }
+  ],
+  "relationships": [
+    {
+      "from": "activity::Sponsor the programme mandate",
+      "to": "role::Sponsoring Group",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Sponsor the programme mandate",
+      "to": "role::Senior Responsible Owner",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Sponsor the programme mandate",
+      "to": "role::Programme Manager",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Sponsor the programme mandate",
+      "to": "theme::Justification",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Sponsor the programme mandate",
+      "to": "theme::Decisions",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Sponsor the programme mandate",
+      "to": "product::Business Case",
+      "code": "CR",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Sponsor the programme mandate",
+      "to": "product::Vision Statement",
+      "code": "RF",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Sponsor the programme mandate",
+      "to": "principle::Lead with purpose",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Appoint the SRO and initial leadership",
+      "to": "role::Sponsoring Group",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Appoint the SRO and initial leadership",
+      "to": "role::Senior Responsible Owner",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Appoint the SRO and initial leadership",
+      "to": "theme::Organization",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Appoint the SRO and initial leadership",
+      "to": "theme::Structure",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Appoint the SRO and initial leadership",
+      "to": "product::Organisation Structure & RACI",
+      "code": "CR",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Appoint the SRO and initial leadership",
+      "to": "principle::Deploy diverse skills",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Develop the programme brief and outline vision",
+      "to": "role::Senior Responsible Owner",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Develop the programme brief and outline vision",
+      "to": "role::Programme Manager",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Develop the programme brief and outline vision",
+      "to": "role::Business Change Manager",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Develop the programme brief and outline vision",
+      "to": "theme::Design",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Develop the programme brief and outline vision",
+      "to": "theme::Justification",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Develop the programme brief and outline vision",
+      "to": "product::Vision Statement",
+      "code": "CR",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Develop the programme brief and outline vision",
+      "to": "product::Target Operating Model",
+      "code": "RF",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Develop the programme brief and outline vision",
+      "to": "product::Business Case",
+      "code": "RF",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Develop the programme brief and outline vision",
+      "to": "principle::Lead with purpose",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Confirm justification to proceed",
+      "to": "role::Sponsoring Group",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Confirm justification to proceed",
+      "to": "role::Senior Responsible Owner",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Confirm justification to proceed",
+      "to": "theme::Justification",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Confirm justification to proceed",
+      "to": "theme::Decisions",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Confirm justification to proceed",
+      "to": "product::Business Case",
+      "code": "RV",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Confirm justification to proceed",
+      "to": "product::Programme Board Decision Log",
+      "code": "CR",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Confirm justification to proceed",
+      "to": "principle::Align with priorities",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Define the target operating model",
+      "to": "role::Programme Manager",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Define the target operating model",
+      "to": "role::Business Change Manager",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Define the target operating model",
+      "to": "role::Senior Responsible Owner",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Define the target operating model",
+      "to": "theme::Design",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Define the target operating model",
+      "to": "theme::Structure",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Define the target operating model",
+      "to": "product::Target Operating Model",
+      "code": "CR",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Define benefits and benefit profiles",
+      "to": "role::Business Change Manager",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Define benefits and benefit profiles",
+      "to": "role::Programme Manager",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Define benefits and benefit profiles",
+      "to": "theme::Justification",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Define benefits and benefit profiles",
+      "to": "theme::Design",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Define benefits and benefit profiles",
+      "to": "product::Benefit Profile(s)",
+      "code": "CR",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Define benefits and benefit profiles",
+      "to": "product::Benefits Realisation Plan",
+      "code": "RF",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Define benefits and benefit profiles",
+      "to": "principle::Realize measurable benefits",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Develop the full business case",
+      "to": "role::Programme Manager",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Develop the full business case",
+      "to": "role::Senior Responsible Owner",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Develop the full business case",
+      "to": "theme::Justification",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Develop the full business case",
+      "to": "product::Business Case",
+      "code": "RF",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Confirm the programme organization and governance",
+      "to": "role::Senior Responsible Owner",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Confirm the programme organization and governance",
+      "to": "role::Programme Manager",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Confirm the programme organization and governance",
+      "to": "role::Programme Office",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Confirm the programme organization and governance",
+      "to": "theme::Organization",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Confirm the programme organization and governance",
+      "to": "theme::Structure",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Confirm the programme organization and governance",
+      "to": "theme::Decisions",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Confirm the programme organization and governance",
+      "to": "product::Organisation Structure & RACI",
+      "code": "RF",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Confirm the programme organization and governance",
+      "to": "principle::Deploy diverse skills",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Develop the programme plan",
+      "to": "role::Programme Manager",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Develop the programme plan",
+      "to": "role::Programme Office",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Develop the programme plan",
+      "to": "theme::Structure",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Develop the programme plan",
+      "to": "theme::Design",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Develop the programme plan",
+      "to": "product::Programme Plan",
+      "code": "CR",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Define tranches and the delivery approach",
+      "to": "role::Programme Manager",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Define tranches and the delivery approach",
+      "to": "role::Business Change Manager",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Define tranches and the delivery approach",
+      "to": "theme::Structure",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Define tranches and the delivery approach",
+      "to": "theme::Design",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Define tranches and the delivery approach",
+      "to": "product::Tranche / Stage Plan",
+      "code": "CR",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Define tranches and the delivery approach",
+      "to": "product::Programme Plan",
+      "code": "RF",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Define tranches and the delivery approach",
+      "to": "principle::Bring pace and value",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Establish the management approaches",
+      "to": "role::Programme Office",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Establish the management approaches",
+      "to": "role::Programme Manager",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Establish the management approaches",
+      "to": "theme::Knowledge",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Establish the management approaches",
+      "to": "theme::Assurance",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Establish the management approaches",
+      "to": "product::Information Mgmt Approach",
+      "code": "CR",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Establish the management approaches",
+      "to": "product::Quality & Assurance Approach",
+      "code": "CR",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Establish the management approaches",
+      "to": "principle::Deploy diverse skills",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Set up risk and issue management",
+      "to": "role::Programme Manager",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Set up risk and issue management",
+      "to": "role::Programme Office",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Set up risk and issue management",
+      "to": "theme::Assurance",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Set up risk and issue management",
+      "to": "theme::Decisions",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Set up risk and issue management",
+      "to": "product::Risk & Issue Register",
+      "code": "CR",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Commission and coordinate the projects",
+      "to": "role::Programme Manager",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Commission and coordinate the projects",
+      "to": "role::Programme Office",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Commission and coordinate the projects",
+      "to": "theme::Structure",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Commission and coordinate the projects",
+      "to": "theme::Knowledge",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Commission and coordinate the projects",
+      "to": "product::Tranche / Stage Plan",
+      "code": "UP",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Commission and coordinate the projects",
+      "to": "product::Programme Plan",
+      "code": "UP",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Commission and coordinate the projects",
+      "to": "principle::Collaborate across boundaries",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Manage tranche delivery",
+      "to": "role::Programme Manager",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Manage tranche delivery",
+      "to": "role::Business Change Manager",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Manage tranche delivery",
+      "to": "theme::Structure",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Manage tranche delivery",
+      "to": "theme::Decisions",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Manage tranche delivery",
+      "to": "product::Programme Plan",
+      "code": "UP",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Manage tranche delivery",
+      "to": "product::Risk & Issue Register",
+      "code": "UP",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Manage tranche delivery",
+      "to": "principle::Bring pace and value",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Assure delivery quality",
+      "to": "role::Programme Office",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Assure delivery quality",
+      "to": "role::Programme Manager",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Assure delivery quality",
+      "to": "theme::Assurance",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Assure delivery quality",
+      "to": "product::Quality & Assurance Approach",
+      "code": "IM",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Assure delivery quality",
+      "to": "product::Audit / Assurance Log",
+      "code": "CR",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Maintain stakeholder engagement and communications",
+      "to": "role::Business Change Manager",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Maintain stakeholder engagement and communications",
+      "to": "role::Programme Manager",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Maintain stakeholder engagement and communications",
+      "to": "theme::Knowledge",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Maintain stakeholder engagement and communications",
+      "to": "theme::Organization",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Maintain stakeholder engagement and communications",
+      "to": "product::Information Mgmt Approach",
+      "code": "IM",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Maintain stakeholder engagement and communications",
+      "to": "principle::Collaborate across boundaries",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Transition capability into operations",
+      "to": "role::Business Change Manager",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Transition capability into operations",
+      "to": "role::Programme Manager",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Transition capability into operations",
+      "to": "theme::Design",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Transition capability into operations",
+      "to": "theme::Structure",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Transition capability into operations",
+      "to": "product::Target Operating Model",
+      "code": "IM",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Realize and measure benefits",
+      "to": "role::Business Change Manager",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Realize and measure benefits",
+      "to": "role::Senior Responsible Owner",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Realize and measure benefits",
+      "to": "theme::Justification",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Realize and measure benefits",
+      "to": "product::Benefit Profile(s)",
+      "code": "RV",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Realize and measure benefits",
+      "to": "product::Benefits Realisation Plan",
+      "code": "UP",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Realize and measure benefits",
+      "to": "principle::Realize measurable benefits",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Confirm outcomes achieved",
+      "to": "role::Senior Responsible Owner",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Confirm outcomes achieved",
+      "to": "role::Business Change Manager",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Confirm outcomes achieved",
+      "to": "theme::Justification",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Confirm outcomes achieved",
+      "to": "theme::Decisions",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Confirm outcomes achieved",
+      "to": "product::Business Case",
+      "code": "RV",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Confirm outcomes achieved",
+      "to": "product::Programme Board Decision Log",
+      "code": "UP",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Review programme progress and performance",
+      "to": "role::Programme Manager",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Review programme progress and performance",
+      "to": "role::Senior Responsible Owner",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Review programme progress and performance",
+      "to": "role::Programme Office",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Review programme progress and performance",
+      "to": "theme::Decisions",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Review programme progress and performance",
+      "to": "theme::Assurance",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Review programme progress and performance",
+      "to": "product::Programme Plan",
+      "code": "RV",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Review programme progress and performance",
+      "to": "product::Audit / Assurance Log",
+      "code": "UP",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Review programme progress and performance",
+      "to": "principle::Deal with ambiguity",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Assess risks, issues and change",
+      "to": "role::Programme Manager",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Assess risks, issues and change",
+      "to": "role::Programme Office",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Assess risks, issues and change",
+      "to": "theme::Decisions",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Assess risks, issues and change",
+      "to": "theme::Assurance",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Assess risks, issues and change",
+      "to": "product::Risk & Issue Register",
+      "code": "UP",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Assess risks, issues and change",
+      "to": "principle::Deal with ambiguity",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Re-confirm justification at tranche end",
+      "to": "role::Senior Responsible Owner",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Re-confirm justification at tranche end",
+      "to": "role::Sponsoring Group",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Re-confirm justification at tranche end",
+      "to": "theme::Justification",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Re-confirm justification at tranche end",
+      "to": "theme::Decisions",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Re-confirm justification at tranche end",
+      "to": "product::Business Case",
+      "code": "RV",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Re-confirm justification at tranche end",
+      "to": "product::Programme Board Decision Log",
+      "code": "UP",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Re-confirm justification at tranche end",
+      "to": "principle::Align with priorities",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Capture and apply lessons",
+      "to": "role::Programme Office",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Capture and apply lessons",
+      "to": "role::Programme Manager",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Capture and apply lessons",
+      "to": "theme::Knowledge",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Capture and apply lessons",
+      "to": "product::Lessons Log",
+      "code": "UP",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Confirm programme objectives are met",
+      "to": "role::Senior Responsible Owner",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Confirm programme objectives are met",
+      "to": "role::Sponsoring Group",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Confirm programme objectives are met",
+      "to": "role::Business Change Manager",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Confirm programme objectives are met",
+      "to": "theme::Justification",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Confirm programme objectives are met",
+      "to": "theme::Decisions",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Confirm programme objectives are met",
+      "to": "product::Business Case",
+      "code": "RV",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Confirm programme objectives are met",
+      "to": "product::Benefits Realisation Plan",
+      "code": "RV",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Confirm programme objectives are met",
+      "to": "principle::Lead with purpose",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Hand over ongoing benefits realization",
+      "to": "role::Business Change Manager",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Hand over ongoing benefits realization",
+      "to": "role::Senior Responsible Owner",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Hand over ongoing benefits realization",
+      "to": "theme::Justification",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Hand over ongoing benefits realization",
+      "to": "theme::Design",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Hand over ongoing benefits realization",
+      "to": "product::Benefits Realisation Plan",
+      "code": "UP",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Hand over ongoing benefits realization",
+      "to": "product::Target Operating Model",
+      "code": "RV",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Hand over ongoing benefits realization",
+      "to": "principle::Realize measurable benefits",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Disband the programme organization",
+      "to": "role::Senior Responsible Owner",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Disband the programme organization",
+      "to": "role::Programme Office",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Disband the programme organization",
+      "to": "theme::Organization",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Disband the programme organization",
+      "to": "theme::Structure",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Disband the programme organization",
+      "to": "product::Organisation Structure & RACI",
+      "code": "UP",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Finalize lessons and assurance",
+      "to": "role::Programme Office",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Finalize lessons and assurance",
+      "to": "role::Programme Manager",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Finalize lessons and assurance",
+      "to": "theme::Knowledge",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Finalize lessons and assurance",
+      "to": "theme::Assurance",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Finalize lessons and assurance",
+      "to": "product::Lessons Log",
+      "code": "UP",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Finalize lessons and assurance",
+      "to": "product::Audit / Assurance Log",
+      "code": "RV",
+      "confidence": "indicative"
+    }
+  ]
+}

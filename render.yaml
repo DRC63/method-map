@@ -1,30 +1,42 @@
 # Render Blueprint for the P3MAI Method Map.
 #
-# Deploy: Render Dashboard -> New + -> Blueprint -> connect the DRC63/method-map
-# repo -> Apply. Render reads this file, builds the Docker image and runs it.
-# You'll be prompted for ADMIN_PASSWORD (sync:false) during apply.
+# One codebase, two deployments (same Dockerfile/repo, different env):
+#   - method-map      → PRINCE2 7, served behind apps.p3mai.com/prince2
+#   - msp-method-map  → MSP 5th ed, served behind apps.p3mai.com/msp
+# FRAMEWORK_KEY makes each deployment seed + default to a single framework;
+# APP_BASE (a Docker build arg) prefixes the SPA for the shared front door.
+# ADMIN_PASSWORD (sync:false) is set per-service in the dashboard.
 #
 # Blueprint spec: https://render.com/docs/blueprint-spec
 services:
   - type: web
     name: method-map
     runtime: docker
-    plan: free
-    # Matches the PMO app (app.p3mai.com) region. A service's region CANNOT be
-    # changed after it's created.
+    plan: starter
     region: oregon
     dockerfilePath: ./Dockerfile
-    # Build context is the repo root (where the Dockerfile lives) - the default.
     healthCheckPath: /api/health
     autoDeploy: true
     envVars:
-      # The authoring-mode password. Set the real value in the Render dashboard;
-      # sync:false keeps it out of the repo. If unset, the app falls back to the
-      # insecure default "change-me" from app/security.py.
       - key: ADMIN_PASSWORD
         sync: false
-      # Serve behind the shared apps.p3mai.com front door under /prince2. Render
-      # passes this to the Docker build as the APP_BASE build arg, so the SPA is
-      # built with base=/prince2/ (assets + API + router all prefixed).
       - key: APP_BASE
         value: /prince2/
+      - key: FRAMEWORK_KEY
+        value: prince2-7
+
+  - type: web
+    name: msp-method-map
+    runtime: docker
+    plan: starter
+    region: oregon
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: APP_BASE
+        value: /msp/
+      - key: FRAMEWORK_KEY
+        value: msp-5

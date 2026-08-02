@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useImperativeHandle, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import ForceGraph2D from 'react-force-graph-2d';
-import { codeColors, linkKindColors } from '../theme/theme';
+import { linkKindColors } from '../theme/theme';
 import { computeStructuredLayout, computeTimelineLayout } from '../theme/graphLayout';
 
 // Renders the node/link graph. Handles sizing, neighbour highlighting on
@@ -253,7 +253,7 @@ export default function GraphCanvas({ ref, data, selectedId, onSelectNode, searc
       const t = typeof link.target === 'object' ? link.target.id : link.target;
       const dimmed = highlightSet && !(highlightSet.has(s) && highlightSet.has(t));
       let base;
-      if (link.kind === 'direct') base = codeColors[link.code] || '#7a8290';
+      if (link.kind === 'direct') base = theme?.codeColors?.[link.code] || '#7a8290';
       else base = linkKindColors[link.kind] || 'rgba(120,130,145,0.3)';
       if (dimmed) return 'rgba(120,130,145,0.06)';
       return base;

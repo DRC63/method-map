@@ -2,14 +2,10 @@ import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { api } from '../api/client';
 
-// The four timeline columns the swimlane grid renders. "stage-boundary" folds
-// into the delivery column; "throughout" (DP) is drawn as a spanning bar.
-const PHASE_COLS = ['pre-project', 'initiation', 'delivery', 'final'];
-const columnOf = (phase) => {
-  if (phase === 'stage-boundary') return 'delivery';
-  if (phase === 'throughout') return null;
-  return phase;
-};
+// Timeline columns come from the framework config: the phases flagged
+// `column: true`, in order. "throughout" is drawn as a spanning bar; any other
+// non-column phase folds into the repeating/delivery column.
+const LANE_CLASSES = ['lane-directing', 'lane-managing', 'lane-delivering'];
 
 function ProcessCard({ p, active, onClick }) {
   return (
@@ -43,6 +39,24 @@ export default function Lifecycle() {
     });
   }, []);
 
+  // Ordered column-phases (key/label/header) from the framework config.
+  const phaseCols = useMemo(
+    () => (data?.framework?.config?.phases || []).filter((p) => p.column),
+    [data],
+  );
+  const deliveryKey = useMemo(
+    () => phaseCols.find((c) => c.key === 'delivery')?.key || phaseCols[phaseCols.length - 1]?.key,
+    [phaseCols],
+  );
+  const columnOf = useMemo(() => {
+    const colKeys = new Set(phaseCols.map((c) => c.key));
+    return (phase) => {
+      if (phase === 'throughout') return null;
+      if (colKeys.has(phase)) return phase;
+      return deliveryKey; // fold any other non-column phase into the delivery column
+    };
+  }, [phaseCols, deliveryKey]);
+
   const byLevel = useMemo(() => {
     if (!data) return {};
     const out = {};
@@ -50,17 +64,18 @@ export default function Lifecycle() {
       const procs = data.processes.filter((p) => p.lifecycle_level === lv);
       out[lv] = {
         throughout: procs.filter((p) => p.lifecycle_phase === 'throughout'),
-        cols: PHASE_COLS.map((col) =>
-          procs.filter((p) => columnOf(p.lifecycle_phase) === col),
+        cols: phaseCols.map((col) =>
+          procs.filter((p) => columnOf(p.lifecycle_phase) === col.key),
         ),
       };
     });
     return out;
-  }, [data]);
+  }, [data, phaseCols, columnOf]);
 
   if (!data) return <div className="graph-empty">Loading lifecycle…</div>;
 
-  const laneClass = { directing: 'lane-directing', managing: 'lane-managing', delivering: 'lane-delivering' };
+  const laneClassFor = (lv) => LANE_CLASSES[data.level_order.indexOf(lv) % LANE_CLASSES.length];
+  const spanCols = Math.max(1, phaseCols.length - 1);
 
   return (
     <div className="lifecycle-wrap">
@@ -82,13 +97,13 @@ export default function Lifecycle() {
         <span>Close</span>
       </div>
 
-      <div className="swimlane-grid">
+      <div className="swimlane-grid" style={{ gridTemplateColumns: `auto repeat(${phaseCols.length}, 1fr)` }}>
         {/* header row */}
         <div className="grid-corner" />
-        {PHASE_COLS.map((col) => (
-          <div key={col} className={`phase-header ${col === 'delivery' ? 'repeats' : ''}`}>
-            {data.phases[col] || col}
-            {col === 'delivery' && <span className="phase-note">⟳ one or more, repeating</span>}
+        {phaseCols.map((col) => (
+          <div key={col.key} className={`phase-header ${col.key === 'delivery' ? 'repeats' : ''}`}>
+            {col.header || col.label || col.key}
+            {col.key === 'delivery' && <span className="phase-note">⟳ one or more, repeating</span>}
           </div>
         ))}
 
@@ -98,7 +113,7 @@ export default function Lifecycle() {
           const hasSpan = lane.throughout.length > 0;
           return (
             <div key={lv} style={{ display: 'contents' }}>
-              <div className={`lane-label ${laneClass[lv]}`}>
+              <div className={`lane-label ${laneClassFor(lv)}`}>
                 {data.levels[lv]?.split(' (')[0] || lv}
                 <small>{data.levels[lv]?.match(/\((.*)\)/)?.[1]}</small>
               </div>
@@ -106,7 +121,7 @@ export default function Lifecycle() {
               {hasSpan ? (
                 <>
                   <div className="lane-cell empty" />
-                  <div className="lane-cell span" style={{ gridColumn: 'span 3' }}>
+                  <div className="lane-cell span" style={{ gridColumn: `span ${spanCols}` }}>
                     {lane.throughout.map((p) => (
                       <ProcessCard
                         key={p.id}

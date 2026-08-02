@@ -1,5 +1,4 @@
 import { api } from '../api/client';
-import { codeColors } from '../theme/theme';
 
 export default function ControlPanel({
   frameworkKey,
@@ -71,13 +70,10 @@ export default function ControlPanel({
 
       <div className="control-group">
         <h3>Edge codes</h3>
-        {[
-          ['C', 'Responsible'], ['P', 'Participates'], ['N', 'Assists'],
-          ['I', 'Input'], ['O', 'Output'], ['U', 'Update'], ['A', 'Authorise'],
-        ].map(([c, label]) => (
-          <div key={c} className="legend-item">
-            <span className="legend-line" style={{ borderTopColor: codeColors[c] }} />
-            <strong style={{ color: codeColors[c] }}>{c}</strong>&nbsp;{label}
+        {(theme?.codeGroups || []).flatMap((g) => g.codes).map(({ code, label, color }) => (
+          <div key={code} className="legend-item">
+            <span className="legend-line" style={{ borderTopColor: color }} />
+            <strong style={{ color }}>{code}</strong>&nbsp;{label}
           </div>
         ))}
         <div className="legend-item">

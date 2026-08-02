@@ -1,3 +1,5 @@
+import os
+
 import pytest
 from fastapi.testclient import TestClient
 from sqlalchemy import create_engine
@@ -9,9 +11,12 @@ from app.seed import seed
 
 
 @pytest.fixture
-def client(tmp_path):
-    """A TestClient backed by an isolated per-test SQLite DB, seeded with the
-    bundled frameworks. Never touches the real methodmap.db."""
+def client(tmp_path, monkeypatch):
+    """A TestClient backed by an isolated per-test SQLite DB. Seeds only PRINCE2
+    (FRAMEWORK_KEY), mirroring a real single-framework deployment, so these
+    PRINCE2-specific assertions are unaffected by other bundled frameworks (MSP).
+    Never touches the real methodmap.db."""
+    monkeypatch.setenv("FRAMEWORK_KEY", "prince2-7")
     url = f"sqlite:///{tmp_path / 'test.db'}"
     engine = create_engine(url, connect_args={"check_same_thread": False})
     TestingSession = sessionmaker(bind=engine, autocommit=False, autoflush=False)

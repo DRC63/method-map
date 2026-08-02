@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
 import { api } from '../api/client';
-import { codeColors } from '../theme/theme';
 import { useAdmin } from '../context/AdminContext';
 
-function RelatedRow({ rel, onSelect, colorOf }) {
+function RelatedRow({ rel, onSelect, colorOf, codeColors }) {
   // Known relationship codes get their code colour; numeric "step N" pills
   // (a container's child hubs) get the related node's own type colour.
   const pillColor = codeColors[rel.code] || colorOf(rel.type);
@@ -123,7 +122,7 @@ export default function EntityDetailPanel({
             </div>
             {outgoing.length === 0 && <p className="muted">No activities recorded.</p>}
             {outgoing.map((r) => (
-              <RelatedRow key={r.relationship_id} rel={r} onSelect={onSelect} colorOf={theme.colorOf} />
+              <RelatedRow key={r.relationship_id} rel={r} onSelect={onSelect} colorOf={theme.colorOf} codeColors={theme.codeColors} />
             ))}
           </>
         ) : detail.type === theme.hub ? (
@@ -131,7 +130,7 @@ export default function EntityDetailPanel({
             <div className="detail-section-title">Uses / produces ({outgoing.length})</div>
             {outgoing.length === 0 && <p className="muted">No links recorded.</p>}
             {outgoing.map((r) => (
-              <RelatedRow key={r.relationship_id} rel={r} onSelect={onSelect} colorOf={theme.colorOf} />
+              <RelatedRow key={r.relationship_id} rel={r} onSelect={onSelect} colorOf={theme.colorOf} codeColors={theme.codeColors} />
             ))}
           </>
         ) : (
@@ -141,7 +140,7 @@ export default function EntityDetailPanel({
             </div>
             {incoming.length === 0 && <p className="muted">No links recorded.</p>}
             {incoming.map((r) => (
-              <RelatedRow key={r.relationship_id} rel={r} onSelect={onSelect} colorOf={theme.colorOf} />
+              <RelatedRow key={r.relationship_id} rel={r} onSelect={onSelect} colorOf={theme.colorOf} codeColors={theme.codeColors} />
             ))}
           </>
         )}
@@ -149,7 +148,7 @@ export default function EntityDetailPanel({
           <>
             <div className="detail-section-title">Also links to ({outgoing.length})</div>
             {outgoing.map((r) => (
-              <RelatedRow key={r.relationship_id} rel={r} onSelect={onSelect} colorOf={theme.colorOf} />
+              <RelatedRow key={r.relationship_id} rel={r} onSelect={onSelect} colorOf={theme.colorOf} codeColors={theme.codeColors} />
             ))}
           </>
         )}

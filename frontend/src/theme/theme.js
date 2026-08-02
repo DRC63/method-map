@@ -8,8 +8,10 @@ export const entityColors = {
   product: '#C0392B',
 };
 
-// Relationship-code colours. C/P/N apply to roles/practices/approaches;
-// I/O/U/A apply to products.
+// Well-known relationship-code colours (PRINCE2). C/P/N apply to roles/practices/
+// approaches; I/O/U/A to products. Any framework code not listed here (e.g. MSP's
+// CO/CR/RF/RV/UP/IM, E) is assigned a colour from CODE_PALETTE, so the legend and
+// edge colours stay correct for an arbitrary framework's config.codes.
 export const codeColors = {
   C: '#A8841C',
   P: '#C9A227',
@@ -18,6 +20,14 @@ export const codeColors = {
   O: '#C0392B',
   U: '#E67E22',
   A: '#8E5BE0',
+};
+
+const CODE_PALETTE = ['#C0392B', '#16A085', '#E67E22', '#2980B9', '#9B59B6', '#27AE60', '#34495E', '#E84393'];
+
+// PRINCE2 code groups — fallback when a framework carries no config.codes.
+const DEFAULT_CODES = {
+  role: { C: 'Responsible', P: 'Participates', N: 'Assists' },
+  product: { I: 'Input', O: 'Output', U: 'Update', A: 'Authorise' },
 };
 
 export const linkKindColors = {
@@ -54,6 +64,24 @@ export function makeFrameworkTheme(framework) {
     .sort((a, b) => (a.order || 0) - (b.order || 0));
   const colorMap = Object.fromEntries(types.map((t) => [t.key, t.color]));
   const labelMap = Object.fromEntries(types.map((t) => [t.key, t.label]));
+
+  // Code colours + legend groups, derived from config.codes so the edge legend
+  // and link colours are correct for any framework. Known codes keep their
+  // colour; unknown ones (e.g. MSP CO/CR/RF/RV/UP/IM/E) draw from CODE_PALETTE.
+  const codes = cfg.codes && Object.keys(cfg.codes).length ? cfg.codes : DEFAULT_CODES;
+  const frameworkCodeColors = {};
+  let paletteIdx = 0;
+  const codeGroups = Object.entries(codes).map(([group, mapping]) => ({
+    group,
+    codes: Object.entries(mapping).map(([code, label]) => {
+      if (!frameworkCodeColors[code]) {
+        frameworkCodeColors[code] =
+          codeColors[code] || CODE_PALETTE[paletteIdx++ % CODE_PALETTE.length];
+      }
+      return { code, label, color: frameworkCodeColors[code] };
+    }),
+  }));
+
   return {
     types,
     lanes: cfg.lanes || [],
@@ -64,5 +92,7 @@ export function makeFrameworkTheme(framework) {
     typesInZone: (z) => types.filter((t) => t.kind === 'node' && t.zone === z),
     colorOf: (t) => colorMap[t] || entityColors[t] || '#888',
     labelOf: (t) => labelMap[t] || entityTypeLabels[t] || t,
+    codeColors: frameworkCodeColors,
+    codeGroups,
   };
 }
