@@ -26,6 +26,13 @@ const FRAMEWORK_PROSE = {
         audit, training or certification evidence.
       </>
     ),
+    related: (
+      <>
+        <strong>Managing Successful Programmes (MSP) 5th Edition</strong> is now live as
+        its own Method Map — the app holds multiple frameworks side by side.{' '}
+        <a href="https://apps.p3mai.com/msp/">Open the MSP Method Map →</a>
+      </>
+    ),
   },
   'msp-5': {
     modelName: 'the MSP transformational flow',
@@ -152,6 +159,7 @@ export default function Guide() {
       <div className="card">
         <h2 style={{ marginTop: 0 }}>A note on accuracy</h2>
         <p>{prose.accuracy}</p>
+        {prose.related && <p className="muted">{prose.related}</p>}
       </div>
     </div>
   );
