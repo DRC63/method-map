@@ -23,3 +23,8 @@ services:
       # insecure default "change-me" from app/security.py.
       - key: ADMIN_PASSWORD
         sync: false
+      # Serve behind the shared apps.p3mai.com front door under /prince2. Render
+      # passes this to the Docker build as the APP_BASE build arg, so the SPA is
+      # built with base=/prince2/ (assets + API + router all prefixed).
+      - key: APP_BASE
+        value: /prince2/
