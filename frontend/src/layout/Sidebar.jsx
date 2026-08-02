@@ -1,5 +1,7 @@
+import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router';
 import logo from '../assets/logo-triangle-white.svg';
+import { api } from '../api/client';
 import { useAdmin } from '../context/AdminContext';
 
 const LINKS = [
@@ -19,11 +21,28 @@ const WEBSITE_URL = isLocal
 
 export default function Sidebar() {
   const { isAdmin } = useAdmin();
+  // Each deployment is a single framework; label the app with it so PRINCE2 vs
+  // MSP is clear in the title (and the browser tab), not just the graph content.
+  const [title, setTitle] = useState('Method Map');
+  useEffect(() => {
+    api
+      .listFrameworks()
+      .then((list) => {
+        const name = list?.[0]?.name;
+        if (name) {
+          const t = `${name} Method Map`;
+          setTitle(t);
+          document.title = `${t} | P3MAI`;
+        }
+      })
+      .catch(() => {});
+  }, []);
+
   return (
     <aside className="sidebar">
       <div className="sidebar-logo">
         <img src={logo} alt="P3MAI" />
-        <span>Method Map</span>
+        <span>{title}</span>
       </div>
       <nav className="sidebar-nav">
         {LINKS.map((link) => (
