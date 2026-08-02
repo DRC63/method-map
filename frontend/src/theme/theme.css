@@ -208,6 +208,10 @@ p { color: var(--color-text-muted); }
 
 /* ---------- Graph stage ---------- */
 .graph-stage { flex: 1; position: relative; min-width: 0; background: radial-gradient(circle at 50% 40%, #ffffff, #eef1f5); }
+/* Timeline (swimlane) stacks the scrolling swimlane above an in-flow scrubber so
+   the scrubber never overlaps the graphics. Matrix (canvas) is unaffected — its
+   children are absolutely positioned. */
+.graph-stage.is-timeline { display: flex; flex-direction: column; }
 .graph-empty { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: var(--color-text-muted); }
 .graph-hint {
   position: absolute; left: 16px; bottom: 14px;
@@ -218,10 +222,8 @@ p { color: var(--color-text-muted); }
 
 /* ---------- Timeline scrubber ---------- */
 .timeline-bar {
-  position: absolute;
-  left: 50%;
-  bottom: 18px;
-  transform: translateX(-50%);
+  flex-shrink: 0;
+  margin: 4px auto 14px;
   width: min(720px, calc(100% - 40px));
   display: flex;
   align-items: center;

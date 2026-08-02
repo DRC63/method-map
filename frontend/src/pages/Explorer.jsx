@@ -249,7 +249,7 @@ export default function Explorer() {
         onExportPng={exportPng}
       />
 
-      <div className="graph-stage">
+      <div className={`graph-stage ${layout === 'timeline' ? 'is-timeline' : ''}`}>
         {graphData.nodes.length === 0 && !loadingGraph && layout !== 'timeline' && (
           <div className="graph-empty">No entities in the selected layers.</div>
         )}
