@@ -14,6 +14,12 @@ export default function ControlPanel({
   onSearch,
   onExportPng,
 }) {
+  // Swimlane names come from the framework config (Directing/Managing/Delivering
+  // for PRINCE2, Sponsoring/Managing/Delivering for MSP), stripped of their
+  // parenthetical role gloss.
+  const laneNames = (theme?.lanes || [])
+    .map((l) => l.label.replace(/\s*\(.*$/, ''))
+    .join(' / ');
   return (
     <div className="control-panel">
       <div className="control-group">
@@ -44,7 +50,7 @@ export default function ControlPanel({
         </div>
         <p className="muted" style={{ marginTop: 8, fontSize: '0.76rem' }}>
           {layout === 'timeline'
-            ? 'Lifecycle swimlanes (Directing / Managing / Delivering) left→right in sequence, with resource bands below. Scrub the timeline to light up each stage.'
+            ? `Lifecycle swimlanes (${laneNames}) left→right in sequence, with resource bands below. Scrub the timeline to light up each stage.`
             : 'Fixed hierarchy: processes top, activities below, products under; roles left, practices right, approaches bottom.'}
         </p>
       </div>
