@@ -54,10 +54,12 @@ order; each activity (and the process) deep-links to the graph via `/?focus=<id>
 also lists its child activities in sequence (processes have no relationship rows,
 only `parent_id` containment — handled in `serialize_entity_detail`).
 
-## Explorer layout (`components/GraphCanvas.jsx`, `theme/graphLayout.js`)
-Two **fixed** layouts (no force/physics option), toggled in the control panel
-(default **Matrix**). Both pin every node's `fx`/`fy`; GraphCanvas's positioning
-effect picks the layout fn by `layout`. `cooldownTicks={0}` (pinned),
+## Explorer layout (`components/GraphCanvas.jsx`, `components/TimelineSwimlane.jsx`, `theme/graphLayout.js`)
+Two layouts, toggled in the control panel (default **Matrix**). **Matrix is the
+force-graph** (`GraphCanvas`); **Timeline is a DOM swimlane** (`TimelineSwimlane`,
+NOT the force-graph) — `Explorer.jsx` renders one or the other by `layout`.
+GraphCanvas pins every node's `fx`/`fy`; its positioning effect picks the layout
+fn by `layout`. `cooldownTicks={0}` (pinned),
 `autoPauseRedraw={false}` (highlight changes always repaint). Node size weighted
 by **`direct_degree`** in both (sqrt scale `6.5 + √direct_degree·3.3`), computed
 view-independently in `build_graph`. Colour-coded zone labels via
@@ -66,16 +68,24 @@ Graph nodes carry `parent_id`, `sort_order`, `sequence`, `lifecycle_level`,
 `lifecycle_phase` (all added to `GraphNode`/`build_graph`).
 - **Matrix** (`computeStructuredLayout`) — hierarchy: processes top, activities
   beneath, products band below; roles left, practices right, approaches bottom.
-- **Timeline** (`computeTimelineLayout`) — echoes the Project Lifecycle view:
-  processes in three **swimlanes** (Directing / Managing / Delivering by
-  `lifecycle_level`) laid left→right by `sequence`; activities stack in each
-  process's time-column; roles / practices / approaches / products are static
-  resource bands below. Plus a scrubber (`TimelineScrubber.jsx`), one stage per
-  process. Each stage's highlight set = process + its activities + everything they
-  link to; **spotlight** vs **cumulative** toggle + play button (`STAGE_MS`). Set
-  computed in `Explorer.jsx`, passed to GraphCanvas as `timelineSet`, feeding the
-  same dim/highlight machinery as hover/selection — nodes light up in place across
-  the swimlanes + bands as you scrub.
+- **Timeline** (`components/TimelineSwimlane.jsx`) — a **CSS-grid swimlane**, NOT
+  the force-graph (rewritten 2026-08-02; it used to be `computeTimelineLayout` on
+  the canvas). Rows = lanes (`theme.lanes`, e.g. Directing/Managing/Delivering or
+  Sponsoring/Managing/Delivering), columns = stage phases (`theme.phases` where
+  `column`, header `Delivery ⟳` etc.); each process sits in its `(lane, phase)`
+  cell (non-column phases like `throughout`/`stage-boundary` fold into the delivery
+  column) with its activities as dots beneath; node-type layers (`theme.nodeTypes`)
+  render as static **resource bands** below. Fully framework-driven (works for
+  PRINCE2 + MSP). Clicking any process/activity/resource → `onSelectNode` → detail
+  panel. **Scrubber (`TimelineScrubber.jsx`) retained**, one stage per process:
+  `timelineSet` (computed in `Explorer.jsx`, spotlight = current stage's ids,
+  cumulative = 0..i) is passed to the swimlane, which dims non-members (`.tl-dim`)
+  and rings the selection (`.tl-sel`). Key UX: a `timelineTouched` flag means the
+  swimlane shows **every stage at full strength until the scrubber is used**, so it
+  reads as a full swimlane on entry, then spotlights on interaction. NOTE the PNG
+  export (`graphRef.exportPng`) only works in Matrix — it's a no-op in Timeline
+  (there's no canvas); CSV/Excel still work. Styles are the `.tl-*` classes in
+  `theme/theme.css`.
 - **Search spotlights matches** — the Search box folds `searchMatches` into
   GraphCanvas's effective `highlightSet` (precedence hover → timeline → search →
   selection), so an active query dims every non-match (nodes **and** links) and the
