@@ -1,8 +1,9 @@
 # Render Blueprint for the P3MAI Method Map.
 #
-# One codebase, two deployments (same Dockerfile/repo, different env):
+# One codebase, three deployments (same Dockerfile/repo, different env):
 #   - method-map      → PRINCE2 7, served behind apps.p3mai.com/prince2
 #   - msp-method-map  → MSP 5th ed, served behind apps.p3mai.com/msp
+#   - safe-method-map → SAFe 6.0 Essential, served behind apps.p3mai.com/safe
 # FRAMEWORK_KEY makes each deployment seed + default to a single framework;
 # APP_BASE (a Docker build arg) prefixes the SPA for the shared front door.
 # ADMIN_PASSWORD (sync:false) is set per-service in the dashboard.
@@ -40,3 +41,19 @@ services:
         value: /msp/
       - key: FRAMEWORK_KEY
         value: msp-5
+
+  - type: web
+    name: safe-method-map
+    runtime: docker
+    plan: starter
+    region: oregon
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: APP_BASE
+        value: /safe/
+      - key: FRAMEWORK_KEY
+        value: safe-essential

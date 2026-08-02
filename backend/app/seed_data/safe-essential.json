@@ -1,0 +1,2382 @@
+{
+  "framework": {
+    "key": "safe-essential",
+    "name": "SAFe",
+    "edition": "6.0 — Essential configuration (Scaled Agile Framework)",
+    "description": "SAFe 6.0 Essential Method Map: the core Agile Release Train and Team events, laid out across the PI (Program Increment) cadence and cross-referenced to roles, artifacts, the 4 Essential core competencies and the 10 Lean-Agile Principles. Role codes: F=Facilitates, A=Accountable, P=Participates, I=Informed. Artifact codes: I=Input, C=Created, U=Updated, R=Reviewed, E=Elaborated. Scope is Essential SAFe (Team + ART); Portfolio and Large Solution levels are out of scope for this map. The activity breakdown of each event and every cross-reference mark are an indicative, best-effort reconstruction of the SAFe model and must be SME-verified against the licensed SAFe body of knowledge before formal use. SAFe® and Scaled Agile Framework® are trademarks of Scaled Agile, Inc.; this is an independent reference tool, not affiliated with or endorsed by Scaled Agile, Inc.",
+    "sort_order": 3,
+    "config": {
+      "types": [
+        {
+          "key": "event",
+          "label": "Events & Ceremonies",
+          "color": "#0B2545",
+          "kind": "container",
+          "zone": "top",
+          "order": 1
+        },
+        {
+          "key": "activity",
+          "label": "Activities",
+          "color": "#3D5A80",
+          "kind": "hub",
+          "zone": "center",
+          "order": 2
+        },
+        {
+          "key": "role",
+          "label": "Roles",
+          "color": "#C9A227",
+          "kind": "node",
+          "code_group": "role",
+          "zone": "left",
+          "order": 3
+        },
+        {
+          "key": "competency",
+          "label": "Core Competencies",
+          "color": "#2E7D5B",
+          "kind": "node",
+          "code_group": "competency",
+          "zone": "right",
+          "order": 4
+        },
+        {
+          "key": "artifact",
+          "label": "Artifacts",
+          "color": "#C0392B",
+          "kind": "node",
+          "code_group": "artifact",
+          "zone": "below",
+          "order": 5
+        },
+        {
+          "key": "principle",
+          "label": "Lean-Agile Principles",
+          "color": "#8E5BE0",
+          "kind": "node",
+          "code_group": "principle",
+          "zone": "bottom",
+          "order": 6
+        }
+      ],
+      "codes": {
+        "role": {
+          "F": "Facilitates",
+          "A": "Accountable",
+          "P": "Participates",
+          "I": "Informed"
+        },
+        "artifact": {
+          "I": "Input",
+          "C": "Created",
+          "U": "Updated",
+          "R": "Reviewed",
+          "E": "Elaborated"
+        },
+        "competency": {
+          "E": "Exercised"
+        },
+        "principle": {
+          "E": "Embodies"
+        }
+      },
+      "lanes": [
+        {
+          "key": "art",
+          "label": "ART / Program (Agile Release Train)"
+        },
+        {
+          "key": "team",
+          "label": "Team (Agile Teams)"
+        }
+      ],
+      "phases": [
+        {
+          "key": "plan",
+          "label": "Prepare & Plan",
+          "column": true,
+          "header": "Prepare & PI Planning"
+        },
+        {
+          "key": "delivery",
+          "label": "Execute Iterations",
+          "column": true,
+          "header": "Execute Iterations ⟳"
+        },
+        {
+          "key": "innovation",
+          "label": "IP Iteration",
+          "column": true,
+          "header": "IP Iteration"
+        },
+        {
+          "key": "inspect",
+          "label": "Inspect & Adapt",
+          "column": true,
+          "header": "Inspect & Adapt"
+        },
+        {
+          "key": "throughout",
+          "label": "Throughout"
+        }
+      ],
+      "lifecycle_noun": "Program Increment",
+      "timeline": {
+        "start_label": "PI Start",
+        "end_label": "Inspect & Adapt",
+        "intro": "Time flows left to right across a Program Increment (PI) — a fixed timebox of roughly 8–12 weeks that repeats. Each swimlane is a level of the Agile Release Train; an event sits where it runs in the PI cadence. Iterations repeat until the PI closes with Inspect & Adapt, then the next PI begins. Click any event to see its activities in sequence."
+      }
+    }
+  },
+  "entities": [
+    {
+      "code": "PREP",
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": "Establish organizational, content and logistical readiness so the ART can plan the next PI: refine the vision and roadmap, prepare and prioritize top features, and confirm scope, cadence and team capacity.",
+      "sort_order": 1,
+      "lifecycle_level": "art",
+      "lifecycle_phase": "plan",
+      "sequence": 1,
+      "repeats": false,
+      "type": "event",
+      "name": "Prepare for PI Planning"
+    },
+    {
+      "code": "PIP",
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": "The cadence-based, face-to-face (or virtual) event where the whole ART plans the next Program Increment, aligning teams to a shared mission through a set of PI Objectives and a program board.",
+      "sort_order": 2,
+      "lifecycle_level": "art",
+      "lifecycle_phase": "plan",
+      "sequence": 2,
+      "repeats": false,
+      "type": "event",
+      "name": "PI Planning"
+    },
+    {
+      "code": "ITER",
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": "Each iteration, teams plan, build, integrate, test and demonstrate a working increment, managing flow and refining the backlog toward their iteration goals and PI Objectives.",
+      "sort_order": 3,
+      "lifecycle_level": "team",
+      "lifecycle_phase": "delivery",
+      "sequence": 3,
+      "repeats": true,
+      "type": "event",
+      "name": "Iteration Execution"
+    },
+    {
+      "code": "SD",
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": "At the end of every iteration the ART demonstrates the full, integrated system to stakeholders to gain objective, working-system feedback on progress toward the PI.",
+      "sort_order": 4,
+      "lifecycle_level": "art",
+      "lifecycle_phase": "delivery",
+      "sequence": 4,
+      "repeats": true,
+      "type": "event",
+      "name": "System Demo"
+    },
+    {
+      "code": "SYNC",
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": "Recurring coordination — Coach Sync plus PO Sync — that keeps the train aligned on progress, dependencies, risks, scope and priorities between planning events.",
+      "sort_order": 5,
+      "lifecycle_level": "art",
+      "lifecycle_phase": "delivery",
+      "sequence": 5,
+      "repeats": true,
+      "type": "event",
+      "name": "ART Sync"
+    },
+    {
+      "code": "IP",
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": "The Innovation and Planning iteration: a cadence-based buffer for innovation, continuing education and community building, plus time for PI Planning and Inspect & Adapt.",
+      "sort_order": 6,
+      "lifecycle_level": "art",
+      "lifecycle_phase": "innovation",
+      "sequence": 6,
+      "repeats": false,
+      "type": "event",
+      "name": "IP Iteration"
+    },
+    {
+      "code": "IA",
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": "The significant event at the end of each PI where the ART demonstrates and evaluates the full solution, reviews metrics, and improves through a structured problem-solving workshop.",
+      "sort_order": 7,
+      "lifecycle_level": "art",
+      "lifecycle_phase": "inspect",
+      "sequence": 7,
+      "repeats": false,
+      "type": "event",
+      "name": "Inspect & Adapt"
+    },
+    {
+      "code": "CDP",
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": "The continuous workflow — Continuous Exploration, Continuous Integration, Continuous Deployment and Release on Demand — through which the ART explores, builds and releases value on demand across the whole PI.",
+      "sort_order": 8,
+      "lifecycle_level": "art",
+      "lifecycle_phase": "throughout",
+      "sequence": null,
+      "repeats": false,
+      "type": "event",
+      "name": "Continuous Delivery Pipeline"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 1,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "role",
+      "name": "Release Train Engineer"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 2,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "role",
+      "name": "Product Management"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 3,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "role",
+      "name": "System Architect / Engineer"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 4,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "role",
+      "name": "Business Owners"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 5,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "role",
+      "name": "Scrum Master / Team Coach"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 6,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "role",
+      "name": "Product Owner"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 7,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "role",
+      "name": "Agile Team"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 8,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "role",
+      "name": "Customer"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 1,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "competency",
+      "name": "Lean-Agile Leadership"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 2,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "competency",
+      "name": "Team and Technical Agility"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 3,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "competency",
+      "name": "Agile Product Delivery"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 4,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "competency",
+      "name": "Continuous Learning Culture"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 1,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "principle",
+      "name": "1. Take an economic view"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 2,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "principle",
+      "name": "2. Apply systems thinking"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 3,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "principle",
+      "name": "3. Assume variability; preserve options"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 4,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "principle",
+      "name": "4. Build incrementally with fast, integrated learning cycles"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 5,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "principle",
+      "name": "5. Base milestones on objective evaluation of working systems"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 6,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "principle",
+      "name": "6. Make value flow without interruptions"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 7,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "principle",
+      "name": "7. Apply cadence, synchronize with cross-domain planning"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 8,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "principle",
+      "name": "8. Unlock the intrinsic motivation of knowledge workers"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 9,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "principle",
+      "name": "9. Decentralize decision-making"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 10,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "principle",
+      "name": "10. Organize around value"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 1,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Vision"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 2,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Roadmap"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 3,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "ART Backlog"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 4,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Features"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 5,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Enablers"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 6,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Team Backlog"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 7,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Stories"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 8,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "PI Objectives"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 9,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "ART Planning Board"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 10,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Iteration Goals"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 11,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Integrated Increment"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": "event::Prepare for PI Planning",
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 1,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "activity",
+      "name": "Refine and prioritize the ART Backlog"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": "event::Prepare for PI Planning",
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 2,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "activity",
+      "name": "Update the vision and roadmap"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": "event::Prepare for PI Planning",
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 3,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "activity",
+      "name": "Set PI Planning scope, cadence and logistics"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": "event::Prepare for PI Planning",
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 4,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "activity",
+      "name": "Confirm team capacity and readiness"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": "event::PI Planning",
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 1,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "activity",
+      "name": "Present business context and vision"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": "event::PI Planning",
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 2,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "activity",
+      "name": "Present architecture vision and development practices"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": "event::PI Planning",
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 3,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "activity",
+      "name": "Team breakouts: plan iterations and draft objectives"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": "event::PI Planning",
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 4,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "activity",
+      "name": "Coordinate dependencies and risks on the planning board"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": "event::PI Planning",
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 5,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "activity",
+      "name": "Conduct management review and problem-solving"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": "event::PI Planning",
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 6,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "activity",
+      "name": "Assign business value and hold the confidence vote"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": "event::Iteration Execution",
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 1,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "activity",
+      "name": "Plan the iteration"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": "event::Iteration Execution",
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 2,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "activity",
+      "name": "Synchronize daily and manage flow"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": "event::Iteration Execution",
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 3,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "activity",
+      "name": "Build, integrate and test the increment"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": "event::Iteration Execution",
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 4,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "activity",
+      "name": "Refine the team backlog"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": "event::Iteration Execution",
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 5,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "activity",
+      "name": "Review and retrospect the iteration"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": "event::System Demo",
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 1,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "activity",
+      "name": "Integrate the full system for demo"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": "event::System Demo",
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 2,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "activity",
+      "name": "Demonstrate integrated value to stakeholders"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": "event::System Demo",
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 3,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "activity",
+      "name": "Capture feedback and adjust the ART Backlog"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": "event::ART Sync",
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 1,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "activity",
+      "name": "Coach Sync: track progress and impediments"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": "event::ART Sync",
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 2,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "activity",
+      "name": "PO Sync: align scope, priorities and dependencies"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": "event::ART Sync",
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 3,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "activity",
+      "name": "Escalate and resolve cross-team risks"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": "event::IP Iteration",
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 1,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "activity",
+      "name": "Innovate and spike"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": "event::IP Iteration",
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 2,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "activity",
+      "name": "Continue education and grow communities of practice"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": "event::IP Iteration",
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 3,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "activity",
+      "name": "Provide estimating and planning buffer"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": "event::Inspect & Adapt",
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 1,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "activity",
+      "name": "Demonstrate and evaluate the full PI solution"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": "event::Inspect & Adapt",
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 2,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "activity",
+      "name": "Review quantitative and qualitative metrics"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": "event::Inspect & Adapt",
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 3,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "activity",
+      "name": "Facilitate the problem-solving workshop"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": "event::Inspect & Adapt",
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 4,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "activity",
+      "name": "Create improvement backlog items"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": "event::Continuous Delivery Pipeline",
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 1,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "activity",
+      "name": "Continuous Exploration: understand customer needs"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": "event::Continuous Delivery Pipeline",
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 2,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "activity",
+      "name": "Continuous Integration: build and test continuously"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": "event::Continuous Delivery Pipeline",
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 3,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "activity",
+      "name": "Continuous Deployment: deploy to production"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": "event::Continuous Delivery Pipeline",
+      "confidence": "indicative",
+      "description": null,
+      "sort_order": 4,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "activity",
+      "name": "Release on Demand: release value to customers"
+    }
+  ],
+  "relationships": [
+    {
+      "from": "activity::Refine and prioritize the ART Backlog",
+      "to": "role::Product Management",
+      "code": "A",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Refine and prioritize the ART Backlog",
+      "to": "role::System Architect / Engineer",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Refine and prioritize the ART Backlog",
+      "to": "role::Product Owner",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Refine and prioritize the ART Backlog",
+      "to": "artifact::ART Backlog",
+      "code": "U",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Refine and prioritize the ART Backlog",
+      "to": "artifact::Features",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Refine and prioritize the ART Backlog",
+      "to": "competency::Agile Product Delivery",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Refine and prioritize the ART Backlog",
+      "to": "principle::10. Organize around value",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Update the vision and roadmap",
+      "to": "role::Product Management",
+      "code": "A",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Update the vision and roadmap",
+      "to": "role::System Architect / Engineer",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Update the vision and roadmap",
+      "to": "role::Business Owners",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Update the vision and roadmap",
+      "to": "artifact::Vision",
+      "code": "U",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Update the vision and roadmap",
+      "to": "artifact::Roadmap",
+      "code": "U",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Update the vision and roadmap",
+      "to": "competency::Agile Product Delivery",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Update the vision and roadmap",
+      "to": "principle::1. Take an economic view",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Set PI Planning scope, cadence and logistics",
+      "to": "role::Release Train Engineer",
+      "code": "F",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Set PI Planning scope, cadence and logistics",
+      "to": "role::Product Management",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Set PI Planning scope, cadence and logistics",
+      "to": "artifact::Roadmap",
+      "code": "R",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Set PI Planning scope, cadence and logistics",
+      "to": "competency::Lean-Agile Leadership",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Set PI Planning scope, cadence and logistics",
+      "to": "principle::7. Apply cadence, synchronize with cross-domain planning",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Confirm team capacity and readiness",
+      "to": "role::Release Train Engineer",
+      "code": "F",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Confirm team capacity and readiness",
+      "to": "role::Scrum Master / Team Coach",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Confirm team capacity and readiness",
+      "to": "role::Agile Team",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Confirm team capacity and readiness",
+      "to": "artifact::Team Backlog",
+      "code": "R",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Confirm team capacity and readiness",
+      "to": "competency::Team and Technical Agility",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Confirm team capacity and readiness",
+      "to": "principle::9. Decentralize decision-making",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Present business context and vision",
+      "to": "role::Business Owners",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Present business context and vision",
+      "to": "role::Product Management",
+      "code": "F",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Present business context and vision",
+      "to": "role::Customer",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Present business context and vision",
+      "to": "artifact::Vision",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Present business context and vision",
+      "to": "artifact::Roadmap",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Present business context and vision",
+      "to": "competency::Lean-Agile Leadership",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Present business context and vision",
+      "to": "principle::1. Take an economic view",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Present architecture vision and development practices",
+      "to": "role::System Architect / Engineer",
+      "code": "A",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Present architecture vision and development practices",
+      "to": "role::Release Train Engineer",
+      "code": "F",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Present architecture vision and development practices",
+      "to": "artifact::Enablers",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Present architecture vision and development practices",
+      "to": "artifact::ART Backlog",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Present architecture vision and development practices",
+      "to": "competency::Team and Technical Agility",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Present architecture vision and development practices",
+      "to": "principle::2. Apply systems thinking",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Team breakouts: plan iterations and draft objectives",
+      "to": "role::Agile Team",
+      "code": "A",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Team breakouts: plan iterations and draft objectives",
+      "to": "role::Product Owner",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Team breakouts: plan iterations and draft objectives",
+      "to": "role::Scrum Master / Team Coach",
+      "code": "F",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Team breakouts: plan iterations and draft objectives",
+      "to": "artifact::Team Backlog",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Team breakouts: plan iterations and draft objectives",
+      "to": "artifact::Stories",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Team breakouts: plan iterations and draft objectives",
+      "to": "artifact::Iteration Goals",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Team breakouts: plan iterations and draft objectives",
+      "to": "artifact::PI Objectives",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Team breakouts: plan iterations and draft objectives",
+      "to": "competency::Agile Product Delivery",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Team breakouts: plan iterations and draft objectives",
+      "to": "principle::4. Build incrementally with fast, integrated learning cycles",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Coordinate dependencies and risks on the planning board",
+      "to": "role::Release Train Engineer",
+      "code": "F",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Coordinate dependencies and risks on the planning board",
+      "to": "role::Product Management",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Coordinate dependencies and risks on the planning board",
+      "to": "role::System Architect / Engineer",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Coordinate dependencies and risks on the planning board",
+      "to": "artifact::ART Planning Board",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Coordinate dependencies and risks on the planning board",
+      "to": "artifact::Features",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Coordinate dependencies and risks on the planning board",
+      "to": "competency::Lean-Agile Leadership",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Coordinate dependencies and risks on the planning board",
+      "to": "principle::7. Apply cadence, synchronize with cross-domain planning",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Conduct management review and problem-solving",
+      "to": "role::Business Owners",
+      "code": "A",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Conduct management review and problem-solving",
+      "to": "role::Release Train Engineer",
+      "code": "F",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Conduct management review and problem-solving",
+      "to": "role::Product Management",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Conduct management review and problem-solving",
+      "to": "artifact::PI Objectives",
+      "code": "R",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Conduct management review and problem-solving",
+      "to": "competency::Lean-Agile Leadership",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Conduct management review and problem-solving",
+      "to": "principle::9. Decentralize decision-making",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Assign business value and hold the confidence vote",
+      "to": "role::Business Owners",
+      "code": "A",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Assign business value and hold the confidence vote",
+      "to": "role::Agile Team",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Assign business value and hold the confidence vote",
+      "to": "role::Release Train Engineer",
+      "code": "F",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Assign business value and hold the confidence vote",
+      "to": "artifact::PI Objectives",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Assign business value and hold the confidence vote",
+      "to": "artifact::ART Planning Board",
+      "code": "U",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Assign business value and hold the confidence vote",
+      "to": "competency::Continuous Learning Culture",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Assign business value and hold the confidence vote",
+      "to": "principle::8. Unlock the intrinsic motivation of knowledge workers",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Plan the iteration",
+      "to": "role::Product Owner",
+      "code": "A",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Plan the iteration",
+      "to": "role::Scrum Master / Team Coach",
+      "code": "F",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Plan the iteration",
+      "to": "role::Agile Team",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Plan the iteration",
+      "to": "artifact::Team Backlog",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Plan the iteration",
+      "to": "artifact::Stories",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Plan the iteration",
+      "to": "artifact::Iteration Goals",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Plan the iteration",
+      "to": "competency::Team and Technical Agility",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Plan the iteration",
+      "to": "principle::7. Apply cadence, synchronize with cross-domain planning",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Synchronize daily and manage flow",
+      "to": "role::Scrum Master / Team Coach",
+      "code": "F",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Synchronize daily and manage flow",
+      "to": "role::Agile Team",
+      "code": "A",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Synchronize daily and manage flow",
+      "to": "artifact::Team Backlog",
+      "code": "U",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Synchronize daily and manage flow",
+      "to": "competency::Team and Technical Agility",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Synchronize daily and manage flow",
+      "to": "principle::6. Make value flow without interruptions",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Build, integrate and test the increment",
+      "to": "role::Agile Team",
+      "code": "A",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Build, integrate and test the increment",
+      "to": "role::System Architect / Engineer",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Build, integrate and test the increment",
+      "to": "artifact::Stories",
+      "code": "U",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Build, integrate and test the increment",
+      "to": "artifact::Enablers",
+      "code": "U",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Build, integrate and test the increment",
+      "to": "artifact::Integrated Increment",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Build, integrate and test the increment",
+      "to": "competency::Team and Technical Agility",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Build, integrate and test the increment",
+      "to": "principle::4. Build incrementally with fast, integrated learning cycles",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Refine the team backlog",
+      "to": "role::Product Owner",
+      "code": "A",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Refine the team backlog",
+      "to": "role::Agile Team",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Refine the team backlog",
+      "to": "artifact::Team Backlog",
+      "code": "U",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Refine the team backlog",
+      "to": "artifact::Stories",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Refine the team backlog",
+      "to": "competency::Agile Product Delivery",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Refine the team backlog",
+      "to": "principle::3. Assume variability; preserve options",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Review and retrospect the iteration",
+      "to": "role::Scrum Master / Team Coach",
+      "code": "F",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Review and retrospect the iteration",
+      "to": "role::Product Owner",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Review and retrospect the iteration",
+      "to": "role::Agile Team",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Review and retrospect the iteration",
+      "to": "artifact::Iteration Goals",
+      "code": "R",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Review and retrospect the iteration",
+      "to": "artifact::Integrated Increment",
+      "code": "R",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Review and retrospect the iteration",
+      "to": "competency::Continuous Learning Culture",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Review and retrospect the iteration",
+      "to": "principle::5. Base milestones on objective evaluation of working systems",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Integrate the full system for demo",
+      "to": "role::System Architect / Engineer",
+      "code": "A",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Integrate the full system for demo",
+      "to": "role::Agile Team",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Integrate the full system for demo",
+      "to": "artifact::Integrated Increment",
+      "code": "U",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Integrate the full system for demo",
+      "to": "competency::Team and Technical Agility",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Integrate the full system for demo",
+      "to": "principle::5. Base milestones on objective evaluation of working systems",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Demonstrate integrated value to stakeholders",
+      "to": "role::Product Management",
+      "code": "F",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Demonstrate integrated value to stakeholders",
+      "to": "role::Business Owners",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Demonstrate integrated value to stakeholders",
+      "to": "role::Customer",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Demonstrate integrated value to stakeholders",
+      "to": "artifact::Integrated Increment",
+      "code": "R",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Demonstrate integrated value to stakeholders",
+      "to": "artifact::Features",
+      "code": "R",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Demonstrate integrated value to stakeholders",
+      "to": "competency::Agile Product Delivery",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Demonstrate integrated value to stakeholders",
+      "to": "principle::5. Base milestones on objective evaluation of working systems",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Capture feedback and adjust the ART Backlog",
+      "to": "role::Product Management",
+      "code": "A",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Capture feedback and adjust the ART Backlog",
+      "to": "role::Product Owner",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Capture feedback and adjust the ART Backlog",
+      "to": "artifact::ART Backlog",
+      "code": "U",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Capture feedback and adjust the ART Backlog",
+      "to": "artifact::Features",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Capture feedback and adjust the ART Backlog",
+      "to": "competency::Agile Product Delivery",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Capture feedback and adjust the ART Backlog",
+      "to": "principle::3. Assume variability; preserve options",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Coach Sync: track progress and impediments",
+      "to": "role::Release Train Engineer",
+      "code": "F",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Coach Sync: track progress and impediments",
+      "to": "role::Scrum Master / Team Coach",
+      "code": "A",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Coach Sync: track progress and impediments",
+      "to": "artifact::ART Planning Board",
+      "code": "U",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Coach Sync: track progress and impediments",
+      "to": "competency::Lean-Agile Leadership",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Coach Sync: track progress and impediments",
+      "to": "principle::6. Make value flow without interruptions",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::PO Sync: align scope, priorities and dependencies",
+      "to": "role::Product Management",
+      "code": "F",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::PO Sync: align scope, priorities and dependencies",
+      "to": "role::Product Owner",
+      "code": "A",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::PO Sync: align scope, priorities and dependencies",
+      "to": "artifact::ART Backlog",
+      "code": "U",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::PO Sync: align scope, priorities and dependencies",
+      "to": "artifact::Features",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::PO Sync: align scope, priorities and dependencies",
+      "to": "artifact::PI Objectives",
+      "code": "R",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::PO Sync: align scope, priorities and dependencies",
+      "to": "competency::Agile Product Delivery",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::PO Sync: align scope, priorities and dependencies",
+      "to": "principle::9. Decentralize decision-making",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Escalate and resolve cross-team risks",
+      "to": "role::Release Train Engineer",
+      "code": "A",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Escalate and resolve cross-team risks",
+      "to": "role::System Architect / Engineer",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Escalate and resolve cross-team risks",
+      "to": "role::Business Owners",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Escalate and resolve cross-team risks",
+      "to": "artifact::ART Planning Board",
+      "code": "U",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Escalate and resolve cross-team risks",
+      "to": "competency::Lean-Agile Leadership",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Escalate and resolve cross-team risks",
+      "to": "principle::2. Apply systems thinking",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Innovate and spike",
+      "to": "role::Agile Team",
+      "code": "A",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Innovate and spike",
+      "to": "role::System Architect / Engineer",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Innovate and spike",
+      "to": "artifact::Enablers",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Innovate and spike",
+      "to": "competency::Continuous Learning Culture",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Innovate and spike",
+      "to": "principle::8. Unlock the intrinsic motivation of knowledge workers",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Continue education and grow communities of practice",
+      "to": "role::Scrum Master / Team Coach",
+      "code": "F",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Continue education and grow communities of practice",
+      "to": "role::Agile Team",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Continue education and grow communities of practice",
+      "to": "competency::Continuous Learning Culture",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Continue education and grow communities of practice",
+      "to": "principle::8. Unlock the intrinsic motivation of knowledge workers",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Provide estimating and planning buffer",
+      "to": "role::Release Train Engineer",
+      "code": "F",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Provide estimating and planning buffer",
+      "to": "role::Product Owner",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Provide estimating and planning buffer",
+      "to": "artifact::Team Backlog",
+      "code": "U",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Provide estimating and planning buffer",
+      "to": "artifact::PI Objectives",
+      "code": "R",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Provide estimating and planning buffer",
+      "to": "competency::Lean-Agile Leadership",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Provide estimating and planning buffer",
+      "to": "principle::7. Apply cadence, synchronize with cross-domain planning",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Demonstrate and evaluate the full PI solution",
+      "to": "role::Product Management",
+      "code": "F",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Demonstrate and evaluate the full PI solution",
+      "to": "role::System Architect / Engineer",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Demonstrate and evaluate the full PI solution",
+      "to": "role::Business Owners",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Demonstrate and evaluate the full PI solution",
+      "to": "role::Customer",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Demonstrate and evaluate the full PI solution",
+      "to": "artifact::Integrated Increment",
+      "code": "R",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Demonstrate and evaluate the full PI solution",
+      "to": "artifact::PI Objectives",
+      "code": "R",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Demonstrate and evaluate the full PI solution",
+      "to": "competency::Agile Product Delivery",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Demonstrate and evaluate the full PI solution",
+      "to": "principle::5. Base milestones on objective evaluation of working systems",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Review quantitative and qualitative metrics",
+      "to": "role::Release Train Engineer",
+      "code": "F",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Review quantitative and qualitative metrics",
+      "to": "role::Business Owners",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Review quantitative and qualitative metrics",
+      "to": "artifact::PI Objectives",
+      "code": "R",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Review quantitative and qualitative metrics",
+      "to": "competency::Continuous Learning Culture",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Review quantitative and qualitative metrics",
+      "to": "principle::1. Take an economic view",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Facilitate the problem-solving workshop",
+      "to": "role::Release Train Engineer",
+      "code": "A",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Facilitate the problem-solving workshop",
+      "to": "role::Agile Team",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Facilitate the problem-solving workshop",
+      "to": "role::Scrum Master / Team Coach",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Facilitate the problem-solving workshop",
+      "to": "artifact::ART Backlog",
+      "code": "U",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Facilitate the problem-solving workshop",
+      "to": "competency::Continuous Learning Culture",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Facilitate the problem-solving workshop",
+      "to": "principle::2. Apply systems thinking",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Create improvement backlog items",
+      "to": "role::Product Management",
+      "code": "A",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Create improvement backlog items",
+      "to": "role::Agile Team",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Create improvement backlog items",
+      "to": "artifact::ART Backlog",
+      "code": "U",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Create improvement backlog items",
+      "to": "artifact::Team Backlog",
+      "code": "U",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Create improvement backlog items",
+      "to": "competency::Continuous Learning Culture",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Create improvement backlog items",
+      "to": "principle::4. Build incrementally with fast, integrated learning cycles",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Continuous Exploration: understand customer needs",
+      "to": "role::Product Management",
+      "code": "A",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Continuous Exploration: understand customer needs",
+      "to": "role::Customer",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Continuous Exploration: understand customer needs",
+      "to": "role::System Architect / Engineer",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Continuous Exploration: understand customer needs",
+      "to": "artifact::ART Backlog",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Continuous Exploration: understand customer needs",
+      "to": "artifact::Features",
+      "code": "C",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Continuous Exploration: understand customer needs",
+      "to": "artifact::Vision",
+      "code": "R",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Continuous Exploration: understand customer needs",
+      "to": "competency::Agile Product Delivery",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Continuous Exploration: understand customer needs",
+      "to": "principle::10. Organize around value",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Continuous Integration: build and test continuously",
+      "to": "role::Agile Team",
+      "code": "A",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Continuous Integration: build and test continuously",
+      "to": "role::System Architect / Engineer",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Continuous Integration: build and test continuously",
+      "to": "artifact::Stories",
+      "code": "U",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Continuous Integration: build and test continuously",
+      "to": "artifact::Enablers",
+      "code": "U",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Continuous Integration: build and test continuously",
+      "to": "artifact::Integrated Increment",
+      "code": "U",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Continuous Integration: build and test continuously",
+      "to": "competency::Team and Technical Agility",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Continuous Integration: build and test continuously",
+      "to": "principle::4. Build incrementally with fast, integrated learning cycles",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Continuous Deployment: deploy to production",
+      "to": "role::Agile Team",
+      "code": "A",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Continuous Deployment: deploy to production",
+      "to": "role::Release Train Engineer",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Continuous Deployment: deploy to production",
+      "to": "role::System Architect / Engineer",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Continuous Deployment: deploy to production",
+      "to": "artifact::Integrated Increment",
+      "code": "U",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Continuous Deployment: deploy to production",
+      "to": "competency::Agile Product Delivery",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Continuous Deployment: deploy to production",
+      "to": "principle::6. Make value flow without interruptions",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Release on Demand: release value to customers",
+      "to": "role::Product Management",
+      "code": "A",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Release on Demand: release value to customers",
+      "to": "role::Business Owners",
+      "code": "P",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Release on Demand: release value to customers",
+      "to": "role::Customer",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Release on Demand: release value to customers",
+      "to": "artifact::Integrated Increment",
+      "code": "R",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Release on Demand: release value to customers",
+      "to": "artifact::Features",
+      "code": "R",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Release on Demand: release value to customers",
+      "to": "competency::Agile Product Delivery",
+      "code": "E",
+      "confidence": "indicative"
+    },
+    {
+      "from": "activity::Release on Demand: release value to customers",
+      "to": "principle::10. Organize around value",
+      "code": "E",
+      "confidence": "indicative"
+    }
+  ]
+}

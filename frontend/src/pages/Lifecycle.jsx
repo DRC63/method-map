@@ -79,24 +79,32 @@ export default function Lifecycle() {
   const spanCols = Math.max(1, phaseCols.length - 1);
   const noun = lifecycleNoun(data.framework);
 
+  // The Lifecycle page assumes a linear project (Start → Close). A cyclic
+  // framework (e.g. SAFe's repeating PI cadence) can override the framing via
+  // config.timeline; otherwise fall back to the PRINCE2/MSP wording.
+  const tl = data.framework?.config?.timeline || {};
+  const introText =
+    tl.intro ||
+    `Time flows left to right across the ${noun}. Each swimlane is a level of ` +
+      `responsibility; a process sits where it runs on the timeline. Delivery ` +
+      `stages repeat until the ${noun} is done. Click any process to see its ` +
+      `activities in sequence.`;
+  const startLabel = tl.start_label || 'Start';
+  const endLabel = tl.end_label || 'Close';
+
   return (
     <div className="lifecycle-wrap">
       <div className="lifecycle-intro">
         <h2>{data.framework.name} — the {noun} lifecycle</h2>
-        <p>
-          Time flows left to right across the {noun}. Each swimlane is a level of
-          responsibility; a process sits where it runs on the timeline. Delivery
-          stages repeat until the {noun} is done. Click any process to see its
-          activities in sequence.
-        </p>
+        <p>{introText}</p>
       </div>
 
       <div className="time-arrow">
-        <span>Start</span>
+        <span>{startLabel}</span>
         <span className="line" />
         <span>Time →</span>
         <span className="line" />
-        <span>Close</span>
+        <span>{endLabel}</span>
       </div>
 
       <div className="swimlane-grid" style={{ gridTemplateColumns: `auto repeat(${phaseCols.length}, 1fr)` }}>
