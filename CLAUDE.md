@@ -110,6 +110,16 @@ Graph nodes carry `parent_id`, `sort_order`, `sequence`, `lifecycle_level`,
   / `left`/`right`/`bottom`). The PRINCE2 lane/layer names in the two bullets above
   are just the PRINCE2 case; MSP shows Sponsoring/Managing/Delivering + Roles/Themes/
   Principles. Don't re-hardcode PRINCE2 terms here.
+- **Mobile / responsive (`@media (max-width: 820px)` in theme.css)** — the base
+  layout is a fixed desktop 3-pane (sidebar + control panel + graph + detail) and
+  `.app-shell { overflow:hidden }` used to clip the graph off-screen on phones. On
+  small screens: `.app-shell` becomes a scrolling flex **column**, the **sidebar** is
+  a top bar (horizontal nav), `.graph-stage` gets full width + `min-height:72vh`, the
+  **control panel is a left slide-in drawer** (`.explorer.controls-open` toggled by
+  the `.mobile-controls-toggle` button in `Explorer.jsx`, with a `.mobile-drawer-
+  backdrop`), and the **detail panel is a full-screen overlay**. Desktop is untouched.
+  The drawer uses NO transition on purpose (the transform-transition doesn't progress
+  in the non-compositing preview pane; snapping is reliable everywhere).
 
 ## The graph builder (`app/graph.py`)
 Given the selected entity-type layers it emits three link kinds:
