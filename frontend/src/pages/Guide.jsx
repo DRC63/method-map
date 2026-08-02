@@ -12,6 +12,38 @@ function andList(arr) {
 // Prose that genuinely differs by framework — the sourcing/accuracy note and the
 // short name for the time-ordered process model. Everything else on this page is
 // derived from the framework's own config, so a new framework needs no code here.
+// Every live framework, in one place. The Guide's "related" note is generated
+// from this, so adding a framework is a single-line change here (not an edit to
+// each entry's cross-links). key = framework key; slug = front-door path.
+const APPS = [
+  { key: 'prince2-7', slug: 'prince2', label: 'PRINCE2 7', kind: 'projects' },
+  { key: 'msp-5', slug: 'msp', label: 'Managing Successful Programmes (MSP)', kind: 'programmes' },
+  { key: 'safe-essential', slug: 'safe', label: 'SAFe® 6.0 Essential', kind: 'scaled agile' },
+  { key: 'pmbok-6', slug: 'pmbok', label: 'the PMBOK® Guide (6th ed.)', kind: 'the PMI process standard' },
+];
+
+// "This is one of several frameworks … PRINCE2 for projects (open →), MSP for
+// programmes (open →) and …" — every framework except the current one, linked to
+// its own front-door app.
+function relatedNote(currentKey) {
+  const others = APPS.filter((a) => a.key !== currentKey);
+  if (!others.length) return null;
+  return (
+    <>
+      This is one of several frameworks the Method Map holds side by side, each as its own
+      map:{' '}
+      {others.map((a, i) => (
+        <span key={a.slug}>
+          {i > 0 ? (i === others.length - 1 ? ' and ' : ', ') : ''}
+          <strong>{a.label}</strong> for {a.kind} (
+          <a href={`https://apps.p3mai.com/${a.slug}/`}>open →</a>)
+        </span>
+      ))}
+      .
+    </>
+  );
+}
+
 const FRAMEWORK_PROSE = {
   'prince2-7': {
     modelName: 'the classic PRINCE2 process model',
@@ -26,15 +58,7 @@ const FRAMEWORK_PROSE = {
         audit, training or certification evidence.
       </>
     ),
-    related: (
-      <>
-        This is one of several frameworks the Method Map holds side by side, each as its
-        own map: <strong>Managing Successful Programmes (MSP) 5th Edition</strong> for
-        programmes (<a href="https://apps.p3mai.com/msp/">open →</a>) and{' '}
-        <strong>SAFe&reg; 6.0 Essential</strong> for scaled agile (
-        <a href="https://apps.p3mai.com/safe/">open →</a>).
-      </>
-    ),
+    related: relatedNote('prince2-7'),
   },
   'msp-5': {
     modelName: 'the MSP transformational flow',
@@ -49,15 +73,7 @@ const FRAMEWORK_PROSE = {
         audit, training or certification evidence.
       </>
     ),
-    related: (
-      <>
-        This is one of several frameworks the Method Map holds side by side, each as its
-        own map: <strong>PRINCE2 7</strong> for projects (
-        <a href="https://apps.p3mai.com/prince2/">open →</a>) and{' '}
-        <strong>SAFe&reg; 6.0 Essential</strong> for scaled agile (
-        <a href="https://apps.p3mai.com/safe/">open →</a>).
-      </>
-    ),
+    related: relatedNote('msp-5'),
   },
   'safe-essential': {
     modelName: 'the SAFe PI (Program Increment) cadence',
@@ -74,15 +90,26 @@ const FRAMEWORK_PROSE = {
         reference tool, not affiliated with or endorsed by Scaled Agile, Inc.
       </>
     ),
-    related: (
+    related: relatedNote('safe-essential'),
+  },
+  'pmbok-6': {
+    modelName: 'the PMBOK process matrix (5 Process Groups × 10 Knowledge Areas)',
+    accuracy: (
       <>
-        This is one of several frameworks the Method Map holds side by side, each as its
-        own map: <strong>PRINCE2 7</strong> for projects (
-        <a href="https://apps.p3mai.com/prince2/">open →</a>) and{' '}
-        <strong>Managing Successful Programmes (MSP)</strong> for programmes (
-        <a href="https://apps.p3mai.com/msp/">open →</a>).
+        The Process Group, Knowledge Area and process <em>names</em>, and each process's
+        placement in the 5×10 matrix, follow the PMBOK<span>&reg;</span> Guide 6th edition
+        and are corroborated across public sources. The <strong>ITTO</strong>{' '}
+        cross-references (Inputs, Tools &amp; Techniques and Outputs per process) are a
+        curated, <strong>indicative</strong> reconstruction — the most characteristic items
+        per process, not the guide's exhaustive tables — shown with a dashed{' '}
+        <span className="confidence-flag confidence-indicative">◌ indicative</span> marker,
+        and must be SME-verified against the licensed PMBOK Guide before use as formal
+        audit, training or certification evidence. PMBOK, PMI and PMP are marks of the
+        Project Management Institute, Inc.; this is an independent reference tool, not
+        affiliated with or endorsed by PMI.
       </>
     ),
+    related: relatedNote('pmbok-6'),
   },
 };
 

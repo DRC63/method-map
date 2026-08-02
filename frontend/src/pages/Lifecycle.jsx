@@ -8,7 +8,19 @@ import { lifecycleNoun } from '../theme/labels';
 // non-column phase folds into the repeating/delivery column.
 const LANE_CLASSES = ['lane-directing', 'lane-managing', 'lane-delivering'];
 
+// Frameworks with up to 3 lanes use the branded lane classes; a framework with
+// more lanes (e.g. PMBOK's 10 Knowledge Areas) gets an evenly-spread generated
+// palette so every swimlane row is visually distinct.
+function laneVisual(index, total) {
+  if (total <= LANE_CLASSES.length) {
+    return { className: LANE_CLASSES[index % LANE_CLASSES.length] };
+  }
+  const hue = Math.round((index / total) * 360);
+  return { style: { background: `hsl(${hue}deg 40% 30%)` } };
+}
+
 function ProcessCard({ p, active, onClick }) {
+  const hasMeta = p.activities.length > 0 || p.repeats;
   return (
     <button
       className={`process-card ${p.lifecycle_phase === 'throughout' ? 'dp-bar' : ''} ${active ? 'active' : ''}`}
@@ -16,10 +28,12 @@ function ProcessCard({ p, active, onClick }) {
     >
       <span className="pc-code">{p.code}</span>
       <span className="pc-name">{p.name}</span>
-      <span className="pc-meta">
-        <span>{p.activities.length} activities</span>
-        {p.repeats && <span className="pc-repeat">⟳ repeats each stage</span>}
-      </span>
+      {hasMeta && (
+        <span className="pc-meta">
+          {p.activities.length > 0 && <span>{p.activities.length} activities</span>}
+          {p.repeats && <span className="pc-repeat">⟳ repeats each stage</span>}
+        </span>
+      )}
     </button>
   );
 }
@@ -75,7 +89,6 @@ export default function Lifecycle() {
 
   if (!data) return <div className="graph-empty">Loading lifecycle…</div>;
 
-  const laneClassFor = (lv) => LANE_CLASSES[data.level_order.indexOf(lv) % LANE_CLASSES.length];
   const spanCols = Math.max(1, phaseCols.length - 1);
   const noun = lifecycleNoun(data.framework);
 
@@ -91,11 +104,12 @@ export default function Lifecycle() {
       `activities in sequence.`;
   const startLabel = tl.start_label || 'Start';
   const endLabel = tl.end_label || 'Close';
+  const heading = tl.heading || `${data.framework.name} — the ${noun} lifecycle`;
 
   return (
     <div className="lifecycle-wrap">
       <div className="lifecycle-intro">
-        <h2>{data.framework.name} — the {noun} lifecycle</h2>
+        <h2>{heading}</h2>
         <p>{introText}</p>
       </div>
 
@@ -118,12 +132,13 @@ export default function Lifecycle() {
         ))}
 
         {/* swimlane rows */}
-        {data.level_order.map((lv) => {
+        {data.level_order.map((lv, li) => {
           const lane = byLevel[lv];
           const hasSpan = lane.throughout.length > 0;
+          const vis = laneVisual(li, data.level_order.length);
           return (
             <div key={lv} style={{ display: 'contents' }}>
-              <div className={`lane-label ${laneClassFor(lv)}`}>
+              <div className={`lane-label ${vis.className || ''}`} style={vis.style}>
                 {data.levels[lv]?.split(' (')[0] || lv}
                 <small>{data.levels[lv]?.match(/\((.*)\)/)?.[1]}</small>
               </div>
@@ -165,23 +180,26 @@ export default function Lifecycle() {
         <div className="lifecycle-detail">
           <h3>
             <span style={{ color: 'var(--color-primary)' }}>{selected.code}</span> ·{' '}
-            {selected.name} — activities in sequence
+            {selected.name}
+            {selected.activities.length > 0 && ' — activities in sequence'}
           </h3>
           {selected.description && <p style={{ maxWidth: 800 }}>{selected.description}</p>}
-          <div className="activity-flow">
-            {selected.activities.map((a) => (
-              <div
-                key={a.id}
-                className="activity-step"
-                onClick={() => navigate(`/?focus=${a.id}`)}
-                style={{ cursor: 'pointer' }}
-                title="Open in the graph"
-              >
-                <span className="step-num">{a.sequence}</span>
-                <span className="step-name">{a.name}</span>
-              </div>
-            ))}
-          </div>
+          {selected.activities.length > 0 && (
+            <div className="activity-flow">
+              {selected.activities.map((a) => (
+                <div
+                  key={a.id}
+                  className="activity-step"
+                  onClick={() => navigate(`/?focus=${a.id}`)}
+                  style={{ cursor: 'pointer' }}
+                  title="Open in the graph"
+                >
+                  <span className="step-num">{a.sequence}</span>
+                  <span className="step-name">{a.name}</span>
+                </div>
+              ))}
+            </div>
+          )}
           <div className="admin-actions">
             <button
               className="btn btn-primary btn-sm"

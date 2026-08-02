@@ -92,37 +92,64 @@ def get_lifecycle(key: str, db: Session = Depends(get_db)):
     data behind the Lifecycle (process-model) view."""
     fw = _framework_or_404(db, key)
     container_type, hub_type, _ = graph._framework_meta(fw)
-    all_entities = crud.list_entities(db, fw.id)
-    activities_by_process: dict[int, list] = {}
-    for e in all_entities:
-        if e.type == hub_type and e.parent_id is not None:
-            activities_by_process.setdefault(e.parent_id, []).append(e)
-
-    processes = [e for e in all_entities if e.type == container_type]
-    processes.sort(key=lambda p: (p.sequence if p.sequence is not None else p.sort_order))
-
-    out_processes = []
-    for p in processes:
-        acts = sorted(
-            activities_by_process.get(p.id, []), key=lambda a: a.sort_order
-        )
-        out_processes.append(
-            schemas.LifecycleProcess(
-                id=p.id,
-                code=p.code,
-                name=p.name,
-                description=p.description,
-                lifecycle_level=p.lifecycle_level,
-                lifecycle_phase=p.lifecycle_phase,
-                sequence=p.sequence,
-                repeats=p.repeats,
-                activities=[
-                    schemas.LifecycleActivity(id=a.id, name=a.name, sequence=i + 1)
-                    for i, a in enumerate(acts)
-                ],
-            )
-        )
     cfg = fw.config or {}
+    all_entities = crud.list_entities(db, fw.id)
+
+    # Which layer fills the swimlane cells. Normally the container layer (PRINCE2
+    # processes, MSP programme processes, SAFe events) sits in the (lane, phase)
+    # cells with its child hubs listed beneath. A framework can instead grid the
+    # **hub** layer directly (config.lifecycle_layer == "hub"): each hub is placed
+    # by its OWN lifecycle_level (row) and lifecycle_phase (column). This renders
+    # PMBOK's 49 processes as the classic 5 Process Groups x 10 Knowledge Areas
+    # matrix — the hub carries the cross-references, so it is what belongs in the
+    # cell, and there is no child-activity layer beneath it.
+    if cfg.get("lifecycle_layer") == "hub":
+        cards = [e for e in all_entities if e.type == hub_type]
+        cards.sort(key=lambda p: (p.sequence if p.sequence is not None else p.sort_order))
+        out_processes = [
+            schemas.LifecycleProcess(
+                id=e.id,
+                code=e.code,
+                name=e.name,
+                description=e.description,
+                lifecycle_level=e.lifecycle_level,
+                lifecycle_phase=e.lifecycle_phase,
+                sequence=e.sequence,
+                repeats=e.repeats,
+                activities=[],
+            )
+            for e in cards
+        ]
+    else:
+        activities_by_process: dict[int, list] = {}
+        for e in all_entities:
+            if e.type == hub_type and e.parent_id is not None:
+                activities_by_process.setdefault(e.parent_id, []).append(e)
+
+        processes = [e for e in all_entities if e.type == container_type]
+        processes.sort(key=lambda p: (p.sequence if p.sequence is not None else p.sort_order))
+
+        out_processes = []
+        for p in processes:
+            acts = sorted(
+                activities_by_process.get(p.id, []), key=lambda a: a.sort_order
+            )
+            out_processes.append(
+                schemas.LifecycleProcess(
+                    id=p.id,
+                    code=p.code,
+                    name=p.name,
+                    description=p.description,
+                    lifecycle_level=p.lifecycle_level,
+                    lifecycle_phase=p.lifecycle_phase,
+                    sequence=p.sequence,
+                    repeats=p.repeats,
+                    activities=[
+                        schemas.LifecycleActivity(id=a.id, name=a.name, sequence=i + 1)
+                        for i, a in enumerate(acts)
+                    ],
+                )
+            )
     lanes = cfg.get("lanes") or [
         {"key": k, "label": v} for k, v in LIFECYCLE_LEVELS.items()
     ]

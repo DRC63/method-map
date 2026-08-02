@@ -1,0 +1,5160 @@
+{
+  "framework": {
+    "key": "pmbok-6",
+    "name": "PMBOK",
+    "edition": "6th edition (A Guide to the Project Management Body of Knowledge, 2017)",
+    "description": "PMBOK Guide 6th-edition Method Map: the 49 project-management processes laid out in the classic matrix of 5 Process Groups x 10 Knowledge Areas, cross-referenced to their Inputs, Tools & Techniques and Outputs (ITTOs). Codes: I=Input, O=Output (artifacts), T=Tool/Technique. The Process Groups, Knowledge Areas and the 49 processes and their grid placement are confirmed PMBOK facts; the ITTO cross-references are a curated, indicative reconstruction (the most characteristic items per process, not the guide's exhaustive tables) and must be SME-verified against the licensed PMBOK Guide before formal use. PMBOK, PMI and PMP are marks of the Project Management Institute, Inc.; this is an independent reference tool, not affiliated with or endorsed by PMI.",
+    "sort_order": 4,
+    "config": {
+      "types": [
+        {
+          "key": "knowledge-area",
+          "label": "Knowledge Areas",
+          "color": "#0B2545",
+          "kind": "container",
+          "zone": "top",
+          "order": 1
+        },
+        {
+          "key": "process",
+          "label": "Processes",
+          "color": "#3D5A80",
+          "kind": "hub",
+          "zone": "center",
+          "order": 2
+        },
+        {
+          "key": "tool",
+          "label": "Tools & Techniques",
+          "color": "#2E7D5B",
+          "kind": "node",
+          "code_group": "tool",
+          "zone": "right",
+          "order": 3
+        },
+        {
+          "key": "artifact",
+          "label": "Inputs & Outputs",
+          "color": "#C0392B",
+          "kind": "node",
+          "code_group": "io",
+          "zone": "below",
+          "order": 4
+        }
+      ],
+      "codes": {
+        "io": {
+          "I": "Input",
+          "O": "Output"
+        },
+        "tool": {
+          "T": "Tool / Technique"
+        }
+      },
+      "lanes": [
+        {
+          "key": "integration",
+          "label": "Project Integration Management"
+        },
+        {
+          "key": "scope",
+          "label": "Project Scope Management"
+        },
+        {
+          "key": "schedule",
+          "label": "Project Schedule Management"
+        },
+        {
+          "key": "cost",
+          "label": "Project Cost Management"
+        },
+        {
+          "key": "quality",
+          "label": "Project Quality Management"
+        },
+        {
+          "key": "resource",
+          "label": "Project Resource Management"
+        },
+        {
+          "key": "communications",
+          "label": "Project Communications Management"
+        },
+        {
+          "key": "risk",
+          "label": "Project Risk Management"
+        },
+        {
+          "key": "procurement",
+          "label": "Project Procurement Management"
+        },
+        {
+          "key": "stakeholder",
+          "label": "Project Stakeholder Management"
+        }
+      ],
+      "phases": [
+        {
+          "key": "initiating",
+          "label": "Initiating",
+          "column": true,
+          "header": "Initiating"
+        },
+        {
+          "key": "planning",
+          "label": "Planning",
+          "column": true,
+          "header": "Planning"
+        },
+        {
+          "key": "executing",
+          "label": "Executing",
+          "column": true,
+          "header": "Executing"
+        },
+        {
+          "key": "mc",
+          "label": "Monitoring & Controlling",
+          "column": true,
+          "header": "Monitoring & Controlling"
+        },
+        {
+          "key": "closing",
+          "label": "Closing",
+          "column": true,
+          "header": "Closing"
+        }
+      ],
+      "lifecycle_layer": "hub",
+      "lifecycle_noun": "process matrix",
+      "timeline": {
+        "heading": "PMBOK 6 — the 49-process matrix (5 Process Groups × 10 Knowledge Areas)",
+        "start_label": "Initiating",
+        "end_label": "Closing",
+        "intro": "The PMBOK process matrix: 49 processes arranged in a grid of 5 Process Groups (columns, left to right: Initiating → Planning → Executing → Monitoring & Controlling → Closing) across 10 Knowledge Areas (rows). Each cell holds the processes at that intersection. Click any process to open it in the graph and see its Inputs, Tools & Techniques and Outputs."
+      }
+    }
+  },
+  "entities": [
+    {
+      "code": "INT",
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": "Unify, consolidate and coordinate the processes and activities of project management.",
+      "sort_order": 1,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "knowledge-area",
+      "name": "Project Integration Management"
+    },
+    {
+      "code": "SCO",
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": "Ensure the project includes all the work required, and only the work required, to complete it.",
+      "sort_order": 2,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "knowledge-area",
+      "name": "Project Scope Management"
+    },
+    {
+      "code": "SCH",
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": "Manage the timely completion of the project.",
+      "sort_order": 3,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "knowledge-area",
+      "name": "Project Schedule Management"
+    },
+    {
+      "code": "COS",
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": "Plan, estimate, budget, finance, fund, manage and control costs so the project is completed within the approved budget.",
+      "sort_order": 4,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "knowledge-area",
+      "name": "Project Cost Management"
+    },
+    {
+      "code": "QUA",
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": "Incorporate the organization's quality policy into planning, managing and controlling quality requirements.",
+      "sort_order": 5,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "knowledge-area",
+      "name": "Project Quality Management"
+    },
+    {
+      "code": "RES",
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": "Identify, acquire and manage the resources needed for successful project completion.",
+      "sort_order": 6,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "knowledge-area",
+      "name": "Project Resource Management"
+    },
+    {
+      "code": "COM",
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": "Ensure timely and appropriate planning, collection, distribution and management of project information.",
+      "sort_order": 7,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "knowledge-area",
+      "name": "Project Communications Management"
+    },
+    {
+      "code": "RSK",
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": "Plan, identify, analyse, respond to, implement responses for and monitor risk on the project.",
+      "sort_order": 8,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "knowledge-area",
+      "name": "Project Risk Management"
+    },
+    {
+      "code": "PRO",
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": "Purchase or acquire the products, services or results needed from outside the project team.",
+      "sort_order": 9,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "knowledge-area",
+      "name": "Project Procurement Management"
+    },
+    {
+      "code": "STK",
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": "Identify stakeholders, analyse their expectations and engage them appropriately in decisions and execution.",
+      "sort_order": 10,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "knowledge-area",
+      "name": "Project Stakeholder Management"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 1,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Accepted Deliverables"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 2,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Activity List"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 3,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Agreements"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 4,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Approved Change Requests"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 5,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Assumption Log"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 6,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Basis of Estimates"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 7,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Bid Documents"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 8,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Business Documents"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 9,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Change Log"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 10,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Change Requests"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 11,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Closed Procurements"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 12,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Communications Management Plan"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 13,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Cost Baseline"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 14,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Cost Estimates"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 15,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Cost Forecasts"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 16,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Cost Management Plan"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 17,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Deliverables"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 18,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Duration Estimates"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 19,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Enterprise Environmental Factors"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 20,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Final Report"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 21,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Issue Log"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 22,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Lessons Learned Register"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 23,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Milestone List"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 24,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Outputs from Other Processes"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 25,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Physical Resource Assignments"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 26,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Procurement Management Plan"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 27,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Procurement Strategy"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 28,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Project Charter"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 29,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Project Communications"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 30,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Project Funding Requirements"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 31,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Project Management Plan"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 32,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Project Schedule"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 33,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Project Schedule Network Diagram"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 34,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Project Scope Statement"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 35,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Project Team Assignments"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 36,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Quality Control Measurements"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 37,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Quality Management Plan"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 38,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Quality Metrics"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 39,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Quality Report"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 40,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Requirements Documentation"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 41,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Requirements Management Plan"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 42,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Requirements Traceability Matrix"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 43,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Resource Breakdown Structure"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 44,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Resource Calendars"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 45,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Resource Management Plan"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 46,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Resource Requirements"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 47,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Risk Management Plan"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 48,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Risk Register"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 49,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Risk Report"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 50,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Schedule Baseline"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 51,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Schedule Forecasts"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 52,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Schedule Management Plan"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 53,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Scope Baseline"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 54,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Scope Management Plan"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 55,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Selected Sellers"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 56,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Seller Proposals"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 57,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Source Selection Criteria"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 58,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Stakeholder Engagement Plan"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 59,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Stakeholder Register"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 60,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Team Charter"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 61,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Team Performance Assessments"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 62,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Test and Evaluation Documents"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 63,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Verified Deliverables"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 64,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Work Performance Data"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 65,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Work Performance Information"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 66,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "artifact",
+      "name": "Work Performance Reports"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 1,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Advertising"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 2,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Analogous Estimating"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 3,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Audits"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 4,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Bidder Conferences"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 5,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Bottom-Up Estimating"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 6,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Change Control Tools"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 7,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Claims Administration"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 8,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Colocation"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 9,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Communication Methods"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 10,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Communication Models"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 11,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Communication Requirements Analysis"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 12,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Communication Skills"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 13,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Communication Technology"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 14,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Conflict Management"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 15,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Contingent Response Strategies"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 16,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Cost Aggregation"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 17,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Critical Path Method"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 18,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Data Analysis"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 19,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Data Gathering"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 20,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Data Representation"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 21,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Decision Making"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 22,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Decomposition"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 23,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Dependency Determination and Integration"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 24,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Design for X"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 25,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Earned Value Analysis"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 26,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Expert Judgment"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 27,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Funding Limit Reconciliation"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 28,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Ground Rules"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 29,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Information Management"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 30,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Inspection"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 31,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Interpersonal and Team Skills"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 32,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Knowledge Management"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 33,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Leads and Lags"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 34,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Meetings"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 35,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Negotiation"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 36,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Parametric Estimating"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 37,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Pre-Assignment"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 38,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Precedence Diagramming Method"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 39,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Probability and Impact Matrix"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 40,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Problem Solving"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 41,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Product Analysis"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 42,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Project Management Information System"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 43,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Proposal Evaluation"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 44,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Recognition and Rewards"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 45,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Representations of Uncertainty"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 46,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Reserve Analysis"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 47,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Resource Optimization"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 48,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Risk Categorization"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 49,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Rolling Wave Planning"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 50,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Schedule Compression"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 51,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Schedule Network Analysis"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 52,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Simulation"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 53,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Source Selection Analysis"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 54,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Stakeholder Mapping/Representation"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 55,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Strategies for Opportunities"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 56,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Strategies for Threats"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 57,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Team Building"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 58,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Testing/Product Evaluations"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 59,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Three-Point Estimating"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 60,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Training"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 61,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Trend Analysis"
+    },
+    {
+      "code": null,
+      "subgroup": null,
+      "parent": null,
+      "confidence": "confirmed",
+      "description": null,
+      "sort_order": 62,
+      "lifecycle_level": null,
+      "lifecycle_phase": null,
+      "sequence": null,
+      "repeats": false,
+      "type": "tool",
+      "name": "Virtual Teams"
+    },
+    {
+      "code": "4.1",
+      "subgroup": null,
+      "parent": "knowledge-area::Project Integration Management",
+      "confidence": "confirmed",
+      "description": "Project Integration Management — Initiating process.",
+      "sort_order": 1,
+      "lifecycle_level": "integration",
+      "lifecycle_phase": "initiating",
+      "sequence": 1,
+      "repeats": false,
+      "type": "process",
+      "name": "Develop Project Charter"
+    },
+    {
+      "code": "4.2",
+      "subgroup": null,
+      "parent": "knowledge-area::Project Integration Management",
+      "confidence": "confirmed",
+      "description": "Project Integration Management — Planning process.",
+      "sort_order": 2,
+      "lifecycle_level": "integration",
+      "lifecycle_phase": "planning",
+      "sequence": 2,
+      "repeats": false,
+      "type": "process",
+      "name": "Develop Project Management Plan"
+    },
+    {
+      "code": "4.3",
+      "subgroup": null,
+      "parent": "knowledge-area::Project Integration Management",
+      "confidence": "confirmed",
+      "description": "Project Integration Management — Executing process.",
+      "sort_order": 3,
+      "lifecycle_level": "integration",
+      "lifecycle_phase": "executing",
+      "sequence": 3,
+      "repeats": false,
+      "type": "process",
+      "name": "Direct and Manage Project Work"
+    },
+    {
+      "code": "4.4",
+      "subgroup": null,
+      "parent": "knowledge-area::Project Integration Management",
+      "confidence": "confirmed",
+      "description": "Project Integration Management — Executing process.",
+      "sort_order": 4,
+      "lifecycle_level": "integration",
+      "lifecycle_phase": "executing",
+      "sequence": 4,
+      "repeats": false,
+      "type": "process",
+      "name": "Manage Project Knowledge"
+    },
+    {
+      "code": "4.5",
+      "subgroup": null,
+      "parent": "knowledge-area::Project Integration Management",
+      "confidence": "confirmed",
+      "description": "Project Integration Management — Monitoring & Controlling process.",
+      "sort_order": 5,
+      "lifecycle_level": "integration",
+      "lifecycle_phase": "mc",
+      "sequence": 5,
+      "repeats": false,
+      "type": "process",
+      "name": "Monitor and Control Project Work"
+    },
+    {
+      "code": "4.6",
+      "subgroup": null,
+      "parent": "knowledge-area::Project Integration Management",
+      "confidence": "confirmed",
+      "description": "Project Integration Management — Monitoring & Controlling process.",
+      "sort_order": 6,
+      "lifecycle_level": "integration",
+      "lifecycle_phase": "mc",
+      "sequence": 6,
+      "repeats": false,
+      "type": "process",
+      "name": "Perform Integrated Change Control"
+    },
+    {
+      "code": "4.7",
+      "subgroup": null,
+      "parent": "knowledge-area::Project Integration Management",
+      "confidence": "confirmed",
+      "description": "Project Integration Management — Closing process.",
+      "sort_order": 7,
+      "lifecycle_level": "integration",
+      "lifecycle_phase": "closing",
+      "sequence": 7,
+      "repeats": false,
+      "type": "process",
+      "name": "Close Project or Phase"
+    },
+    {
+      "code": "5.1",
+      "subgroup": null,
+      "parent": "knowledge-area::Project Scope Management",
+      "confidence": "confirmed",
+      "description": "Project Scope Management — Planning process.",
+      "sort_order": 8,
+      "lifecycle_level": "scope",
+      "lifecycle_phase": "planning",
+      "sequence": 8,
+      "repeats": false,
+      "type": "process",
+      "name": "Plan Scope Management"
+    },
+    {
+      "code": "5.2",
+      "subgroup": null,
+      "parent": "knowledge-area::Project Scope Management",
+      "confidence": "confirmed",
+      "description": "Project Scope Management — Planning process.",
+      "sort_order": 9,
+      "lifecycle_level": "scope",
+      "lifecycle_phase": "planning",
+      "sequence": 9,
+      "repeats": false,
+      "type": "process",
+      "name": "Collect Requirements"
+    },
+    {
+      "code": "5.3",
+      "subgroup": null,
+      "parent": "knowledge-area::Project Scope Management",
+      "confidence": "confirmed",
+      "description": "Project Scope Management — Planning process.",
+      "sort_order": 10,
+      "lifecycle_level": "scope",
+      "lifecycle_phase": "planning",
+      "sequence": 10,
+      "repeats": false,
+      "type": "process",
+      "name": "Define Scope"
+    },
+    {
+      "code": "5.4",
+      "subgroup": null,
+      "parent": "knowledge-area::Project Scope Management",
+      "confidence": "confirmed",
+      "description": "Project Scope Management — Planning process.",
+      "sort_order": 11,
+      "lifecycle_level": "scope",
+      "lifecycle_phase": "planning",
+      "sequence": 11,
+      "repeats": false,
+      "type": "process",
+      "name": "Create WBS"
+    },
+    {
+      "code": "5.5",
+      "subgroup": null,
+      "parent": "knowledge-area::Project Scope Management",
+      "confidence": "confirmed",
+      "description": "Project Scope Management — Monitoring & Controlling process.",
+      "sort_order": 12,
+      "lifecycle_level": "scope",
+      "lifecycle_phase": "mc",
+      "sequence": 12,
+      "repeats": false,
+      "type": "process",
+      "name": "Validate Scope"
+    },
+    {
+      "code": "5.6",
+      "subgroup": null,
+      "parent": "knowledge-area::Project Scope Management",
+      "confidence": "confirmed",
+      "description": "Project Scope Management — Monitoring & Controlling process.",
+      "sort_order": 13,
+      "lifecycle_level": "scope",
+      "lifecycle_phase": "mc",
+      "sequence": 13,
+      "repeats": false,
+      "type": "process",
+      "name": "Control Scope"
+    },
+    {
+      "code": "6.1",
+      "subgroup": null,
+      "parent": "knowledge-area::Project Schedule Management",
+      "confidence": "confirmed",
+      "description": "Project Schedule Management — Planning process.",
+      "sort_order": 14,
+      "lifecycle_level": "schedule",
+      "lifecycle_phase": "planning",
+      "sequence": 14,
+      "repeats": false,
+      "type": "process",
+      "name": "Plan Schedule Management"
+    },
+    {
+      "code": "6.2",
+      "subgroup": null,
+      "parent": "knowledge-area::Project Schedule Management",
+      "confidence": "confirmed",
+      "description": "Project Schedule Management — Planning process.",
+      "sort_order": 15,
+      "lifecycle_level": "schedule",
+      "lifecycle_phase": "planning",
+      "sequence": 15,
+      "repeats": false,
+      "type": "process",
+      "name": "Define Activities"
+    },
+    {
+      "code": "6.3",
+      "subgroup": null,
+      "parent": "knowledge-area::Project Schedule Management",
+      "confidence": "confirmed",
+      "description": "Project Schedule Management — Planning process.",
+      "sort_order": 16,
+      "lifecycle_level": "schedule",
+      "lifecycle_phase": "planning",
+      "sequence": 16,
+      "repeats": false,
+      "type": "process",
+      "name": "Sequence Activities"
+    },
+    {
+      "code": "6.4",
+      "subgroup": null,
+      "parent": "knowledge-area::Project Schedule Management",
+      "confidence": "confirmed",
+      "description": "Project Schedule Management — Planning process.",
+      "sort_order": 17,
+      "lifecycle_level": "schedule",
+      "lifecycle_phase": "planning",
+      "sequence": 17,
+      "repeats": false,
+      "type": "process",
+      "name": "Estimate Activity Durations"
+    },
+    {
+      "code": "6.5",
+      "subgroup": null,
+      "parent": "knowledge-area::Project Schedule Management",
+      "confidence": "confirmed",
+      "description": "Project Schedule Management — Planning process.",
+      "sort_order": 18,
+      "lifecycle_level": "schedule",
+      "lifecycle_phase": "planning",
+      "sequence": 18,
+      "repeats": false,
+      "type": "process",
+      "name": "Develop Schedule"
+    },
+    {
+      "code": "6.6",
+      "subgroup": null,
+      "parent": "knowledge-area::Project Schedule Management",
+      "confidence": "confirmed",
+      "description": "Project Schedule Management — Monitoring & Controlling process.",
+      "sort_order": 19,
+      "lifecycle_level": "schedule",
+      "lifecycle_phase": "mc",
+      "sequence": 19,
+      "repeats": false,
+      "type": "process",
+      "name": "Control Schedule"
+    },
+    {
+      "code": "7.1",
+      "subgroup": null,
+      "parent": "knowledge-area::Project Cost Management",
+      "confidence": "confirmed",
+      "description": "Project Cost Management — Planning process.",
+      "sort_order": 20,
+      "lifecycle_level": "cost",
+      "lifecycle_phase": "planning",
+      "sequence": 20,
+      "repeats": false,
+      "type": "process",
+      "name": "Plan Cost Management"
+    },
+    {
+      "code": "7.2",
+      "subgroup": null,
+      "parent": "knowledge-area::Project Cost Management",
+      "confidence": "confirmed",
+      "description": "Project Cost Management — Planning process.",
+      "sort_order": 21,
+      "lifecycle_level": "cost",
+      "lifecycle_phase": "planning",
+      "sequence": 21,
+      "repeats": false,
+      "type": "process",
+      "name": "Estimate Costs"
+    },
+    {
+      "code": "7.3",
+      "subgroup": null,
+      "parent": "knowledge-area::Project Cost Management",
+      "confidence": "confirmed",
+      "description": "Project Cost Management — Planning process.",
+      "sort_order": 22,
+      "lifecycle_level": "cost",
+      "lifecycle_phase": "planning",
+      "sequence": 22,
+      "repeats": false,
+      "type": "process",
+      "name": "Determine Budget"
+    },
+    {
+      "code": "7.4",
+      "subgroup": null,
+      "parent": "knowledge-area::Project Cost Management",
+      "confidence": "confirmed",
+      "description": "Project Cost Management — Monitoring & Controlling process.",
+      "sort_order": 23,
+      "lifecycle_level": "cost",
+      "lifecycle_phase": "mc",
+      "sequence": 23,
+      "repeats": false,
+      "type": "process",
+      "name": "Control Costs"
+    },
+    {
+      "code": "8.1",
+      "subgroup": null,
+      "parent": "knowledge-area::Project Quality Management",
+      "confidence": "confirmed",
+      "description": "Project Quality Management — Planning process.",
+      "sort_order": 24,
+      "lifecycle_level": "quality",
+      "lifecycle_phase": "planning",
+      "sequence": 24,
+      "repeats": false,
+      "type": "process",
+      "name": "Plan Quality Management"
+    },
+    {
+      "code": "8.2",
+      "subgroup": null,
+      "parent": "knowledge-area::Project Quality Management",
+      "confidence": "confirmed",
+      "description": "Project Quality Management — Executing process.",
+      "sort_order": 25,
+      "lifecycle_level": "quality",
+      "lifecycle_phase": "executing",
+      "sequence": 25,
+      "repeats": false,
+      "type": "process",
+      "name": "Manage Quality"
+    },
+    {
+      "code": "8.3",
+      "subgroup": null,
+      "parent": "knowledge-area::Project Quality Management",
+      "confidence": "confirmed",
+      "description": "Project Quality Management — Monitoring & Controlling process.",
+      "sort_order": 26,
+      "lifecycle_level": "quality",
+      "lifecycle_phase": "mc",
+      "sequence": 26,
+      "repeats": false,
+      "type": "process",
+      "name": "Control Quality"
+    },
+    {
+      "code": "9.1",
+      "subgroup": null,
+      "parent": "knowledge-area::Project Resource Management",
+      "confidence": "confirmed",
+      "description": "Project Resource Management — Planning process.",
+      "sort_order": 27,
+      "lifecycle_level": "resource",
+      "lifecycle_phase": "planning",
+      "sequence": 27,
+      "repeats": false,
+      "type": "process",
+      "name": "Plan Resource Management"
+    },
+    {
+      "code": "9.2",
+      "subgroup": null,
+      "parent": "knowledge-area::Project Resource Management",
+      "confidence": "confirmed",
+      "description": "Project Resource Management — Planning process.",
+      "sort_order": 28,
+      "lifecycle_level": "resource",
+      "lifecycle_phase": "planning",
+      "sequence": 28,
+      "repeats": false,
+      "type": "process",
+      "name": "Estimate Activity Resources"
+    },
+    {
+      "code": "9.3",
+      "subgroup": null,
+      "parent": "knowledge-area::Project Resource Management",
+      "confidence": "confirmed",
+      "description": "Project Resource Management — Executing process.",
+      "sort_order": 29,
+      "lifecycle_level": "resource",
+      "lifecycle_phase": "executing",
+      "sequence": 29,
+      "repeats": false,
+      "type": "process",
+      "name": "Acquire Resources"
+    },
+    {
+      "code": "9.4",
+      "subgroup": null,
+      "parent": "knowledge-area::Project Resource Management",
+      "confidence": "confirmed",
+      "description": "Project Resource Management — Executing process.",
+      "sort_order": 30,
+      "lifecycle_level": "resource",
+      "lifecycle_phase": "executing",
+      "sequence": 30,
+      "repeats": false,
+      "type": "process",
+      "name": "Develop Team"
+    },
+    {
+      "code": "9.5",
+      "subgroup": null,
+      "parent": "knowledge-area::Project Resource Management",
+      "confidence": "confirmed",
+      "description": "Project Resource Management — Executing process.",
+      "sort_order": 31,
+      "lifecycle_level": "resource",
+      "lifecycle_phase": "executing",
+      "sequence": 31,
+      "repeats": false,
+      "type": "process",
+      "name": "Manage Team"
+    },
+    {
+      "code": "9.6",
+      "subgroup": null,
+      "parent": "knowledge-area::Project Resource Management",
+      "confidence": "confirmed",
+      "description": "Project Resource Management — Monitoring & Controlling process.",
+      "sort_order": 32,
+      "lifecycle_level": "resource",
+      "lifecycle_phase": "mc",
+      "sequence": 32,
+      "repeats": false,
+      "type": "process",
+      "name": "Control Resources"
+    },
+    {
+      "code": "10.1",
+      "subgroup": null,
+      "parent": "knowledge-area::Project Communications Management",
+      "confidence": "confirmed",
+      "description": "Project Communications Management — Planning process.",
+      "sort_order": 33,
+      "lifecycle_level": "communications",
+      "lifecycle_phase": "planning",
+      "sequence": 33,
+      "repeats": false,
+      "type": "process",
+      "name": "Plan Communications Management"
+    },
+    {
+      "code": "10.2",
+      "subgroup": null,
+      "parent": "knowledge-area::Project Communications Management",
+      "confidence": "confirmed",
+      "description": "Project Communications Management — Executing process.",
+      "sort_order": 34,
+      "lifecycle_level": "communications",
+      "lifecycle_phase": "executing",
+      "sequence": 34,
+      "repeats": false,
+      "type": "process",
+      "name": "Manage Communications"
+    },
+    {
+      "code": "10.3",
+      "subgroup": null,
+      "parent": "knowledge-area::Project Communications Management",
+      "confidence": "confirmed",
+      "description": "Project Communications Management — Monitoring & Controlling process.",
+      "sort_order": 35,
+      "lifecycle_level": "communications",
+      "lifecycle_phase": "mc",
+      "sequence": 35,
+      "repeats": false,
+      "type": "process",
+      "name": "Monitor Communications"
+    },
+    {
+      "code": "11.1",
+      "subgroup": null,
+      "parent": "knowledge-area::Project Risk Management",
+      "confidence": "confirmed",
+      "description": "Project Risk Management — Planning process.",
+      "sort_order": 36,
+      "lifecycle_level": "risk",
+      "lifecycle_phase": "planning",
+      "sequence": 36,
+      "repeats": false,
+      "type": "process",
+      "name": "Plan Risk Management"
+    },
+    {
+      "code": "11.2",
+      "subgroup": null,
+      "parent": "knowledge-area::Project Risk Management",
+      "confidence": "confirmed",
+      "description": "Project Risk Management — Planning process.",
+      "sort_order": 37,
+      "lifecycle_level": "risk",
+      "lifecycle_phase": "planning",
+      "sequence": 37,
+      "repeats": false,
+      "type": "process",
+      "name": "Identify Risks"
+    },
+    {
+      "code": "11.3",
+      "subgroup": null,
+      "parent": "knowledge-area::Project Risk Management",
+      "confidence": "confirmed",
+      "description": "Project Risk Management — Planning process.",
+      "sort_order": 38,
+      "lifecycle_level": "risk",
+      "lifecycle_phase": "planning",
+      "sequence": 38,
+      "repeats": false,
+      "type": "process",
+      "name": "Perform Qualitative Risk Analysis"
+    },
+    {
+      "code": "11.4",
+      "subgroup": null,
+      "parent": "knowledge-area::Project Risk Management",
+      "confidence": "confirmed",
+      "description": "Project Risk Management — Planning process.",
+      "sort_order": 39,
+      "lifecycle_level": "risk",
+      "lifecycle_phase": "planning",
+      "sequence": 39,
+      "repeats": false,
+      "type": "process",
+      "name": "Perform Quantitative Risk Analysis"
+    },
+    {
+      "code": "11.5",
+      "subgroup": null,
+      "parent": "knowledge-area::Project Risk Management",
+      "confidence": "confirmed",
+      "description": "Project Risk Management — Planning process.",
+      "sort_order": 40,
+      "lifecycle_level": "risk",
+      "lifecycle_phase": "planning",
+      "sequence": 40,
+      "repeats": false,
+      "type": "process",
+      "name": "Plan Risk Responses"
+    },
+    {
+      "code": "11.6",
+      "subgroup": null,
+      "parent": "knowledge-area::Project Risk Management",
+      "confidence": "confirmed",
+      "description": "Project Risk Management — Executing process.",
+      "sort_order": 41,
+      "lifecycle_level": "risk",
+      "lifecycle_phase": "executing",
+      "sequence": 41,
+      "repeats": false,
+      "type": "process",
+      "name": "Implement Risk Responses"
+    },
+    {
+      "code": "11.7",
+      "subgroup": null,
+      "parent": "knowledge-area::Project Risk Management",
+      "confidence": "confirmed",
+      "description": "Project Risk Management — Monitoring & Controlling process.",
+      "sort_order": 42,
+      "lifecycle_level": "risk",
+      "lifecycle_phase": "mc",
+      "sequence": 42,
+      "repeats": false,
+      "type": "process",
+      "name": "Monitor Risks"
+    },
+    {
+      "code": "12.1",
+      "subgroup": null,
+      "parent": "knowledge-area::Project Procurement Management",
+      "confidence": "confirmed",
+      "description": "Project Procurement Management — Planning process.",
+      "sort_order": 43,
+      "lifecycle_level": "procurement",
+      "lifecycle_phase": "planning",
+      "sequence": 43,
+      "repeats": false,
+      "type": "process",
+      "name": "Plan Procurement Management"
+    },
+    {
+      "code": "12.2",
+      "subgroup": null,
+      "parent": "knowledge-area::Project Procurement Management",
+      "confidence": "confirmed",
+      "description": "Project Procurement Management — Executing process.",
+      "sort_order": 44,
+      "lifecycle_level": "procurement",
+      "lifecycle_phase": "executing",
+      "sequence": 44,
+      "repeats": false,
+      "type": "process",
+      "name": "Conduct Procurements"
+    },
+    {
+      "code": "12.3",
+      "subgroup": null,
+      "parent": "knowledge-area::Project Procurement Management",
+      "confidence": "confirmed",
+      "description": "Project Procurement Management — Monitoring & Controlling process.",
+      "sort_order": 45,
+      "lifecycle_level": "procurement",
+      "lifecycle_phase": "mc",
+      "sequence": 45,
+      "repeats": false,
+      "type": "process",
+      "name": "Control Procurements"
+    },
+    {
+      "code": "13.1",
+      "subgroup": null,
+      "parent": "knowledge-area::Project Stakeholder Management",
+      "confidence": "confirmed",
+      "description": "Project Stakeholder Management — Initiating process.",
+      "sort_order": 46,
+      "lifecycle_level": "stakeholder",
+      "lifecycle_phase": "initiating",
+      "sequence": 46,
+      "repeats": false,
+      "type": "process",
+      "name": "Identify Stakeholders"
+    },
+    {
+      "code": "13.2",
+      "subgroup": null,
+      "parent": "knowledge-area::Project Stakeholder Management",
+      "confidence": "confirmed",
+      "description": "Project Stakeholder Management — Planning process.",
+      "sort_order": 47,
+      "lifecycle_level": "stakeholder",
+      "lifecycle_phase": "planning",
+      "sequence": 47,
+      "repeats": false,
+      "type": "process",
+      "name": "Plan Stakeholder Engagement"
+    },
+    {
+      "code": "13.3",
+      "subgroup": null,
+      "parent": "knowledge-area::Project Stakeholder Management",
+      "confidence": "confirmed",
+      "description": "Project Stakeholder Management — Executing process.",
+      "sort_order": 48,
+      "lifecycle_level": "stakeholder",
+      "lifecycle_phase": "executing",
+      "sequence": 48,
+      "repeats": false,
+      "type": "process",
+      "name": "Manage Stakeholder Engagement"
+    },
+    {
+      "code": "13.4",
+      "subgroup": null,
+      "parent": "knowledge-area::Project Stakeholder Management",
+      "confidence": "confirmed",
+      "description": "Project Stakeholder Management — Monitoring & Controlling process.",
+      "sort_order": 49,
+      "lifecycle_level": "stakeholder",
+      "lifecycle_phase": "mc",
+      "sequence": 49,
+      "repeats": false,
+      "type": "process",
+      "name": "Monitor Stakeholder Engagement"
+    }
+  ],
+  "relationships": [
+    {
+      "from": "process::Develop Project Charter",
+      "to": "artifact::Business Documents",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Develop Project Charter",
+      "to": "artifact::Agreements",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Develop Project Charter",
+      "to": "artifact::Enterprise Environmental Factors",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Develop Project Charter",
+      "to": "tool::Expert Judgment",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Develop Project Charter",
+      "to": "tool::Data Gathering",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Develop Project Charter",
+      "to": "tool::Meetings",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Develop Project Charter",
+      "to": "artifact::Project Charter",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Develop Project Charter",
+      "to": "artifact::Assumption Log",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Develop Project Management Plan",
+      "to": "artifact::Project Charter",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Develop Project Management Plan",
+      "to": "artifact::Outputs from Other Processes",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Develop Project Management Plan",
+      "to": "tool::Expert Judgment",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Develop Project Management Plan",
+      "to": "tool::Data Gathering",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Develop Project Management Plan",
+      "to": "tool::Meetings",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Develop Project Management Plan",
+      "to": "artifact::Project Management Plan",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Direct and Manage Project Work",
+      "to": "artifact::Project Management Plan",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Direct and Manage Project Work",
+      "to": "artifact::Approved Change Requests",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Direct and Manage Project Work",
+      "to": "tool::Expert Judgment",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Direct and Manage Project Work",
+      "to": "tool::Project Management Information System",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Direct and Manage Project Work",
+      "to": "tool::Meetings",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Direct and Manage Project Work",
+      "to": "artifact::Deliverables",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Direct and Manage Project Work",
+      "to": "artifact::Work Performance Data",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Direct and Manage Project Work",
+      "to": "artifact::Issue Log",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Direct and Manage Project Work",
+      "to": "artifact::Change Requests",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Manage Project Knowledge",
+      "to": "artifact::Project Management Plan",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Manage Project Knowledge",
+      "to": "artifact::Deliverables",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Manage Project Knowledge",
+      "to": "artifact::Lessons Learned Register",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Manage Project Knowledge",
+      "to": "tool::Expert Judgment",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Manage Project Knowledge",
+      "to": "tool::Knowledge Management",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Manage Project Knowledge",
+      "to": "tool::Information Management",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Manage Project Knowledge",
+      "to": "artifact::Lessons Learned Register",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Monitor and Control Project Work",
+      "to": "artifact::Project Management Plan",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Monitor and Control Project Work",
+      "to": "artifact::Work Performance Information",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Monitor and Control Project Work",
+      "to": "artifact::Agreements",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Monitor and Control Project Work",
+      "to": "tool::Expert Judgment",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Monitor and Control Project Work",
+      "to": "tool::Data Analysis",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Monitor and Control Project Work",
+      "to": "tool::Decision Making",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Monitor and Control Project Work",
+      "to": "tool::Meetings",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Monitor and Control Project Work",
+      "to": "artifact::Work Performance Reports",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Monitor and Control Project Work",
+      "to": "artifact::Change Requests",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Perform Integrated Change Control",
+      "to": "artifact::Project Management Plan",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Perform Integrated Change Control",
+      "to": "artifact::Change Requests",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Perform Integrated Change Control",
+      "to": "artifact::Work Performance Reports",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Perform Integrated Change Control",
+      "to": "tool::Expert Judgment",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Perform Integrated Change Control",
+      "to": "tool::Change Control Tools",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Perform Integrated Change Control",
+      "to": "tool::Decision Making",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Perform Integrated Change Control",
+      "to": "tool::Meetings",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Perform Integrated Change Control",
+      "to": "artifact::Approved Change Requests",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Perform Integrated Change Control",
+      "to": "artifact::Change Log",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Close Project or Phase",
+      "to": "artifact::Project Charter",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Close Project or Phase",
+      "to": "artifact::Project Management Plan",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Close Project or Phase",
+      "to": "artifact::Accepted Deliverables",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Close Project or Phase",
+      "to": "artifact::Business Documents",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Close Project or Phase",
+      "to": "tool::Expert Judgment",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Close Project or Phase",
+      "to": "tool::Data Analysis",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Close Project or Phase",
+      "to": "tool::Meetings",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Close Project or Phase",
+      "to": "artifact::Final Report",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Close Project or Phase",
+      "to": "artifact::Lessons Learned Register",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Scope Management",
+      "to": "artifact::Project Charter",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Scope Management",
+      "to": "artifact::Project Management Plan",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Scope Management",
+      "to": "tool::Expert Judgment",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Scope Management",
+      "to": "tool::Data Analysis",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Scope Management",
+      "to": "tool::Meetings",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Scope Management",
+      "to": "artifact::Scope Management Plan",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Scope Management",
+      "to": "artifact::Requirements Management Plan",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Collect Requirements",
+      "to": "artifact::Scope Management Plan",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Collect Requirements",
+      "to": "artifact::Stakeholder Register",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Collect Requirements",
+      "to": "artifact::Business Documents",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Collect Requirements",
+      "to": "tool::Data Gathering",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Collect Requirements",
+      "to": "tool::Data Analysis",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Collect Requirements",
+      "to": "tool::Interpersonal and Team Skills",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Collect Requirements",
+      "to": "artifact::Requirements Documentation",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Collect Requirements",
+      "to": "artifact::Requirements Traceability Matrix",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Define Scope",
+      "to": "artifact::Project Charter",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Define Scope",
+      "to": "artifact::Requirements Documentation",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Define Scope",
+      "to": "tool::Expert Judgment",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Define Scope",
+      "to": "tool::Data Analysis",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Define Scope",
+      "to": "tool::Product Analysis",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Define Scope",
+      "to": "artifact::Project Scope Statement",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Create WBS",
+      "to": "artifact::Project Scope Statement",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Create WBS",
+      "to": "artifact::Requirements Documentation",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Create WBS",
+      "to": "tool::Expert Judgment",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Create WBS",
+      "to": "tool::Decomposition",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Create WBS",
+      "to": "artifact::Scope Baseline",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Validate Scope",
+      "to": "artifact::Verified Deliverables",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Validate Scope",
+      "to": "artifact::Requirements Documentation",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Validate Scope",
+      "to": "artifact::Work Performance Data",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Validate Scope",
+      "to": "tool::Inspection",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Validate Scope",
+      "to": "tool::Decision Making",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Validate Scope",
+      "to": "artifact::Accepted Deliverables",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Validate Scope",
+      "to": "artifact::Work Performance Information",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Validate Scope",
+      "to": "artifact::Change Requests",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Control Scope",
+      "to": "artifact::Scope Baseline",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Control Scope",
+      "to": "artifact::Work Performance Data",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Control Scope",
+      "to": "artifact::Requirements Documentation",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Control Scope",
+      "to": "tool::Data Analysis",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Control Scope",
+      "to": "artifact::Work Performance Information",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Control Scope",
+      "to": "artifact::Change Requests",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Schedule Management",
+      "to": "artifact::Project Charter",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Schedule Management",
+      "to": "artifact::Project Management Plan",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Schedule Management",
+      "to": "tool::Expert Judgment",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Schedule Management",
+      "to": "tool::Data Analysis",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Schedule Management",
+      "to": "tool::Meetings",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Schedule Management",
+      "to": "artifact::Schedule Management Plan",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Define Activities",
+      "to": "artifact::Schedule Management Plan",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Define Activities",
+      "to": "artifact::Scope Baseline",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Define Activities",
+      "to": "tool::Decomposition",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Define Activities",
+      "to": "tool::Rolling Wave Planning",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Define Activities",
+      "to": "tool::Meetings",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Define Activities",
+      "to": "artifact::Activity List",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Define Activities",
+      "to": "artifact::Milestone List",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Sequence Activities",
+      "to": "artifact::Activity List",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Sequence Activities",
+      "to": "artifact::Milestone List",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Sequence Activities",
+      "to": "tool::Precedence Diagramming Method",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Sequence Activities",
+      "to": "tool::Dependency Determination and Integration",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Sequence Activities",
+      "to": "tool::Leads and Lags",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Sequence Activities",
+      "to": "artifact::Project Schedule Network Diagram",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Estimate Activity Durations",
+      "to": "artifact::Activity List",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Estimate Activity Durations",
+      "to": "artifact::Resource Requirements",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Estimate Activity Durations",
+      "to": "artifact::Resource Calendars",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Estimate Activity Durations",
+      "to": "tool::Analogous Estimating",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Estimate Activity Durations",
+      "to": "tool::Parametric Estimating",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Estimate Activity Durations",
+      "to": "tool::Three-Point Estimating",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Estimate Activity Durations",
+      "to": "tool::Bottom-Up Estimating",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Estimate Activity Durations",
+      "to": "artifact::Duration Estimates",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Estimate Activity Durations",
+      "to": "artifact::Basis of Estimates",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Develop Schedule",
+      "to": "artifact::Project Schedule Network Diagram",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Develop Schedule",
+      "to": "artifact::Duration Estimates",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Develop Schedule",
+      "to": "artifact::Resource Requirements",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Develop Schedule",
+      "to": "tool::Schedule Network Analysis",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Develop Schedule",
+      "to": "tool::Critical Path Method",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Develop Schedule",
+      "to": "tool::Resource Optimization",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Develop Schedule",
+      "to": "tool::Schedule Compression",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Develop Schedule",
+      "to": "artifact::Project Schedule",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Develop Schedule",
+      "to": "artifact::Schedule Baseline",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Control Schedule",
+      "to": "artifact::Schedule Baseline",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Control Schedule",
+      "to": "artifact::Project Schedule",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Control Schedule",
+      "to": "artifact::Work Performance Data",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Control Schedule",
+      "to": "tool::Data Analysis",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Control Schedule",
+      "to": "tool::Critical Path Method",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Control Schedule",
+      "to": "tool::Project Management Information System",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Control Schedule",
+      "to": "artifact::Work Performance Information",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Control Schedule",
+      "to": "artifact::Schedule Forecasts",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Control Schedule",
+      "to": "artifact::Change Requests",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Cost Management",
+      "to": "artifact::Project Charter",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Cost Management",
+      "to": "artifact::Project Management Plan",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Cost Management",
+      "to": "tool::Expert Judgment",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Cost Management",
+      "to": "tool::Data Analysis",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Cost Management",
+      "to": "tool::Meetings",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Cost Management",
+      "to": "artifact::Cost Management Plan",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Estimate Costs",
+      "to": "artifact::Cost Management Plan",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Estimate Costs",
+      "to": "artifact::Scope Baseline",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Estimate Costs",
+      "to": "artifact::Project Schedule",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Estimate Costs",
+      "to": "tool::Analogous Estimating",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Estimate Costs",
+      "to": "tool::Parametric Estimating",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Estimate Costs",
+      "to": "tool::Bottom-Up Estimating",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Estimate Costs",
+      "to": "tool::Reserve Analysis",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Estimate Costs",
+      "to": "artifact::Cost Estimates",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Estimate Costs",
+      "to": "artifact::Basis of Estimates",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Determine Budget",
+      "to": "artifact::Cost Estimates",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Determine Budget",
+      "to": "artifact::Scope Baseline",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Determine Budget",
+      "to": "artifact::Project Schedule",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Determine Budget",
+      "to": "tool::Cost Aggregation",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Determine Budget",
+      "to": "tool::Reserve Analysis",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Determine Budget",
+      "to": "tool::Funding Limit Reconciliation",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Determine Budget",
+      "to": "artifact::Cost Baseline",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Determine Budget",
+      "to": "artifact::Project Funding Requirements",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Control Costs",
+      "to": "artifact::Cost Baseline",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Control Costs",
+      "to": "artifact::Work Performance Data",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Control Costs",
+      "to": "artifact::Project Funding Requirements",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Control Costs",
+      "to": "tool::Earned Value Analysis",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Control Costs",
+      "to": "tool::Reserve Analysis",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Control Costs",
+      "to": "tool::Trend Analysis",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Control Costs",
+      "to": "artifact::Work Performance Information",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Control Costs",
+      "to": "artifact::Cost Forecasts",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Control Costs",
+      "to": "artifact::Change Requests",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Quality Management",
+      "to": "artifact::Project Management Plan",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Quality Management",
+      "to": "artifact::Requirements Documentation",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Quality Management",
+      "to": "artifact::Stakeholder Register",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Quality Management",
+      "to": "tool::Data Gathering",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Quality Management",
+      "to": "tool::Data Analysis",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Quality Management",
+      "to": "tool::Data Representation",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Quality Management",
+      "to": "tool::Meetings",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Quality Management",
+      "to": "artifact::Quality Management Plan",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Quality Management",
+      "to": "artifact::Quality Metrics",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Manage Quality",
+      "to": "artifact::Quality Management Plan",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Manage Quality",
+      "to": "artifact::Quality Metrics",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Manage Quality",
+      "to": "artifact::Quality Control Measurements",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Manage Quality",
+      "to": "tool::Data Analysis",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Manage Quality",
+      "to": "tool::Audits",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Manage Quality",
+      "to": "tool::Design for X",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Manage Quality",
+      "to": "tool::Data Representation",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Manage Quality",
+      "to": "artifact::Quality Report",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Manage Quality",
+      "to": "artifact::Test and Evaluation Documents",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Manage Quality",
+      "to": "artifact::Change Requests",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Control Quality",
+      "to": "artifact::Quality Management Plan",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Control Quality",
+      "to": "artifact::Quality Metrics",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Control Quality",
+      "to": "artifact::Deliverables",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Control Quality",
+      "to": "artifact::Work Performance Data",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Control Quality",
+      "to": "tool::Data Gathering",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Control Quality",
+      "to": "tool::Inspection",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Control Quality",
+      "to": "tool::Testing/Product Evaluations",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Control Quality",
+      "to": "tool::Data Representation",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Control Quality",
+      "to": "artifact::Quality Control Measurements",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Control Quality",
+      "to": "artifact::Verified Deliverables",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Control Quality",
+      "to": "artifact::Work Performance Information",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Resource Management",
+      "to": "artifact::Project Charter",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Resource Management",
+      "to": "artifact::Project Management Plan",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Resource Management",
+      "to": "artifact::Requirements Documentation",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Resource Management",
+      "to": "tool::Expert Judgment",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Resource Management",
+      "to": "tool::Data Representation",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Resource Management",
+      "to": "tool::Meetings",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Resource Management",
+      "to": "artifact::Resource Management Plan",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Resource Management",
+      "to": "artifact::Team Charter",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Estimate Activity Resources",
+      "to": "artifact::Resource Management Plan",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Estimate Activity Resources",
+      "to": "artifact::Activity List",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Estimate Activity Resources",
+      "to": "artifact::Cost Estimates",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Estimate Activity Resources",
+      "to": "tool::Analogous Estimating",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Estimate Activity Resources",
+      "to": "tool::Parametric Estimating",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Estimate Activity Resources",
+      "to": "tool::Bottom-Up Estimating",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Estimate Activity Resources",
+      "to": "artifact::Resource Requirements",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Estimate Activity Resources",
+      "to": "artifact::Resource Breakdown Structure",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Estimate Activity Resources",
+      "to": "artifact::Basis of Estimates",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Acquire Resources",
+      "to": "artifact::Resource Management Plan",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Acquire Resources",
+      "to": "artifact::Resource Requirements",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Acquire Resources",
+      "to": "tool::Decision Making",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Acquire Resources",
+      "to": "tool::Interpersonal and Team Skills",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Acquire Resources",
+      "to": "tool::Pre-Assignment",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Acquire Resources",
+      "to": "tool::Virtual Teams",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Acquire Resources",
+      "to": "artifact::Physical Resource Assignments",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Acquire Resources",
+      "to": "artifact::Project Team Assignments",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Acquire Resources",
+      "to": "artifact::Resource Calendars",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Develop Team",
+      "to": "artifact::Project Team Assignments",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Develop Team",
+      "to": "artifact::Team Charter",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Develop Team",
+      "to": "artifact::Resource Calendars",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Develop Team",
+      "to": "tool::Colocation",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Develop Team",
+      "to": "tool::Virtual Teams",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Develop Team",
+      "to": "tool::Recognition and Rewards",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Develop Team",
+      "to": "tool::Training",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Develop Team",
+      "to": "tool::Team Building",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Develop Team",
+      "to": "artifact::Team Performance Assessments",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Develop Team",
+      "to": "artifact::Change Requests",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Manage Team",
+      "to": "artifact::Project Team Assignments",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Manage Team",
+      "to": "artifact::Team Performance Assessments",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Manage Team",
+      "to": "artifact::Work Performance Reports",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Manage Team",
+      "to": "tool::Interpersonal and Team Skills",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Manage Team",
+      "to": "tool::Conflict Management",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Manage Team",
+      "to": "tool::Decision Making",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Manage Team",
+      "to": "artifact::Change Requests",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Control Resources",
+      "to": "artifact::Resource Management Plan",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Control Resources",
+      "to": "artifact::Physical Resource Assignments",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Control Resources",
+      "to": "artifact::Work Performance Data",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Control Resources",
+      "to": "tool::Data Analysis",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Control Resources",
+      "to": "tool::Problem Solving",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Control Resources",
+      "to": "tool::Negotiation",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Control Resources",
+      "to": "artifact::Work Performance Information",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Control Resources",
+      "to": "artifact::Change Requests",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Communications Management",
+      "to": "artifact::Project Charter",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Communications Management",
+      "to": "artifact::Project Management Plan",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Communications Management",
+      "to": "artifact::Stakeholder Register",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Communications Management",
+      "to": "tool::Communication Requirements Analysis",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Communications Management",
+      "to": "tool::Communication Technology",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Communications Management",
+      "to": "tool::Communication Models",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Communications Management",
+      "to": "tool::Communication Methods",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Communications Management",
+      "to": "artifact::Communications Management Plan",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Manage Communications",
+      "to": "artifact::Communications Management Plan",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Manage Communications",
+      "to": "artifact::Work Performance Reports",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Manage Communications",
+      "to": "tool::Communication Technology",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Manage Communications",
+      "to": "tool::Communication Methods",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Manage Communications",
+      "to": "tool::Interpersonal and Team Skills",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Manage Communications",
+      "to": "artifact::Project Communications",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Monitor Communications",
+      "to": "artifact::Communications Management Plan",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Monitor Communications",
+      "to": "artifact::Project Communications",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Monitor Communications",
+      "to": "artifact::Work Performance Data",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Monitor Communications",
+      "to": "tool::Expert Judgment",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Monitor Communications",
+      "to": "tool::Data Analysis",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Monitor Communications",
+      "to": "tool::Meetings",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Monitor Communications",
+      "to": "artifact::Work Performance Information",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Monitor Communications",
+      "to": "artifact::Change Requests",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Risk Management",
+      "to": "artifact::Project Charter",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Risk Management",
+      "to": "artifact::Project Management Plan",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Risk Management",
+      "to": "artifact::Stakeholder Register",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Risk Management",
+      "to": "tool::Expert Judgment",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Risk Management",
+      "to": "tool::Data Analysis",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Risk Management",
+      "to": "tool::Meetings",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Risk Management",
+      "to": "artifact::Risk Management Plan",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Identify Risks",
+      "to": "artifact::Risk Management Plan",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Identify Risks",
+      "to": "artifact::Requirements Documentation",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Identify Risks",
+      "to": "artifact::Cost Estimates",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Identify Risks",
+      "to": "artifact::Duration Estimates",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Identify Risks",
+      "to": "tool::Data Gathering",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Identify Risks",
+      "to": "tool::Data Analysis",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Identify Risks",
+      "to": "tool::Interpersonal and Team Skills",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Identify Risks",
+      "to": "artifact::Risk Register",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Identify Risks",
+      "to": "artifact::Risk Report",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Perform Qualitative Risk Analysis",
+      "to": "artifact::Risk Management Plan",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Perform Qualitative Risk Analysis",
+      "to": "artifact::Risk Register",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Perform Qualitative Risk Analysis",
+      "to": "artifact::Stakeholder Register",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Perform Qualitative Risk Analysis",
+      "to": "tool::Data Analysis",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Perform Qualitative Risk Analysis",
+      "to": "tool::Risk Categorization",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Perform Qualitative Risk Analysis",
+      "to": "tool::Probability and Impact Matrix",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Perform Qualitative Risk Analysis",
+      "to": "tool::Data Representation",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Perform Qualitative Risk Analysis",
+      "to": "artifact::Risk Register",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Perform Qualitative Risk Analysis",
+      "to": "artifact::Risk Report",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Perform Quantitative Risk Analysis",
+      "to": "artifact::Risk Management Plan",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Perform Quantitative Risk Analysis",
+      "to": "artifact::Risk Register",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Perform Quantitative Risk Analysis",
+      "to": "artifact::Cost Baseline",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Perform Quantitative Risk Analysis",
+      "to": "tool::Data Analysis",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Perform Quantitative Risk Analysis",
+      "to": "tool::Representations of Uncertainty",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Perform Quantitative Risk Analysis",
+      "to": "tool::Simulation",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Perform Quantitative Risk Analysis",
+      "to": "artifact::Risk Report",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Risk Responses",
+      "to": "artifact::Risk Management Plan",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Risk Responses",
+      "to": "artifact::Risk Register",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Risk Responses",
+      "to": "artifact::Risk Report",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Risk Responses",
+      "to": "tool::Strategies for Threats",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Risk Responses",
+      "to": "tool::Strategies for Opportunities",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Risk Responses",
+      "to": "tool::Contingent Response Strategies",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Risk Responses",
+      "to": "tool::Decision Making",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Risk Responses",
+      "to": "artifact::Change Requests",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Risk Responses",
+      "to": "artifact::Risk Register",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Risk Responses",
+      "to": "artifact::Risk Report",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Implement Risk Responses",
+      "to": "artifact::Risk Management Plan",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Implement Risk Responses",
+      "to": "artifact::Risk Register",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Implement Risk Responses",
+      "to": "artifact::Risk Report",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Implement Risk Responses",
+      "to": "tool::Expert Judgment",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Implement Risk Responses",
+      "to": "tool::Interpersonal and Team Skills",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Implement Risk Responses",
+      "to": "tool::Project Management Information System",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Implement Risk Responses",
+      "to": "artifact::Change Requests",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Monitor Risks",
+      "to": "artifact::Risk Management Plan",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Monitor Risks",
+      "to": "artifact::Risk Register",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Monitor Risks",
+      "to": "artifact::Work Performance Data",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Monitor Risks",
+      "to": "artifact::Work Performance Reports",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Monitor Risks",
+      "to": "tool::Data Analysis",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Monitor Risks",
+      "to": "tool::Audits",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Monitor Risks",
+      "to": "tool::Meetings",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Monitor Risks",
+      "to": "artifact::Work Performance Information",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Monitor Risks",
+      "to": "artifact::Change Requests",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Procurement Management",
+      "to": "artifact::Project Charter",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Procurement Management",
+      "to": "artifact::Business Documents",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Procurement Management",
+      "to": "artifact::Requirements Documentation",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Procurement Management",
+      "to": "tool::Expert Judgment",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Procurement Management",
+      "to": "tool::Data Gathering",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Procurement Management",
+      "to": "tool::Source Selection Analysis",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Procurement Management",
+      "to": "tool::Meetings",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Procurement Management",
+      "to": "artifact::Procurement Management Plan",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Procurement Management",
+      "to": "artifact::Procurement Strategy",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Procurement Management",
+      "to": "artifact::Bid Documents",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Procurement Management",
+      "to": "artifact::Source Selection Criteria",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Conduct Procurements",
+      "to": "artifact::Procurement Management Plan",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Conduct Procurements",
+      "to": "artifact::Bid Documents",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Conduct Procurements",
+      "to": "artifact::Seller Proposals",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Conduct Procurements",
+      "to": "tool::Expert Judgment",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Conduct Procurements",
+      "to": "tool::Advertising",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Conduct Procurements",
+      "to": "tool::Bidder Conferences",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Conduct Procurements",
+      "to": "tool::Proposal Evaluation",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Conduct Procurements",
+      "to": "artifact::Selected Sellers",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Conduct Procurements",
+      "to": "artifact::Agreements",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Conduct Procurements",
+      "to": "artifact::Change Requests",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Control Procurements",
+      "to": "artifact::Agreements",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Control Procurements",
+      "to": "artifact::Procurement Management Plan",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Control Procurements",
+      "to": "artifact::Work Performance Data",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Control Procurements",
+      "to": "tool::Claims Administration",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Control Procurements",
+      "to": "tool::Data Analysis",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Control Procurements",
+      "to": "tool::Inspection",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Control Procurements",
+      "to": "tool::Audits",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Control Procurements",
+      "to": "artifact::Closed Procurements",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Control Procurements",
+      "to": "artifact::Work Performance Information",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Control Procurements",
+      "to": "artifact::Change Requests",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Identify Stakeholders",
+      "to": "artifact::Project Charter",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Identify Stakeholders",
+      "to": "artifact::Business Documents",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Identify Stakeholders",
+      "to": "artifact::Agreements",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Identify Stakeholders",
+      "to": "tool::Expert Judgment",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Identify Stakeholders",
+      "to": "tool::Data Gathering",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Identify Stakeholders",
+      "to": "tool::Data Analysis",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Identify Stakeholders",
+      "to": "tool::Stakeholder Mapping/Representation",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Identify Stakeholders",
+      "to": "artifact::Stakeholder Register",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Identify Stakeholders",
+      "to": "artifact::Change Requests",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Stakeholder Engagement",
+      "to": "artifact::Project Charter",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Stakeholder Engagement",
+      "to": "artifact::Project Management Plan",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Stakeholder Engagement",
+      "to": "artifact::Stakeholder Register",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Stakeholder Engagement",
+      "to": "tool::Expert Judgment",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Stakeholder Engagement",
+      "to": "tool::Data Analysis",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Stakeholder Engagement",
+      "to": "tool::Decision Making",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Stakeholder Engagement",
+      "to": "tool::Data Representation",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Plan Stakeholder Engagement",
+      "to": "artifact::Stakeholder Engagement Plan",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Manage Stakeholder Engagement",
+      "to": "artifact::Stakeholder Engagement Plan",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Manage Stakeholder Engagement",
+      "to": "artifact::Communications Management Plan",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Manage Stakeholder Engagement",
+      "to": "artifact::Change Log",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Manage Stakeholder Engagement",
+      "to": "tool::Communication Skills",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Manage Stakeholder Engagement",
+      "to": "tool::Interpersonal and Team Skills",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Manage Stakeholder Engagement",
+      "to": "tool::Ground Rules",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Manage Stakeholder Engagement",
+      "to": "tool::Meetings",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Manage Stakeholder Engagement",
+      "to": "artifact::Change Requests",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Monitor Stakeholder Engagement",
+      "to": "artifact::Stakeholder Engagement Plan",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Monitor Stakeholder Engagement",
+      "to": "artifact::Work Performance Data",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Monitor Stakeholder Engagement",
+      "to": "artifact::Project Communications",
+      "code": "I",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Monitor Stakeholder Engagement",
+      "to": "tool::Data Analysis",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Monitor Stakeholder Engagement",
+      "to": "tool::Decision Making",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Monitor Stakeholder Engagement",
+      "to": "tool::Data Representation",
+      "code": "T",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Monitor Stakeholder Engagement",
+      "to": "artifact::Work Performance Information",
+      "code": "O",
+      "confidence": "indicative"
+    },
+    {
+      "from": "process::Monitor Stakeholder Engagement",
+      "to": "artifact::Change Requests",
+      "code": "O",
+      "confidence": "indicative"
+    }
+  ]
+}
