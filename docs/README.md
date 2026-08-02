@@ -2,8 +2,8 @@
 
 Formal documentation for the **P3MAI Method Map** — a multi-framework
 interdependency + lifecycle explorer now hosting **PRINCE2 7**, **MSP 5th
-edition** and **SAFe 6.0 Essential**, each as its own deployment behind the
-shared front door `apps.p3mai.com`. Organised in the same manner as the
+edition**, **SAFe 6.0 Essential** and **PMBOK 6th edition**, each as its own
+deployment behind the shared front door `apps.p3mai.com`. Organised in the same manner as the
 *Microsoft Ecosystem – PMO Project*: a numbered document set, each Word document
 paired with a PowerPoint summary, plus a house style and generated diagram assets.
 
@@ -15,8 +15,8 @@ paired with a PowerPoint summary, plus a house style and generated diagram asset
 | DOC-02 | **User Manual** — using the Explorer (Matrix/Timeline), Lifecycle, detail panel, exports, codes | [02_User_Manual.docx](02_User_Manual.docx) | [02_…_Summary.pptx](02_User_Manual_Summary.pptx) |
 | DOC-03 | **Operation Manual** — configuration, data management, per-framework deployment, the front door, monitoring, troubleshooting, runbooks | [03_Operation_Manual.docx](03_Operation_Manual.docx) | [03_…_Summary.pptx](03_Operation_Manual_Summary.pptx) |
 
-All three are **v1.1, 2 August 2026** (multi-framework update: MSP and SAFe added
-as the second and third live frameworks). DOC-03 is marked **OFFICIAL-SENSITIVE**
+All three are **v1.2, 2 August 2026** (multi-framework: MSP, SAFe and PMBOK 6th
+ed added as the second, third and fourth live frameworks). DOC-03 is marked **OFFICIAL-SENSITIVE**
 (it references deployment specifics and the admin secret); the others are **OFFICIAL**.
 
 ## Folder layout

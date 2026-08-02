@@ -4,7 +4,7 @@ import docstyle as ds
 
 OUT = os.path.join(os.path.dirname(__file__), "..", "02_User_Manual.docx")
 ASSETS = os.path.join(os.path.dirname(__file__), "..", "assets")
-VERSION = "v1.1"
+VERSION = "v1.2"
 DATE = "2 August 2026"
 
 doc = ds.new_doc()
@@ -18,6 +18,9 @@ ds.doc_control(doc, [
      "Multi-framework update: the map now hosts PRINCE2, MSP and SAFe. Added the "
      "framework picker / addresses and a section on the SAFe map; PRINCE2 remains the "
      "worked example throughout."],
+    ["v1.2", "2026-08-02", "Douglas Colvin",
+     "Added PMBOK 6th ed (the 5×10 process matrix) as the fourth framework — address "
+     "and a §12 section covering its grid, layers and I/O/T codes."],
 ])
 ds.add_toc(doc)
 
@@ -29,13 +32,13 @@ ds.para(doc, "The **P3MAI Method Map** turns a management method into an interac
         "or **artefacts** it takes in or creates.")
 ds.para(doc, "It is useful when tailoring an engagement, onboarding a team, or explaining governance "
         "to a client — anywhere you need to see how one part of a method connects to the rest.")
-ds.callout(doc, "note", "Three methods, one tool",
-           ["The Method Map now covers **three frameworks**, each as its own map with its own layers, "
-            "codes and lifecycle: **PRINCE2 7** (projects), **MSP 5th edition** (programmes) and "
-            "**SAFe 6.0 Essential** (scaled agile). This manual uses **PRINCE2 as the worked example** "
-            "— every screen, control and export works the same way in all three; only the element "
-            "types and codes differ (see §12). The in-app **Guide** page always describes the "
-            "framework you are looking at."])
+ds.callout(doc, "note", "Four methods, one tool",
+           ["The Method Map now covers **four frameworks**, each as its own map with its own layers, "
+            "codes and lifecycle: **PRINCE2 7** (projects), **MSP 5th edition** (programmes), "
+            "**SAFe 6.0 Essential** (scaled agile) and **PMBOK 6th edition** (the PMI 5×10 process "
+            "matrix). This manual uses **PRINCE2 as the worked example** — every screen, control and "
+            "export works the same way in all four; only the element types and codes differ (see §12). "
+            "The in-app **Guide** page always describes the framework you are looking at."])
 ds.heading(doc, "1.1  Who it is for", 2)
 ds.para(doc, "Anyone working with these methods — project, programme and portfolio managers, PMO "
         "staff, agile leaders, consultants and those learning a framework. No technical knowledge is "
@@ -47,6 +50,7 @@ ds.table(doc, ["Framework", "Address"], [
     ["PRINCE2 7", "apps.p3mai.com/prince2"],
     ["MSP 5th edition", "apps.p3mai.com/msp"],
     ["SAFe 6.0 Essential", "apps.p3mai.com/safe"],
+    ["PMBOK 6th edition", "apps.p3mai.com/pmbok"],
 ], col_widths=[5.0, 10.5])
 ds.para(doc, "Or reach them from the **Project Management** and **Programme Management** cards on the "
         "P3MAI website's Services page. Nothing to install, no login to read.")
@@ -199,10 +203,10 @@ ds.table(doc, ["Question", "Answer"], [
 ], col_widths=[5.0, 10.5])
 
 # 12 other frameworks
-ds.heading(doc, "12.  The other frameworks — MSP & SAFe", 1)
+ds.heading(doc, "12.  The other frameworks — MSP, SAFe & PMBOK", 1)
 ds.para(doc, "The Explorer, Lifecycle, Guide, detail panel and exports all work identically for the "
-        "other two frameworks — only the **layers** (element types) and **codes** change. Open each at "
-        "its own address (§1.2).")
+        "other three frameworks — only the **layers** (element types) and **codes** change. Open each "
+        "at its own address (§1.2).")
 ds.heading(doc, "12.1  MSP 5th edition (programmes)", 2)
 ds.para(doc, "Layers: **Programme processes** and their **activities**, cross-referenced to **roles**, "
         "the seven **themes**, **products** and the seven **principles**. The Lifecycle runs "
@@ -229,6 +233,26 @@ ds.callout(doc, "note", "SAFe data is indicative",
             "are an indicative reconstruction — verify against the licensed SAFe body of knowledge "
             "before formal use. SAFe® is a trademark of Scaled Agile, Inc.; this is an independent "
             "tool, not affiliated with Scaled Agile, Inc."])
+ds.heading(doc, "12.3  PMBOK 6th edition (the PMI process matrix)", 2)
+ds.para(doc, "PMBOK is the classic **process matrix**: its Lifecycle view is a grid of **10 Knowledge "
+        "Areas** (rows) × **5 Process Groups** (columns) — Initiating → Planning → Executing → "
+        "Monitoring & Controlling → Closing — with each of the **49 processes** in its own cell. "
+        "Unlike the other maps, the cells hold the processes themselves (the layer that carries the "
+        "cross-references), so a cell can contain more than one process (e.g. Schedule / Planning "
+        "holds five). Layers: **Processes**, cross-referenced to their **Inputs & Outputs** "
+        "(artefacts/documents) and **Tools & Techniques**.")
+ds.table(doc, ["Where", "PMBOK codes"], [
+    ["Inputs & Outputs (artefacts)", "I = Input · O = Output"],
+    ["Tools & Techniques", "T = Tool / Technique"],
+], col_widths=[5.0, 10.5])
+ds.callout(doc, "note", "PMBOK ITTOs are curated & indicative",
+           ["The Process Groups, Knowledge Areas and the 49 processes and their grid placement are "
+            "confirmed PMBOK facts; the ITTO cross-references (which Inputs, Tools & Techniques and "
+            "Outputs each process uses) are a **curated, indicative** reconstruction — the most "
+            "characteristic items per process, not the guide's exhaustive tables — and must be "
+            "SME-verified against the licensed PMBOK Guide before formal use. PMBOK, PMI and PMP are "
+            "marks of the Project Management Institute, Inc.; this is an independent tool, not "
+            "affiliated with PMI."])
 
 # 13 glossary
 ds.heading(doc, "13.  Glossary", 1)

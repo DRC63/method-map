@@ -3,7 +3,7 @@ import os
 import docstyle as ds
 
 OUT = os.path.join(os.path.dirname(__file__), "..", "03_Operation_Manual.docx")
-VERSION = "v1.1"
+VERSION = "v1.2"
 DATE = "2 August 2026"
 
 doc = ds.new_doc()
@@ -17,6 +17,9 @@ ds.doc_control(doc, [
      "Multi-framework update: MSP and SAFe services; one-service-per-framework "
      "Blueprint; FRAMEWORK_KEY seeding; front-door (apps-gateway) routing; runbook "
      "for adding a framework deployment."],
+    ["v1.2", "2026-08-02", "Douglas Colvin",
+     "Fourth framework: PMBOK 6th ed (pmbok-method-map service, /pmbok route, "
+     "build_pmbok.py)."],
 ])
 ds.add_toc(doc)
 
@@ -33,8 +36,8 @@ ds.table(doc, ["Item", "Value"], [
     ["What", "Single-origin web app: FastAPI backend serving a React SPA, SQLite database"],
     ["Repository", "github.com/DRC63/method-map (private, DRC63); front door: github.com/DRC63/apps-gateway"],
     ["Production", "Render Docker web services, Starter plan, Oregon — one per framework"],
-    ["Frameworks / services", "prince2-7 → method-map · msp-5 → msp-method-map · safe-essential → safe-method-map"],
-    ["Live URLs", "apps.p3mai.com/prince2 · /msp · /safe (each also <service>.onrender.com)"],
+    ["Frameworks / services", "prince2-7 → method-map · msp-5 → msp-method-map · safe-essential → safe-method-map · pmbok-6 → pmbok-method-map"],
+    ["Live URLs", "apps.p3mai.com/prince2 · /msp · /safe · /pmbok (each also <service>.onrender.com)"],
     ["Front door", "apps.p3mai.com — Node reverse proxy strips the slug and forwards to each service"],
     ["Database", "SQLite (methodmap.db), auto-seeded on boot; ephemeral on Render"],
     ["Dev ports", "backend 8002, frontend 5175 (one framework at a time, via FRAMEWORK_KEY)"],
@@ -45,7 +48,7 @@ ds.heading(doc, "3.  Configuration", 1)
 ds.para(doc, "All configuration is via environment variables (a local `.env` file in `backend/` is read "
         "automatically; in production set them in the Render dashboard).")
 ds.table(doc, ["Variable", "Default", "Purpose"], [
-    ["FRAMEWORK_KEY", "(unset)", "Which framework this deployment seeds + serves (prince2-7 / msp-5 / safe-essential). Unset = seed all (local dev)."],
+    ["FRAMEWORK_KEY", "(unset)", "Which framework this deployment seeds + serves (prince2-7 / msp-5 / safe-essential / pmbok-6). Unset = seed all (local dev)."],
     ["APP_BASE", "/", "Build-time base path the SPA is built under (/prince2/, /msp/, /safe/) so it works behind the front door."],
     ["ADMIN_PASSWORD", "change-me", "Unlocks authoring mode. CHANGE for any real deployment; set per-service."],
     ["DATABASE_URL", "sqlite:///…/methodmap.db", "SQLAlchemy URL; point at Postgres to persist."],
@@ -84,7 +87,8 @@ ds.para(doc, "The app runs at http://localhost:5175 and proxies `/api/*` to the 
 ds.heading(doc, "5.  Data management", 1)
 ds.heading(doc, "5.1  How seeding works", 2)
 ds.para(doc, "On boot, if the database has no frameworks, the app loads the bundled `*.json` files in "
-        "`backend/app/seed_data/` — `prince2-7.json`, `msp-5.json` and `safe-essential.json`. If "
+        "`backend/app/seed_data/` — `prince2-7.json`, `msp-5.json`, `safe-essential.json` and "
+        "`pmbok-6.json`. If "
         "`FRAMEWORK_KEY` is set (as on each production service) only that one is seeded; unset (local "
         "dev) seeds all three. This is idempotent and is how a fresh or restarted container comes up "
         "populated.")
@@ -116,6 +120,7 @@ ds.code_block(doc,
               "cd backend\n"
               "python -m scripts.build_msp     # regenerates seed_data/msp-5.json\n"
               "python -m scripts.build_safe    # regenerates seed_data/safe-essential.json\n"
+              "python -m scripts.build_pmbok   # regenerates seed_data/pmbok-6.json\n"
               "python -m app.seed --force      # reload into the DB")
 ds.para(doc, "Drop the file in and reseed — **no code change is required**. Going live also needs a "
         "new Render service (§7.4).")
@@ -155,10 +160,10 @@ ds.para(doc, "After the seed JSON exists (§5.5), add a service block to `render
         "(it is `sync:false`, so it is not seeded automatically). Finally add the route to the front "
         "door: one line in `apps-gateway`'s `ORIGINS` (slug → `<service>.onrender.com`) and a "
         "landing-page card, then push that repo.")
-ds.callout(doc, "note", "SAFe worked example (2 Aug 2026)",
-           ["SAFe went live exactly this way: `safe-method-map` service (FRAMEWORK_KEY=safe-essential, "
-            "APP_BASE=/safe/) + a `/safe` route in apps-gateway. The only manual steps were the "
-            "Blueprint sync and setting ADMIN_PASSWORD."])
+ds.callout(doc, "note", "SAFe & PMBOK worked examples (2 Aug 2026)",
+           ["SAFe then PMBOK each went live exactly this way — e.g. `pmbok-method-map` "
+            "(FRAMEWORK_KEY=pmbok-6, APP_BASE=/pmbok/) + a `/pmbok` route in apps-gateway. The only "
+            "manual steps were the Blueprint sync and setting ADMIN_PASSWORD."])
 
 # 8 domain
 ds.heading(doc, "8.  Domain & the front door", 1)

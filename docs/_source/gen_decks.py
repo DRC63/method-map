@@ -11,9 +11,9 @@ A = lambda n: os.path.join(DOCS, "assets", n)
 d = Deck("DOC-01", "OFFICIAL")
 d.title_slide("Architecture & Design", "Technical design of the P3MAI Method Map — summary")
 d.bullets("What it is", [
-    "Three methods as interactive network graphs: PRINCE2 7, MSP 5th ed, SAFe 6.0 Essential.",
-    "Each cross-references its activities to the roles, artefacts, practices and principles around them.",
-    "Single-origin web app; config-driven, framework-agnostic model — a new method is just data.",
+    "Four methods as interactive network graphs: PRINCE2 7, MSP 5th ed, SAFe 6.0 Essential, PMBOK 6th ed.",
+    "Each cross-references its activities/processes to the roles, artefacts, tools and principles around them.",
+    "Single-origin web app; config-driven, framework-agnostic model — a new method is (almost) just data.",
 ], lead="An explorable picture of a project-, programme- or agile-delivery method.")
 d.table("Technology stack", ["Layer", "Technology"], [
     ["Backend", "FastAPI + SQLAlchemy + SQLite (Python 3.12)"],
@@ -47,9 +47,9 @@ d.table("Key design decisions", ["Decision", "Why"], [
     ["Fixed layouts + direct_degree size", "Readable structure; stable weighting"],
 ], col_widths=[5.0, 7.1])
 d.bullets("Roadmap", [
-    ("Done — MSP 5th Edition and SAFe 6.0 Essential are live behind the front door.", NAVY),
-    "SME-verify the MSP / SAFe indicative activity breakdowns and marks.",
-    "Extend SAFe beyond Essential (Portfolio / Large Solution).",
+    ("Done — MSP, SAFe 6.0 Essential and PMBOK 6th ed are live behind the front door.", NAVY),
+    "SME-verify the indicative activity breakdowns / PMBOK ITTO cross-references.",
+    "Extend SAFe beyond Essential; consider PMBOK 7/8 (principles + performance domains).",
     "Persistent storage (disk / Postgres) so authoring edits survive redeploys.",
 ])
 d.save(os.path.join(DOCS, "01_Architecture_and_Design_Summary.pptx"))
@@ -100,8 +100,9 @@ d.table("Exporting", ["Export", "Gives you"], [
 d.bullets("The other frameworks (same tool)", [
     "MSP 5th ed — programme processes across Identify → Define → Delivery ⟳ → Close; codes C/P/N, CO/CR/RF/RV/UP/IM.",
     "SAFe 6.0 Essential — events across the PI cadence (PI Planning → Iterations ⟳ → IP → Inspect & Adapt); codes F/A/P/I and I/C/U/R/E.",
+    "PMBOK 6th ed — the 49-process matrix, 10 Knowledge Areas × 5 Process Groups; codes I/O (inputs/outputs) and T (tools).",
     "Same screens and exports; only the layers and codes differ. The Guide always describes the map you're on.",
-], lead="Open each at apps.p3mai.com/prince2 · /msp · /safe.")
+], lead="Open each at apps.p3mai.com/prince2 · /msp · /safe · /pmbok.")
 d.bullets("Good to know", [
     "First load after a quiet spell can take up to a minute (the app wakes).",
     "A dashed ring means the data is indicative — verify before formal use.",
@@ -117,8 +118,8 @@ d.title_slide("Operation Manual", "Running, deploying & maintaining the Method M
 d.table("System at a glance", ["Item", "Value"], [
     ["Repository", "github.com/DRC63/method-map (+ apps-gateway front door)"],
     ["Production", "Render Docker web services — Starter, Oregon — one per framework"],
-    ["Services", "method-map · msp-method-map · safe-method-map"],
-    ["Live URLs", "apps.p3mai.com/prince2 · /msp · /safe"],
+    ["Services", "method-map · msp- · safe- · pmbok-method-map"],
+    ["Live URLs", "apps.p3mai.com/prince2 · /msp · /safe · /pmbok"],
     ["Database", "SQLite, auto-seeds its FRAMEWORK_KEY on boot; ephemeral"],
     ["Dev ports", "backend 8002 · frontend 5175"],
 ], col_widths=[3.2, 8.9])
@@ -151,6 +152,7 @@ d.table("Front door (apps.p3mai.com)", ["Slug", "Service"], [
     ["/prince2", "method-map.onrender.com"],
     ["/msp", "msp-method-map.onrender.com"],
     ["/safe", "safe-method-map.onrender.com"],
+    ["/pmbok", "pmbok-method-map.onrender.com"],
 ], col_widths=[2.6, 6.7],
     lead="apps-gateway reverse proxy strips the slug; one line per framework in ORIGINS.")
 d.bullets("Monitoring & health", [

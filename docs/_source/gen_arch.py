@@ -4,7 +4,7 @@ import docstyle as ds
 
 OUT = os.path.join(os.path.dirname(__file__), "..", "01_Architecture_and_Design.docx")
 ASSETS = os.path.join(os.path.dirname(__file__), "..", "assets")
-VERSION = "v1.1"
+VERSION = "v1.2"
 DATE = "2 August 2026"
 
 doc = ds.new_doc()
@@ -18,6 +18,10 @@ ds.doc_control(doc, [
      "Multi-framework update: MSP 5th ed and SAFe 6.0 Essential added as second and "
      "third live frameworks; config-driven type/code/lane/phase model; three-service "
      "front-door deployment topology."],
+    ["v1.2", "2026-08-02", "Douglas Colvin",
+     "PMBOK 6th ed added as the fourth framework; the hub-layer grid (config "
+     "lifecycle_layer='hub') that renders PMBOK's 5×10 process matrix; four-service "
+     "deployment."],
 ])
 ds.add_toc(doc)
 
@@ -25,18 +29,20 @@ ds.add_toc(doc)
 ds.heading(doc, "1.  Executive summary", 1)
 ds.para(doc, "The **P3MAI Method Map** is an interactive web application that renders a "
         "project-, programme- or portfolio-management method as a navigable network graph. It now "
-        "hosts **three frameworks**: **PRINCE2 7** (7 processes, 41 activities), **MSP 5th edition** "
-        "(7 programme processes) and **SAFe 6.0 Essential** (the Agile Release Train and Team events "
-        "across the PI cadence) — each cross-referencing its management activities to the roles, "
-        "artefacts, practices and principles that surround them.")
+        "hosts **four frameworks**: **PRINCE2 7** (7 processes, 41 activities), **MSP 5th edition** "
+        "(7 programme processes), **SAFe 6.0 Essential** (the Agile Release Train and Team events "
+        "across the PI cadence) and **PMBOK 6th edition** (the 49 processes in the classic 5 Process "
+        "Groups × 10 Knowledge Areas matrix) — each cross-referencing its management activities to the "
+        "roles, artefacts, practices and principles that surround them.")
 ds.para(doc, "It is built as a single-origin web application: a **FastAPI** backend serving a "
         "**React** single-page front end, backed by a **SQLite** database that auto-seeds from "
         "bundled data files. The data model is deliberately **framework-agnostic** — each framework "
         "carries its own `config` (entity types, relationship codes, swimlanes and timeline phases), "
-        "so a new method is added as a data file with **no code changes**. This has now been proven "
-        "across three structurally different frameworks. Each framework is deployed as its own Docker "
-        "container on Render (selected by the `FRAMEWORK_KEY` env var) and all three are served behind "
-        "the shared front door **apps.p3mai.com** — at `/prince2`, `/msp` and `/safe`.")
+        "so a new method is added as a data file with **almost no code changes**. This has now been "
+        "proven across four structurally different frameworks (PMBOK's 5×10 process matrix needed only "
+        "a small, opt-in grid-rendering flag — see §6.4). Each framework is deployed as its own Docker "
+        "container on Render (selected by the `FRAMEWORK_KEY` env var) and all four are served behind "
+        "the shared front door **apps.p3mai.com** — at `/prince2`, `/msp`, `/safe` and `/pmbok`.")
 ds.para(doc, "This document describes the system architecture, data model, backend and front-end "
         "design, the graph and layout algorithms, security, deployment, and the key design decisions.")
 
@@ -166,6 +172,17 @@ ds.callout(doc, "tip", "Why activity-centric?",
             "real cross-reference mark). All higher-level connections — role↔product, process↔practice — "
             "are derived from these at query time, so nothing is duplicated or can drift out of sync."])
 
+ds.heading(doc, "6.4  Which layer fills the swimlane grid (container vs hub)", 2)
+ds.para(doc, "The Lifecycle view lays entities out in a grid of swimlane **rows** (config `lanes`) × "
+        "timeline **columns** (config `phases`). By default the **container** layer fills the cells "
+        "(PRINCE2 processes, MSP programme processes, SAFe events), with its child hubs listed beneath. "
+        "PMBOK is different: its identity *is* a two-axis matrix — 10 Knowledge Areas (rows) × 5 Process "
+        "Groups (columns) — and the 49 **processes** (the hub layer, which carries the cross-references) "
+        "are what belong in the cells. A framework sets `config.lifecycle_layer = \"hub\"` to grid the "
+        "hub layer directly: each hub self-places by its own `lifecycle_level` (row) and "
+        "`lifecycle_phase` (column). This is the one small, **opt-in** rendering addition PMBOK needed; "
+        "every other framework is unaffected (the default remains the container layer).")
+
 # 7. Backend design
 ds.heading(doc, "7.  Backend design", 1)
 ds.heading(doc, "7.1  API surface", 2)
@@ -239,15 +256,17 @@ ds.table(doc, ["Framework", "Seed file", "Built by", "Size"], [
     ["PRINCE2 7", "prince2-7.json", "extract_prince2.py (from the cross-reference spreadsheet; a CORRECTIONS list survives regeneration)", "91 / 206"],
     ["MSP 5th ed", "msp-5.json", "build_msp.py (inline data)", "67 / 172"],
     ["SAFe 6.0 Essential", "safe-essential.json", "build_safe.py (inline data)", "73 / 204"],
+    ["PMBOK 6th ed", "pmbok-6.json", "build_pmbok.py (inline data; the 5×10 grid + ITTOs)", "187 / 400"],
 ], col_widths=[3.4, 3.6, 6.5, 2.0])
 ds.callout(doc, "pitfall", "Indicative vs confirmed",
-           ["Across all three frameworks, the framework **vocabulary** (process/event, role, "
-            "practice/competency, product/artefact, principle **names**) is corroborated from public "
-            "sources and marked *confirmed*. The **activity breakdown and every cross-reference mark** "
-            "are a best-effort reconstruction, marked *indicative* (shown with a dashed ring). "
-            "SME-verify against the licensed manual / body of knowledge before any formal use. "
-            "SAFe® is a trademark of Scaled Agile, Inc.; the map is an independent reference tool, "
-            "not affiliated with or endorsed by Scaled Agile, Inc."])
+           ["Across all four frameworks, the framework **vocabulary** (process/event, role, "
+            "practice/competency/knowledge-area, product/artefact, principle **names**, and PMBOK's "
+            "process-matrix placement) is corroborated from public sources and marked *confirmed*. The "
+            "**activity breakdown / ITTO cross-references and every mark** are a best-effort "
+            "reconstruction, marked *indicative* (shown with a dashed ring). SME-verify against the "
+            "licensed manual / body of knowledge before any formal use. SAFe® is a trademark of Scaled "
+            "Agile, Inc.; PMBOK, PMI and PMP are marks of the Project Management Institute, Inc. The "
+            "map is an independent reference tool, not affiliated with or endorsed by either."])
 
 # 10. Security
 ds.heading(doc, "10.  Security & access control", 1)
@@ -270,6 +289,7 @@ ds.table(doc, ["Service", "Framework", "APP_BASE", "Front-door route"], [
     ["method-map", "prince2-7", "/prince2/", "apps.p3mai.com/prince2"],
     ["msp-method-map", "msp-5", "/msp/", "apps.p3mai.com/msp"],
     ["safe-method-map", "safe-essential", "/safe/", "apps.p3mai.com/safe"],
+    ["pmbok-method-map", "pmbok-6", "/pmbok/", "apps.p3mai.com/pmbok"],
 ], col_widths=[3.6, 3.2, 2.4, 6.3])
 ds.table(doc, ["Aspect", "Value"], [
     ["Repository", "github.com/DRC63/method-map (private); front door: github.com/DRC63/apps-gateway"],
@@ -305,11 +325,12 @@ ds.bullet(doc, "**Extensibility** — MSP-ready model; new export formats and la
 
 # 14. Roadmap
 ds.heading(doc, "14.  Roadmap", 1)
-ds.bullet(doc, "**Done** — MSP 5th Edition (2nd framework) and SAFe 6.0 Essential (3rd) are live "
-          "behind the front door.")
-ds.bullet(doc, "SME-verify the MSP and SAFe activity breakdowns and cross-reference marks (currently "
-          "indicative), via authoring mode or the builder scripts.")
+ds.bullet(doc, "**Done** — MSP 5th Edition (2nd), SAFe 6.0 Essential (3rd) and PMBOK 6th Edition "
+          "(4th) are live behind the front door.")
+ds.bullet(doc, "SME-verify the MSP / SAFe activity breakdowns and the PMBOK ITTO cross-references "
+          "(currently indicative), via authoring mode or the builder scripts.")
 ds.bullet(doc, "Extend SAFe beyond Essential (Portfolio / Large Solution levels) as a larger seed.")
+ds.bullet(doc, "Consider PMBOK 7th/8th edition (principles + performance domains) as a companion map.")
 ds.bullet(doc, "Persistent storage (disk or Postgres) so authoring edits survive redeploys.")
 ds.bullet(doc, "Saved per-engagement **tailored views** (schema already anticipates this).")
 ds.bullet(doc, "Optional user accounts if the tool ever holds sensitive data.")
@@ -320,8 +341,8 @@ ds.code_block(doc,
               "method-map/\n"
               "  backend/app/        FastAPI app (main, models, schemas, crud, graph,\n"
               "                      serializers, exports, seed, security, routers/)\n"
-              "  backend/app/seed_data/   prince2-7.json · msp-5.json · safe-essential.json\n"
-              "  backend/scripts/    extract_prince2.py · build_msp.py · build_safe.py\n"
+              "  backend/app/seed_data/   prince2-7 · msp-5 · safe-essential · pmbok-6 .json\n"
+              "  backend/scripts/    extract_prince2.py · build_msp/safe/pmbok.py\n"
               "  frontend/src/       React app (pages/, components/, theme/, api/)\n"
               "  Dockerfile          multi-stage build (APP_BASE build arg)\n"
               "  render.yaml         Render Blueprint (one service per framework)\n"
