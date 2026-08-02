@@ -1,9 +1,11 @@
 # P3MAI Method Map — Documentation Set
 
-Formal documentation for the **P3MAI Method Map** (PRINCE2 7 interdependency +
-lifecycle explorer). Organised in the same manner as the *Microsoft Ecosystem –
-PMO Project*: a numbered document set, each Word document paired with a
-PowerPoint summary, plus a house style and generated diagram assets.
+Formal documentation for the **P3MAI Method Map** — a multi-framework
+interdependency + lifecycle explorer now hosting **PRINCE2 7**, **MSP 5th
+edition** and **SAFe 6.0 Essential**, each as its own deployment behind the
+shared front door `apps.p3mai.com`. Organised in the same manner as the
+*Microsoft Ecosystem – PMO Project*: a numbered document set, each Word document
+paired with a PowerPoint summary, plus a house style and generated diagram assets.
 
 ## Documents
 
@@ -11,9 +13,10 @@ PowerPoint summary, plus a house style and generated diagram assets.
 |----|----------|------|--------------------|
 | DOC-01 | **Architecture & Design** — stack, data model, graph/layout algorithms, deployment, design decisions | [01_Architecture_and_Design.docx](01_Architecture_and_Design.docx) | [01_…_Summary.pptx](01_Architecture_and_Design_Summary.pptx) |
 | DOC-02 | **User Manual** — using the Explorer (Matrix/Timeline), Lifecycle, detail panel, exports, codes | [02_User_Manual.docx](02_User_Manual.docx) | [02_…_Summary.pptx](02_User_Manual_Summary.pptx) |
-| DOC-03 | **Operation Manual** — configuration, data management, deployment, DNS, monitoring, troubleshooting, runbooks | [03_Operation_Manual.docx](03_Operation_Manual.docx) | [03_…_Summary.pptx](03_Operation_Manual_Summary.pptx) |
+| DOC-03 | **Operation Manual** — configuration, data management, per-framework deployment, the front door, monitoring, troubleshooting, runbooks | [03_Operation_Manual.docx](03_Operation_Manual.docx) | [03_…_Summary.pptx](03_Operation_Manual_Summary.pptx) |
 
-All three are **v1.0, 1 August 2026**. DOC-03 is marked **OFFICIAL-SENSITIVE**
+All three are **v1.1, 2 August 2026** (multi-framework update: MSP and SAFe added
+as the second and third live frameworks). DOC-03 is marked **OFFICIAL-SENSITIVE**
 (it references deployment specifics and the admin secret); the others are **OFFICIAL**.
 
 ## Folder layout

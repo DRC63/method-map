@@ -4,32 +4,52 @@ import docstyle as ds
 
 OUT = os.path.join(os.path.dirname(__file__), "..", "02_User_Manual.docx")
 ASSETS = os.path.join(os.path.dirname(__file__), "..", "assets")
-VERSION = "v1.0"
-DATE = "1 August 2026"
+VERSION = "v1.1"
+DATE = "2 August 2026"
 
 doc = ds.new_doc()
 ds.footer(doc, "OFFICIAL", VERSION)
 ds.title_page(doc, "DOC-02", "User Manual",
               "Using the P3MAI Method Map",
               VERSION, DATE, "Douglas Colvin, P3MAI", "OFFICIAL")
-ds.doc_control(doc, [[VERSION, "2026-08-01", "Douglas Colvin", "Initial issue"]])
+ds.doc_control(doc, [
+    ["v1.0", "2026-08-01", "Douglas Colvin", "Initial issue"],
+    ["v1.1", "2026-08-02", "Douglas Colvin",
+     "Multi-framework update: the map now hosts PRINCE2, MSP and SAFe. Added the "
+     "framework picker / addresses and a section on the SAFe map; PRINCE2 remains the "
+     "worked example throughout."],
+])
 ds.add_toc(doc)
 
 # 1
 ds.heading(doc, "1.  Welcome", 1)
-ds.para(doc, "The **P3MAI Method Map** turns PRINCE2 7 into an interactive picture. Instead of reading a "
-        "cross-reference spreadsheet, you explore the method as a network: see which **roles** perform "
-        "each **activity**, which **practices** and **management approaches** it draws on, and which "
-        "**management products** it takes in or creates.")
-ds.para(doc, "It is useful when tailoring a project, onboarding a team, or explaining PRINCE2 governance "
-        "to a client — anywhere you need to see how one part of the method connects to the rest.")
+ds.para(doc, "The **P3MAI Method Map** turns a management method into an interactive picture. Instead of "
+        "reading a cross-reference spreadsheet, you explore the method as a network: see which "
+        "**roles** perform each **activity**, which **practices** it draws on, and which **products** "
+        "or **artefacts** it takes in or creates.")
+ds.para(doc, "It is useful when tailoring an engagement, onboarding a team, or explaining governance "
+        "to a client — anywhere you need to see how one part of a method connects to the rest.")
+ds.callout(doc, "note", "Three methods, one tool",
+           ["The Method Map now covers **three frameworks**, each as its own map with its own layers, "
+            "codes and lifecycle: **PRINCE2 7** (projects), **MSP 5th edition** (programmes) and "
+            "**SAFe 6.0 Essential** (scaled agile). This manual uses **PRINCE2 as the worked example** "
+            "— every screen, control and export works the same way in all three; only the element "
+            "types and codes differ (see §12). The in-app **Guide** page always describes the "
+            "framework you are looking at."])
 ds.heading(doc, "1.1  Who it is for", 2)
-ds.para(doc, "Anyone working with PRINCE2 — project managers, PMO staff, consultants and those learning "
-        "the method. No technical knowledge is needed.")
+ds.para(doc, "Anyone working with these methods — project, programme and portfolio managers, PMO "
+        "staff, agile leaders, consultants and those learning a framework. No technical knowledge is "
+        "needed.")
 ds.heading(doc, "1.2  Getting in", 2)
-ds.para(doc, "Open the Method Map in a web browser at **method-map.onrender.com** (or "
-        "**prince2.p3mai.com** once that address is live), or reach it from the **Project Management** "
-        "card on the P3MAI website's Services page. Nothing to install, no login to read.")
+ds.para(doc, "Open the Method Map in a web browser — each framework has its own address behind the "
+        "shared front door:")
+ds.table(doc, ["Framework", "Address"], [
+    ["PRINCE2 7", "apps.p3mai.com/prince2"],
+    ["MSP 5th edition", "apps.p3mai.com/msp"],
+    ["SAFe 6.0 Essential", "apps.p3mai.com/safe"],
+], col_widths=[5.0, 10.5])
+ds.para(doc, "Or reach them from the **Project Management** and **Programme Management** cards on the "
+        "P3MAI website's Services page. Nothing to install, no login to read.")
 ds.callout(doc, "tip", "First visit may be slow",
            ["The app sleeps when idle to save hosting cost. The first page load after a quiet spell can "
             "take up to a minute while it wakes — after that it is instant."])
@@ -47,8 +67,10 @@ ds.table(doc, ["Area", "What it holds"], [
 
 # 3 codes
 ds.heading(doc, "3.  Reading the codes and colours", 1)
-ds.para(doc, "Every connection in the map is labelled with a standard PRINCE2 cross-reference code. "
-        "These are the most important thing to learn.")
+ds.para(doc, "Every connection in the map is labelled with a cross-reference code. These are the most "
+        "important thing to learn. The codes below are **PRINCE2's**; MSP and SAFe use their own "
+        "(see §12), and the in-app control-panel legend and Guide always show the set for the "
+        "framework you are viewing.")
 ds.table(doc, ["Where", "Codes"], [
     ["Roles, practices, approaches", "C = Responsible · P = Participates · N = Assists"],
     ["Management products", "I = Input · O = Output · U = Update · A = Authorise"],
@@ -176,8 +198,40 @@ ds.table(doc, ["Question", "Answer"], [
     ["Can I get this as a spreadsheet?", "Yes — Export → Excel, or CSV, from the control panel."],
 ], col_widths=[5.0, 10.5])
 
-# 12 glossary
-ds.heading(doc, "12.  Glossary", 1)
+# 12 other frameworks
+ds.heading(doc, "12.  The other frameworks — MSP & SAFe", 1)
+ds.para(doc, "The Explorer, Lifecycle, Guide, detail panel and exports all work identically for the "
+        "other two frameworks — only the **layers** (element types) and **codes** change. Open each at "
+        "its own address (§1.2).")
+ds.heading(doc, "12.1  MSP 5th edition (programmes)", 2)
+ds.para(doc, "Layers: **Programme processes** and their **activities**, cross-referenced to **roles**, "
+        "the seven **themes**, **products** and the seven **principles**. The Lifecycle runs "
+        "Identify → Define → Delivery tranches ⟳ → Close across the Sponsoring / Managing / Delivering "
+        "swimlanes. Codes: roles & themes **C** Responsible · **P** Related · **N** Assists; products "
+        "**CO/CR/RF/RV/UP/IM**; principles **E** Embodies.")
+ds.heading(doc, "12.2  SAFe 6.0 Essential (scaled agile)", 2)
+ds.para(doc, "SAFe is arranged around the **PI (Program Increment) cadence**, not a project that ends. "
+        "Layers: **events** (PI Planning, Iteration Execution, System Demo, ART Sync, IP Iteration, "
+        "Inspect & Adapt, the Continuous Delivery Pipeline) and their **activities**, cross-referenced "
+        "to **roles** (RTE, Product Management, Scrum Master / Team Coach, Product Owner, Agile Team, "
+        "Business Owners, System Architect, Customer), **artefacts** (Vision, Roadmap, backlogs, "
+        "Features, Stories, PI Objectives…), the **4 core competencies** and the **10 Lean-Agile "
+        "Principles**. The Lifecycle runs Prepare & PI Planning → Execute Iterations ⟳ → IP Iteration "
+        "→ Inspect & Adapt across the ART and Team swimlanes.")
+ds.table(doc, ["Where", "SAFe codes"], [
+    ["Roles → event", "F = Facilitates · A = Accountable · P = Participates · I = Informed"],
+    ["Artefacts → event", "I = Input · C = Created · U = Updated · R = Reviewed · E = Elaborated"],
+    ["Competencies / Principles", "E = Exercised / Embodies"],
+], col_widths=[5.0, 10.5])
+ds.callout(doc, "note", "SAFe data is indicative",
+           ["As with PRINCE2 and MSP, the SAFe event names, roles, artefacts, competencies and "
+            "principles are confirmed vocabulary, but the activity breakdown and cross-reference marks "
+            "are an indicative reconstruction — verify against the licensed SAFe body of knowledge "
+            "before formal use. SAFe® is a trademark of Scaled Agile, Inc.; this is an independent "
+            "tool, not affiliated with Scaled Agile, Inc."])
+
+# 13 glossary
+ds.heading(doc, "13.  Glossary", 1)
 ds.table(doc, ["Term", "Meaning"], [
     ["Process", "One of the seven PRINCE2 processes (SU, IP, DP, CS, MP, SB, CP)."],
     ["Activity", "A step within a process (there are 41)."],

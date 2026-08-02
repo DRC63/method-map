@@ -4,29 +4,39 @@ import docstyle as ds
 
 OUT = os.path.join(os.path.dirname(__file__), "..", "01_Architecture_and_Design.docx")
 ASSETS = os.path.join(os.path.dirname(__file__), "..", "assets")
-VERSION = "v1.0"
-DATE = "1 August 2026"
+VERSION = "v1.1"
+DATE = "2 August 2026"
 
 doc = ds.new_doc()
 ds.footer(doc, "OFFICIAL", VERSION)
 ds.title_page(doc, "DOC-01", "Architecture & Design",
               "Technical design of the P3MAI Method Map",
               VERSION, DATE, "Douglas Colvin, P3MAI", "OFFICIAL")
-ds.doc_control(doc, [[VERSION, "2026-08-01", "Douglas Colvin", "Initial issue"]])
+ds.doc_control(doc, [
+    ["v1.0", "2026-08-01", "Douglas Colvin", "Initial issue"],
+    ["v1.1", "2026-08-02", "Douglas Colvin",
+     "Multi-framework update: MSP 5th ed and SAFe 6.0 Essential added as second and "
+     "third live frameworks; config-driven type/code/lane/phase model; three-service "
+     "front-door deployment topology."],
+])
 ds.add_toc(doc)
 
 # 1. Executive summary
 ds.heading(doc, "1.  Executive summary", 1)
 ds.para(doc, "The **P3MAI Method Map** is an interactive web application that renders a "
-        "project-management method as a navigable network graph. Version 1 covers **PRINCE2 7** — "
-        "its 7 processes and 41 activities cross-referenced to the management team roles, practices, "
-        "management approaches and management products they use, produce and are governed by.")
+        "project-, programme- or portfolio-management method as a navigable network graph. It now "
+        "hosts **three frameworks**: **PRINCE2 7** (7 processes, 41 activities), **MSP 5th edition** "
+        "(7 programme processes) and **SAFe 6.0 Essential** (the Agile Release Train and Team events "
+        "across the PI cadence) — each cross-referencing its management activities to the roles, "
+        "artefacts, practices and principles that surround them.")
 ds.para(doc, "It is built as a single-origin web application: a **FastAPI** backend serving a "
-        "**React** single-page front end, backed by a **SQLite** database that auto-seeds from a "
-        "bundled data file. The data model is deliberately framework-agnostic, so MSP or any other "
-        "method can be added as a data file without code changes. The application is deployed as a "
-        "Docker container on Render and is reachable at **method-map.onrender.com** "
-        "(custom domain **prince2.p3mai.com** pending DNS).")
+        "**React** single-page front end, backed by a **SQLite** database that auto-seeds from "
+        "bundled data files. The data model is deliberately **framework-agnostic** — each framework "
+        "carries its own `config` (entity types, relationship codes, swimlanes and timeline phases), "
+        "so a new method is added as a data file with **no code changes**. This has now been proven "
+        "across three structurally different frameworks. Each framework is deployed as its own Docker "
+        "container on Render (selected by the `FRAMEWORK_KEY` env var) and all three are served behind "
+        "the shared front door **apps.p3mai.com** — at `/prince2`, `/msp` and `/safe`.")
 ds.para(doc, "This document describes the system architecture, data model, backend and front-end "
         "design, the graph and layout algorithms, security, deployment, and the key design decisions.")
 
@@ -41,13 +51,15 @@ ds.para(doc, "Covers the application as built: backend, front end, data, deploym
         "**User Manual (DOC-02)**.")
 ds.heading(doc, "2.3  Audience", 2)
 ds.para(doc, "Developers and technical reviewers. Assumes familiarity with Python, JavaScript/React "
-        "and containers, but not with the PRINCE2 method itself (see the glossary).")
+        "and containers, but not with the underlying methods themselves (see the glossary).")
 ds.heading(doc, "2.4  Definitions", 2)
 ds.table(doc, ["Term", "Meaning"], [
-    ["Entity", "A typed node in the graph — a process, activity, role, practice, management approach or product."],
-    ["Relationship", "A coded edge from an activity to a target entity."],
-    ["Code", "C/P/N for roles, practices and approaches; I/O/U/A for products (see §5.3)."],
-    ["Framework", "A whole method (e.g. PRINCE2 7). The model supports several side by side."],
+    ["Entity", "A typed node in the graph. Types are per-framework: PRINCE2 uses process/activity/role/practice/approach/product; SAFe uses event/activity/role/competency/artifact/principle."],
+    ["Container / hub / node", "The three structural kinds a type can play (set in config): container owns children, hub carries the coded relationships, node is a relationship target."],
+    ["Relationship", "A coded edge from a hub (activity) to a target entity."],
+    ["Code", "A framework-defined cross-reference mark, e.g. PRINCE2 C/P/N and I/O/U/A; SAFe F/A/P/I and I/C/U/R/E (see §6.3)."],
+    ["Framework", "A whole method (PRINCE2 7, MSP 5th ed, SAFe 6.0 Essential). All three run live, each as its own deployment."],
+    ["Front door", "apps.p3mai.com — a small reverse proxy routing /prince2, /msp, /safe (and the PMO apps) to their services."],
     ["SPA", "Single-page application — the React front end."],
 ], col_widths=[3.0, 12.5])
 
@@ -83,6 +95,12 @@ ds.heading(doc, "5.  Solution architecture", 1)
 ds.para(doc, "The application runs as a **single origin**: in production the FastAPI backend serves "
         "the pre-built React bundle from `frontend/dist`, and the same process exposes the `/api/*` "
         "routes. There is no separate API host, so there are no cross-origin concerns in production.")
+ds.para(doc, "The **same image is deployed once per framework**. Each Render service sets "
+        "`FRAMEWORK_KEY` (which framework it seeds and serves) and `APP_BASE` (the URL prefix the SPA "
+        "is built under, e.g. `/safe/`). A separate tiny Node reverse proxy — the **front door** at "
+        "apps.p3mai.com (`apps-gateway` repo) — strips the leading slug and forwards `/prince2`, "
+        "`/msp` and `/safe` to their respective services, so all three (and the PMO apps) share one "
+        "public domain.")
 ds.figure(doc, os.path.join(ASSETS, "arch_deployment.png"),
           "Figure 1 — Deployment architecture (single-origin Docker service on Render).")
 ds.heading(doc, "5.1  Components", 2)
@@ -102,19 +120,29 @@ ds.callout(doc, "note", "Single-origin, single-image",
 # Data model
 ds.heading(doc, "6.  Data model", 1)
 ds.para(doc, "The model is framework-agnostic on purpose. A **framework** owns a set of **entities**, "
-        "and **relationships** connect them. Adding MSP means adding a data file — no schema change.")
+        "and **relationships** connect them. Adding MSP or SAFe means adding a data file — no schema "
+        "change. Each framework row carries a **`config` JSON** that makes the whole app generic:")
+ds.bullet(doc, "**types** — the entity types in order, each with a `kind` (container / hub / node), a "
+          "`zone` (where it sits in the Matrix), a colour and an optional `code_group`;")
+ds.bullet(doc, "**codes** — the relationship-code vocabulary, grouped (e.g. a role group and a product/"
+          "artefact group), so the legend and edge labels are framework-correct;")
+ds.bullet(doc, "**lanes** / **phases** — the timeline swimlanes and the left→right lifecycle columns.")
+ds.para(doc, "The graph builder derives *which type is the container and which is the hub* from `kind` "
+        "(not hardcoded names), and the front end derives colours, labels, layouts, legend and Guide "
+        "content from the same `config`. So PRINCE2 (`process → activity → role/…`) and SAFe "
+        "(`event → activity → role/competency/artifact/principle`) run on identical code.")
 ds.figure(doc, os.path.join(ASSETS, "arch_datamodel.png"),
-          "Figure 2 — Data model: framework → entities → relationships, with entity types and codes.")
+          "Figure 2 — Data model: framework → entities → relationships, with per-framework config.")
 ds.heading(doc, "6.1  Entities", 2)
 ds.table(doc, ["Field", "Notes"], [
-    ["type", "process | activity | role | practice | approach | product"],
-    ["name, code", "Display name; short code (e.g. SU, DP) where one exists"],
-    ["parent_id", "Activity → its owning process (null for everything else)"],
-    ["subgroup", "Products only: baseline | log | report"],
-    ["confidence", "confirmed | indicative (activity-level data is a best-effort reconstruction)"],
-    ["lifecycle_level", "Processes: directing | managing | delivering (swimlane)"],
-    ["lifecycle_phase", "Processes: pre-project / initiation / delivery / stage-boundary / final / throughout"],
-    ["sequence", "Processes: left→right lifecycle order (SU=1 … CP=7)"],
+    ["type", "A key from the framework's config.types — e.g. process/activity/role/practice/approach/product (PRINCE2) or event/activity/role/competency/artifact/principle (SAFe)"],
+    ["name, code", "Display name; short code (e.g. SU, DP; PIP, ITER) where one exists"],
+    ["parent_id", "Hub (activity) → its owning container (process / event); null for everything else"],
+    ["subgroup", "Optional secondary grouping (PRINCE2 products: baseline | log | report)"],
+    ["confidence", "confirmed | indicative (the activity breakdown is a best-effort reconstruction)"],
+    ["lifecycle_level", "Container's swimlane, from config.lanes (PRINCE2 directing/managing/delivering; SAFe art/team)"],
+    ["lifecycle_phase", "Container's timeline column, from config.phases (a 'throughout' phase draws as a spanning bar)"],
+    ["sequence", "Container's left→right order (SU=1 … CP=7; PREP=1 … Inspect & Adapt=7)"],
     ["sort_order", "Stable ordering within a type"],
 ], col_widths=[3.4, 12.1])
 ds.heading(doc, "6.2  Relationships", 2)
@@ -122,10 +150,17 @@ ds.para(doc, "Every relationship goes **from an activity to a target** (role/pra
         "and carries a **code** and a **confidence**. Processes are not endpoints of relationships — "
         "they own activities through `parent_id`.")
 ds.heading(doc, "6.3  The codes", 2)
+ds.para(doc, "Codes are per-framework (from `config.codes`). PRINCE2:")
 ds.table(doc, ["Applies to", "Codes"], [
     ["Roles, practices, management approaches", "C = Responsible · P = Participates · N = Assists"],
     ["Management products", "I = Input · O = Output · U = Update · A = Authorise"],
 ], col_widths=[6.5, 9.0])
+ds.para(doc, "SAFe uses its own vocabulary — roles: **F** Facilitates · **A** Accountable · **P** "
+        "Participates · **I** Informed; artefacts: **I** Input · **C** Created · **U** Updated · **R** "
+        "Reviewed · **E** Elaborated; competencies and principles each link with a single **E** "
+        "(Exercised / Embodies). MSP uses C/P/N for roles and themes and CO/CR/RF/RV/UP/IM for "
+        "products. Unknown codes are auto-assigned a legend colour, so any framework's codes render "
+        "correctly with no code change.")
 ds.callout(doc, "tip", "Why activity-centric?",
            ["Storing every relationship as activity→target keeps the data honest and small (one row per "
             "real cross-reference mark). All higher-level connections — role↔product, process↔practice — "
@@ -198,15 +233,21 @@ ds.para(doc, "Selecting a node enlarges it with a gold glow halo and highlights 
 
 # 9. Data provenance
 ds.heading(doc, "9.  Data provenance & seeding", 1)
-ds.para(doc, "The PRINCE2 dataset (`app/seed_data/prince2-7.json`, 91 entities / 206 relationships) "
-        "was generated from the PRINCE2/MSP cross-reference spreadsheet by "
-        "`backend/scripts/extract_prince2.py`. Manual corrections not present in the source spreadsheet "
-        "live in a `CORRECTIONS` list in that extractor, so they survive regeneration.")
+ds.para(doc, "Each framework is a bundled JSON in `app/seed_data/`, produced by a script in "
+        "`backend/scripts/` so an SME can regenerate and extend it:")
+ds.table(doc, ["Framework", "Seed file", "Built by", "Size"], [
+    ["PRINCE2 7", "prince2-7.json", "extract_prince2.py (from the cross-reference spreadsheet; a CORRECTIONS list survives regeneration)", "91 / 206"],
+    ["MSP 5th ed", "msp-5.json", "build_msp.py (inline data)", "67 / 172"],
+    ["SAFe 6.0 Essential", "safe-essential.json", "build_safe.py (inline data)", "73 / 204"],
+], col_widths=[3.4, 3.6, 6.5, 2.0])
 ds.callout(doc, "pitfall", "Indicative vs confirmed",
-           ["Process, role, practice, approach and product **names** are corroborated from public "
-            "sources and marked *confirmed*. The 41 activities and their codes are a best-effort "
-            "reconstruction (prince2.wiki, CC-BY 4.0) and are marked *indicative* (shown with a dashed "
-            "ring). SME-verify against the licensed PRINCE2 manual before any formal use."])
+           ["Across all three frameworks, the framework **vocabulary** (process/event, role, "
+            "practice/competency, product/artefact, principle **names**) is corroborated from public "
+            "sources and marked *confirmed*. The **activity breakdown and every cross-reference mark** "
+            "are a best-effort reconstruction, marked *indicative* (shown with a dashed ring). "
+            "SME-verify against the licensed manual / body of knowledge before any formal use. "
+            "SAFe® is a trademark of Scaled Agile, Inc.; the map is an independent reference tool, "
+            "not affiliated with or endorsed by Scaled Agile, Inc."])
 
 # 10. Security
 ds.heading(doc, "10.  Security & access control", 1)
@@ -220,16 +261,22 @@ ds.callout(doc, "note", "Security posture",
 
 # 11. Deployment
 ds.heading(doc, "11.  Deployment architecture", 1)
-ds.para(doc, "Deployed via a Render **Blueprint** (`render.yaml`): a Docker web service, Starter plan, "
-        "Oregon region, health check `/api/health`, `ADMIN_PASSWORD` as a dashboard secret. Pushing to "
-        "the `main` branch of the GitHub repo auto-deploys. The database re-seeds on every boot, so a "
-        "fresh or restarted container comes up populated.")
+ds.para(doc, "Deployed via a Render **Blueprint** (`render.yaml`) that defines **one service per "
+        "framework** from the same Docker image — each a Starter-plan web service, Oregon region, "
+        "health check `/api/health`, `ADMIN_PASSWORD` as a dashboard secret, differing only in "
+        "`FRAMEWORK_KEY` and `APP_BASE`. Pushing to the `main` branch auto-deploys. The database "
+        "re-seeds on every boot, so a fresh or restarted container comes up populated.")
+ds.table(doc, ["Service", "Framework", "APP_BASE", "Front-door route"], [
+    ["method-map", "prince2-7", "/prince2/", "apps.p3mai.com/prince2"],
+    ["msp-method-map", "msp-5", "/msp/", "apps.p3mai.com/msp"],
+    ["safe-method-map", "safe-essential", "/safe/", "apps.p3mai.com/safe"],
+], col_widths=[3.6, 3.2, 2.4, 6.3])
 ds.table(doc, ["Aspect", "Value"], [
-    ["Repository", "github.com/DRC63/method-map (private)"],
-    ["Platform", "Render — Docker web service, Starter, Oregon"],
-    ["URL", "method-map.onrender.com (prince2.p3mai.com pending DNS)"],
-    ["Auto-deploy", "On push to main"],
-    ["Persistence", "Ephemeral disk — DB resets on redeploy; auto-seeds"],
+    ["Repository", "github.com/DRC63/method-map (private); front door: github.com/DRC63/apps-gateway"],
+    ["Platform", "Render — Docker web services, Starter, Oregon (one per framework)"],
+    ["Front door", "apps.p3mai.com reverse proxy → /prince2, /msp, /safe"],
+    ["Auto-deploy", "On push to main (adding a service needs a Blueprint sync + its ADMIN_PASSWORD)"],
+    ["Persistence", "Ephemeral disk — DB resets on redeploy; auto-seeds its FRAMEWORK_KEY"],
 ], col_widths=[3.6, 11.9])
 ds.callout(doc, "pitfall", "Ephemeral database",
            ["Render's disk is ephemeral, so authoring-mode edits do not survive a redeploy. Move to a "
@@ -238,9 +285,10 @@ ds.callout(doc, "pitfall", "Ephemeral database",
 # 12. Design decisions
 ds.heading(doc, "12.  Key design decisions", 1)
 ds.table(doc, ["Decision", "Rationale"], [
-    ["Framework-agnostic data model", "MSP and other methods drop in as data files, no code change."],
+    ["Config-driven, framework-agnostic model", "PRINCE2, MSP and SAFe run on identical code; a new method is a data file (types/codes/lanes/phases in config), no code change."],
+    ["One image, one service per framework", "FRAMEWORK_KEY + APP_BASE select each deployment; a shared front door gives all three one public domain."],
     ["Activity-centric relationships", "One row per real cross-reference mark; higher links derived, never duplicated."],
-    ["Self-contained JSON seed + auto-seed", "Deploy is independent of the source spreadsheet; ephemeral hosts self-populate."],
+    ["Self-contained JSON seed + auto-seed", "Deploy is independent of any source spreadsheet; ephemeral hosts self-populate."],
     ["Two fixed layouts (no physics)", "Positional meaning (hierarchy / lifecycle) reads better than an organic blob."],
     ["direct_degree node weighting", "Size reflects real responsibilities, stable across layer/derived toggles."],
     ["Single admin password", "Lightweight edit gate appropriate to an open, non-sensitive reference tool."],
@@ -257,7 +305,11 @@ ds.bullet(doc, "**Extensibility** — MSP-ready model; new export formats and la
 
 # 14. Roadmap
 ds.heading(doc, "14.  Roadmap", 1)
-ds.bullet(doc, "Populate and enable **MSP 5th Edition** as a second framework.")
+ds.bullet(doc, "**Done** — MSP 5th Edition (2nd framework) and SAFe 6.0 Essential (3rd) are live "
+          "behind the front door.")
+ds.bullet(doc, "SME-verify the MSP and SAFe activity breakdowns and cross-reference marks (currently "
+          "indicative), via authoring mode or the builder scripts.")
+ds.bullet(doc, "Extend SAFe beyond Essential (Portfolio / Large Solution levels) as a larger seed.")
 ds.bullet(doc, "Persistent storage (disk or Postgres) so authoring edits survive redeploys.")
 ds.bullet(doc, "Saved per-engagement **tailored views** (schema already anticipates this).")
 ds.bullet(doc, "Optional user accounts if the tool ever holds sensitive data.")
@@ -268,12 +320,13 @@ ds.code_block(doc,
               "method-map/\n"
               "  backend/app/        FastAPI app (main, models, schemas, crud, graph,\n"
               "                      serializers, exports, seed, security, routers/)\n"
-              "  backend/app/seed_data/prince2-7.json   bundled dataset\n"
-              "  backend/scripts/extract_prince2.py     spreadsheet → seed extractor\n"
+              "  backend/app/seed_data/   prince2-7.json · msp-5.json · safe-essential.json\n"
+              "  backend/scripts/    extract_prince2.py · build_msp.py · build_safe.py\n"
               "  frontend/src/       React app (pages/, components/, theme/, api/)\n"
-              "  Dockerfile          multi-stage build\n"
-              "  render.yaml         Render Blueprint\n"
-              "  docs/               this documentation set")
+              "  Dockerfile          multi-stage build (APP_BASE build arg)\n"
+              "  render.yaml         Render Blueprint (one service per framework)\n"
+              "  docs/               this documentation set\n"
+              "(front door: separate repo apps-gateway/ — Node reverse proxy)")
 
 doc.save(OUT)
 print("wrote", os.path.abspath(OUT), os.path.getsize(OUT), "bytes")

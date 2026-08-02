@@ -11,10 +11,10 @@ A = lambda n: os.path.join(DOCS, "assets", n)
 d = Deck("DOC-01", "OFFICIAL")
 d.title_slide("Architecture & Design", "Technical design of the P3MAI Method Map — summary")
 d.bullets("What it is", [
-    "PRINCE2 7 rendered as an interactive network graph.",
-    "7 processes, 41 activities, cross-referenced to roles, practices, approaches and products.",
-    "Single-origin web app; framework-agnostic data model (MSP-ready).",
-], lead="An explorable picture of a project-management method.")
+    "Three methods as interactive network graphs: PRINCE2 7, MSP 5th ed, SAFe 6.0 Essential.",
+    "Each cross-references its activities to the roles, artefacts, practices and principles around them.",
+    "Single-origin web app; config-driven, framework-agnostic model — a new method is just data.",
+], lead="An explorable picture of a project-, programme- or agile-delivery method.")
 d.table("Technology stack", ["Layer", "Technology"], [
     ["Backend", "FastAPI + SQLAlchemy + SQLite (Python 3.12)"],
     ["Front end", "React 19 + Vite, react-force-graph-2d"],
@@ -25,7 +25,7 @@ d.table("Technology stack", ["Layer", "Technology"], [
 d.image("Deployment architecture", A("arch_deployment.png"),
         lead="One container serves the API and the built React app — a single origin.")
 d.image("Data model", A("arch_datamodel.png"),
-        lead="Framework → entities → relationships; adding MSP means adding a data file.")
+        lead="Framework → entities → relationships; each framework's config (types/codes/lanes/phases) makes the app generic — adding MSP or SAFe is a data file.")
 d.image("The graph link model", A("arch_graph_model.png"),
         lead="Contains, direct and derived links are built from activity-centric data.")
 d.bullets("Two fixed layouts", [
@@ -36,19 +36,21 @@ d.bullets("Two fixed layouts", [
 d.bullets("Security & deployment", [
     "Reads are open (public reference, no personal data).",
     "Writes need a single admin password (X-Admin-Password header).",
-    "Render Blueprint (render.yaml); push to main auto-deploys.",
-    "DB auto-seeds on boot — ephemeral disk, so edits reset on redeploy.",
+    "Render Blueprint: one service per framework (FRAMEWORK_KEY + APP_BASE); push to main auto-deploys all.",
+    "Shared front door apps.p3mai.com (apps-gateway) routes /prince2, /msp, /safe.",
+    "DB auto-seeds its framework on boot — ephemeral disk, so edits reset on redeploy.",
 ])
 d.table("Key design decisions", ["Decision", "Why"], [
-    ["Framework-agnostic model", "MSP drops in as data, no code change"],
+    ["Config-driven, framework-agnostic model", "PRINCE2, MSP & SAFe on one codebase; new method = data"],
+    ["One image, one service per framework", "FRAMEWORK_KEY selects each; shared front door"],
     ["Activity-centric relationships", "One row per real mark; higher links derived"],
-    ["Self-contained JSON seed", "Deploy independent of the spreadsheet"],
     ["Fixed layouts + direct_degree size", "Readable structure; stable weighting"],
 ], col_widths=[5.0, 7.1])
 d.bullets("Roadmap", [
-    "Populate and enable MSP 5th Edition as a second framework.",
+    ("Done — MSP 5th Edition and SAFe 6.0 Essential are live behind the front door.", NAVY),
+    "SME-verify the MSP / SAFe indicative activity breakdowns and marks.",
+    "Extend SAFe beyond Essential (Portfolio / Large Solution).",
     "Persistent storage (disk / Postgres) so authoring edits survive redeploys.",
-    "Saved per-engagement tailored views.",
 ])
 d.save(os.path.join(DOCS, "01_Architecture_and_Design_Summary.pptx"))
 print("wrote 01 deck")
@@ -58,10 +60,10 @@ print("wrote 01 deck")
 d = Deck("DOC-02", "OFFICIAL")
 d.title_slide("User Manual", "Using the P3MAI Method Map — summary")
 d.bullets("What the Method Map does", [
-    "Turns the PRINCE2 cross-reference into an explorable network.",
-    "See which roles, practices, approaches and products each activity touches.",
-    "Tailor projects, onboard teams, and explain governance visually.",
-], lead="A picture of how PRINCE2 fits together.")
+    "Turns a method's cross-reference into an explorable network — PRINCE2, MSP or SAFe.",
+    "See which roles, practices/competencies, and products/artefacts each activity touches.",
+    "Tailor engagements, onboard teams, and explain governance visually.",
+], lead="A picture of how a method fits together — this deck uses PRINCE2 as the example.")
 d.image("The screen at a glance", A("ui_explorer.png"),
         lead="Sidebar · control panel · graph stage · detail panel.")
 d.table("Reading the codes", ["Where", "Codes"], [
@@ -95,6 +97,11 @@ d.table("Exporting", ["Export", "Gives you"], [
     ["CSV / Excel", "The whole cross-reference as a spreadsheet"],
     ["Entity PDF", "A branded one-element relationship summary"],
 ], col_widths=[3.6, 8.5])
+d.bullets("The other frameworks (same tool)", [
+    "MSP 5th ed — programme processes across Identify → Define → Delivery ⟳ → Close; codes C/P/N, CO/CR/RF/RV/UP/IM.",
+    "SAFe 6.0 Essential — events across the PI cadence (PI Planning → Iterations ⟳ → IP → Inspect & Adapt); codes F/A/P/I and I/C/U/R/E.",
+    "Same screens and exports; only the layers and codes differ. The Guide always describes the map you're on.",
+], lead="Open each at apps.p3mai.com/prince2 · /msp · /safe.")
 d.bullets("Good to know", [
     "First load after a quiet spell can take up to a minute (the app wakes).",
     "A dashed ring means the data is indicative — verify before formal use.",
@@ -108,16 +115,18 @@ print("wrote 02 deck")
 d = Deck("DOC-03", "OFFICIAL-SENSITIVE")
 d.title_slide("Operation Manual", "Running, deploying & maintaining the Method Map — summary")
 d.table("System at a glance", ["Item", "Value"], [
-    ["Repository", "github.com/DRC63/method-map (private)"],
-    ["Production", "Render Docker web service — Starter, Oregon"],
-    ["Live URL", "method-map.onrender.com (prince2.p3mai.com pending DNS)"],
-    ["Database", "SQLite, auto-seeded on boot; ephemeral"],
+    ["Repository", "github.com/DRC63/method-map (+ apps-gateway front door)"],
+    ["Production", "Render Docker web services — Starter, Oregon — one per framework"],
+    ["Services", "method-map · msp-method-map · safe-method-map"],
+    ["Live URLs", "apps.p3mai.com/prince2 · /msp · /safe"],
+    ["Database", "SQLite, auto-seeds its FRAMEWORK_KEY on boot; ephemeral"],
     ["Dev ports", "backend 8002 · frontend 5175"],
 ], col_widths=[3.2, 8.9])
 d.table("Configuration (env vars)", ["Variable", "Purpose"], [
-    ["ADMIN_PASSWORD", "Unlocks authoring — CHANGE for production"],
+    ["FRAMEWORK_KEY", "Which framework this service seeds + serves (prince2-7 / msp-5 / safe-essential)"],
+    ["APP_BASE", "SPA base path for the front door (/prince2/ · /msp/ · /safe/)"],
+    ["ADMIN_PASSWORD", "Unlocks authoring — CHANGE for production; per-service"],
     ["DATABASE_URL", "SQLAlchemy URL; point at Postgres to persist"],
-    ["CORS_ORIGINS", "Allowed origins in split local dev"],
     ["PORT", "Set by Render automatically"],
 ], col_widths=[3.8, 8.3])
 d.bullets("Running locally", [
@@ -132,15 +141,18 @@ d.bullets("Data management", [
     "After a schema change, delete the DB then reseed (create_all won't alter columns).",
 ])
 d.bullets("Deployment", [
-    ("Push to main → Render auto-builds and deploys.", NAVY),
+    ("Push to main → Render auto-builds and deploys every framework service.", NAVY),
+    "One image per framework; FRAMEWORK_KEY + APP_BASE differ, nothing else.",
     "DB re-seeds on boot, so bundled-data changes go live automatically.",
+    "New framework: add render.yaml service → sync Blueprint + set ADMIN_PASSWORD → add apps-gateway route.",
     "In-app authoring edits are lost on redeploy (ephemeral disk).",
-    "Rollback: redeploy a previous good build in the Render dashboard.",
 ])
-d.table("Custom domain & DNS", ["Type", "Host", "Value"], [
-    ["CNAME", "prince2", "method-map.onrender.com"],
-], col_widths=[2.4, 3.0, 6.7],
-    lead="Add this at the p3mai.com DNS provider; Render then issues TLS.")
+d.table("Front door (apps.p3mai.com)", ["Slug", "Service"], [
+    ["/prince2", "method-map.onrender.com"],
+    ["/msp", "msp-method-map.onrender.com"],
+    ["/safe", "safe-method-map.onrender.com"],
+], col_widths=[2.6, 6.7],
+    lead="apps-gateway reverse proxy strips the slug; one line per framework in ORIGINS.")
 d.bullets("Monitoring & health", [
     "Health probe: GET /api/health → {status: ok} (Render's deploy check).",
     "Render dashboard → Logs (live tail) and Metrics.",

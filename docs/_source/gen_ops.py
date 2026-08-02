@@ -3,15 +3,21 @@ import os
 import docstyle as ds
 
 OUT = os.path.join(os.path.dirname(__file__), "..", "03_Operation_Manual.docx")
-VERSION = "v1.0"
-DATE = "1 August 2026"
+VERSION = "v1.1"
+DATE = "2 August 2026"
 
 doc = ds.new_doc()
 ds.footer(doc, "OFFICIAL-SENSITIVE", VERSION)
 ds.title_page(doc, "DOC-03", "Operation Manual",
               "Running, deploying and maintaining the Method Map",
               VERSION, DATE, "Douglas Colvin, P3MAI", "OFFICIAL-SENSITIVE")
-ds.doc_control(doc, [[VERSION, "2026-08-01", "Douglas Colvin", "Initial issue"]])
+ds.doc_control(doc, [
+    ["v1.0", "2026-08-01", "Douglas Colvin", "Initial issue"],
+    ["v1.1", "2026-08-02", "Douglas Colvin",
+     "Multi-framework update: MSP and SAFe services; one-service-per-framework "
+     "Blueprint; FRAMEWORK_KEY seeding; front-door (apps-gateway) routing; runbook "
+     "for adding a framework deployment."],
+])
 ds.add_toc(doc)
 
 # 1
@@ -25,12 +31,13 @@ ds.para(doc, "This manual is for whoever runs and maintains the **P3MAI Method M
 ds.heading(doc, "2.  System summary", 1)
 ds.table(doc, ["Item", "Value"], [
     ["What", "Single-origin web app: FastAPI backend serving a React SPA, SQLite database"],
-    ["Repository", "github.com/DRC63/method-map (private, DRC63)"],
-    ["Production", "Render Docker web service — Starter plan, Oregon region"],
-    ["Live URL", "https://method-map.onrender.com"],
-    ["Custom domain", "prince2.p3mai.com (pending DNS CNAME)"],
+    ["Repository", "github.com/DRC63/method-map (private, DRC63); front door: github.com/DRC63/apps-gateway"],
+    ["Production", "Render Docker web services, Starter plan, Oregon — one per framework"],
+    ["Frameworks / services", "prince2-7 → method-map · msp-5 → msp-method-map · safe-essential → safe-method-map"],
+    ["Live URLs", "apps.p3mai.com/prince2 · /msp · /safe (each also <service>.onrender.com)"],
+    ["Front door", "apps.p3mai.com — Node reverse proxy strips the slug and forwards to each service"],
     ["Database", "SQLite (methodmap.db), auto-seeded on boot; ephemeral on Render"],
-    ["Dev ports", "backend 8002, frontend 5175"],
+    ["Dev ports", "backend 8002, frontend 5175 (one framework at a time, via FRAMEWORK_KEY)"],
 ], col_widths=[3.6, 11.9])
 
 # 3 configuration
@@ -38,11 +45,17 @@ ds.heading(doc, "3.  Configuration", 1)
 ds.para(doc, "All configuration is via environment variables (a local `.env` file in `backend/` is read "
         "automatically; in production set them in the Render dashboard).")
 ds.table(doc, ["Variable", "Default", "Purpose"], [
-    ["ADMIN_PASSWORD", "change-me", "Unlocks authoring mode. CHANGE for any real deployment."],
+    ["FRAMEWORK_KEY", "(unset)", "Which framework this deployment seeds + serves (prince2-7 / msp-5 / safe-essential). Unset = seed all (local dev)."],
+    ["APP_BASE", "/", "Build-time base path the SPA is built under (/prince2/, /msp/, /safe/) so it works behind the front door."],
+    ["ADMIN_PASSWORD", "change-me", "Unlocks authoring mode. CHANGE for any real deployment; set per-service."],
     ["DATABASE_URL", "sqlite:///…/methodmap.db", "SQLAlchemy URL; point at Postgres to persist."],
     ["CORS_ORIGINS", "http://localhost:5173", "Allowed origins (only relevant in split local dev)."],
     ["PORT", "8000", "Set by Render automatically; the container binds to it."],
-], col_widths=[3.6, 4.4, 7.5])
+], col_widths=[3.6, 4.0, 7.9])
+ds.callout(doc, "note", "FRAMEWORK_KEY is per-service",
+           ["Each Render service pins one FRAMEWORK_KEY, so its ephemeral DB auto-seeds exactly one "
+            "framework. Locally, leaving it unset seeds all three; setting it (e.g. for a review) "
+            "seeds just that one — delete methodmap.db first so the empty-DB boot re-seed runs."])
 ds.callout(doc, "note", "Change the admin password",
            ["The default `change-me` must never reach production. It is set as a Render dashboard secret "
             "(sync:false in render.yaml), so it lives only in Render, not the repo."])
@@ -70,9 +83,11 @@ ds.para(doc, "The app runs at http://localhost:5175 and proxies `/api/*` to the 
 # 5 data management
 ds.heading(doc, "5.  Data management", 1)
 ds.heading(doc, "5.1  How seeding works", 2)
-ds.para(doc, "On boot, if the database has no frameworks, the app loads every `*.json` file in "
-        "`backend/app/seed_data/` (currently just `prince2-7.json`). This is idempotent and is how a "
-        "fresh or restarted container comes up populated.")
+ds.para(doc, "On boot, if the database has no frameworks, the app loads the bundled `*.json` files in "
+        "`backend/app/seed_data/` — `prince2-7.json`, `msp-5.json` and `safe-essential.json`. If "
+        "`FRAMEWORK_KEY` is set (as on each production service) only that one is seeded; unset (local "
+        "dev) seeds all three. This is idempotent and is how a fresh or restarted container comes up "
+        "populated.")
 ds.heading(doc, "5.2  Reseeding", 2)
 ds.para(doc, "To wipe and reload the bundled data:")
 ds.code_block(doc, "cd backend\npython -m app.seed --force")
@@ -92,10 +107,18 @@ ds.callout(doc, "pitfall", "Delete the DB after a schema change",
            ["SQLAlchemy's create_all makes missing tables but will not add new columns to an existing "
             "table. After changing a model, delete the local database first, then reseed:",
             "`del backend\\methodmap.db*`  then  `python -m app.seed --force`"])
-ds.heading(doc, "5.5  Adding a new framework (e.g. MSP)", 2)
-ds.para(doc, "Produce a second `*.json` in `seed_data/` in the same shape as `prince2-7.json` (entities "
-        "referenced by a `type::name` key, relationships between them). Drop it in and reseed — no code "
-        "change is required; it appears alongside PRINCE2.")
+ds.heading(doc, "5.5  Adding a new framework", 2)
+ds.para(doc, "MSP and SAFe were both added this way — as data only. Produce a `*.json` in `seed_data/` "
+        "in the same shape as the others (a `framework.config` block defining types/codes/lanes/"
+        "phases; entities referenced by a `type::name` key; relationships between them). The MSP and "
+        "SAFe seeds are generated by **inline builder scripts** (no source spreadsheet):")
+ds.code_block(doc,
+              "cd backend\n"
+              "python -m scripts.build_msp     # regenerates seed_data/msp-5.json\n"
+              "python -m scripts.build_safe    # regenerates seed_data/safe-essential.json\n"
+              "python -m app.seed --force      # reload into the DB")
+ds.para(doc, "Drop the file in and reseed — **no code change is required**. Going live also needs a "
+        "new Render service (§7.4).")
 
 # 6 authoring admin
 ds.heading(doc, "6.  Authoring administration", 1)
@@ -110,37 +133,55 @@ ds.callout(doc, "pitfall", "In-app edits are not durable on Render",
 # 7 deployment
 ds.heading(doc, "7.  Deployment", 1)
 ds.heading(doc, "7.1  How it deploys", 2)
-ds.para(doc, "Deployment is via a Render **Blueprint** (`render.yaml`): a Docker web service on the "
-        "Starter plan in Oregon, health check `/api/health`, `ADMIN_PASSWORD` as a dashboard secret, "
-        "`autoDeploy: true`.")
+ds.para(doc, "Deployment is via a Render **Blueprint** (`render.yaml`) that defines **one web service "
+        "per framework** from the same Docker image — each Starter plan, Oregon, health check "
+        "`/api/health`, `ADMIN_PASSWORD` as a dashboard secret, `autoDeploy: true` — differing only "
+        "in `FRAMEWORK_KEY` and the `APP_BASE` build arg. A separate repo, **apps-gateway**, is the "
+        "front door (its own Render service) and auto-deploys the same way.")
 ds.heading(doc, "7.2  Deploying a change", 2)
-ds.para(doc, "Because auto-deploy is on, **pushing to `main` redeploys production**:")
-ds.code_block(doc, "git add -A\ngit commit -m \"...\"\ngit push origin main   # Render builds & deploys")
-ds.para(doc, "Watch the build in the Render dashboard (the service → Events / Logs). The database "
+ds.para(doc, "Because auto-deploy is on, **pushing to `main` redeploys every framework service** (they "
+        "all build from the same repo). A data or code change therefore rolls out to prince2, msp and "
+        "safe together:")
+ds.code_block(doc, "git add -A\ngit commit -m \"...\"\ngit push origin main   # Render rebuilds all services")
+ds.para(doc, "Watch each build in the Render dashboard (the service → Events / Logs). The database "
         "re-seeds on boot, so bundled-data changes go live automatically; in-app edits are lost.")
 ds.heading(doc, "7.3  Rollback", 2)
-ds.para(doc, "In the Render dashboard, open the service → **Events**, find the previous good deploy and "
-        "choose **Redeploy**, or revert the commit on `main` and push.")
+ds.para(doc, "In the Render dashboard, open the affected service → **Events**, find the previous good "
+        "deploy and choose **Redeploy**, or revert the commit on `main` and push.")
+ds.heading(doc, "7.4  Adding a framework service", 2)
+ds.para(doc, "After the seed JSON exists (§5.5), add a service block to `render.yaml` (copy an existing "
+        "one; set `FRAMEWORK_KEY` and `APP_BASE=/<slug>/`) and push. Then, in the Render dashboard, "
+        "**sync the Blueprint** to create the new service and set its **`ADMIN_PASSWORD`** secret "
+        "(it is `sync:false`, so it is not seeded automatically). Finally add the route to the front "
+        "door: one line in `apps-gateway`'s `ORIGINS` (slug → `<service>.onrender.com`) and a "
+        "landing-page card, then push that repo.")
+ds.callout(doc, "note", "SAFe worked example (2 Aug 2026)",
+           ["SAFe went live exactly this way: `safe-method-map` service (FRAMEWORK_KEY=safe-essential, "
+            "APP_BASE=/safe/) + a `/safe` route in apps-gateway. The only manual steps were the "
+            "Blueprint sync and setting ADMIN_PASSWORD."])
 
 # 8 domain
-ds.heading(doc, "8.  Custom domain & DNS", 1)
-ds.para(doc, "The custom domain **prince2.p3mai.com** is registered against the service in Render. It "
-        "goes live once this DNS record exists at the p3mai.com DNS provider:")
-ds.table(doc, ["Type", "Host", "Value"], [
-    ["CNAME", "prince2", "method-map.onrender.com"],
-], col_widths=[2.5, 3.0, 10.0])
-ds.para(doc, "Render then auto-verifies and issues the TLS certificate. The workspace plan allows two "
-        "custom domains, both in use (app.p3mai.com for the PMO app, prince2.p3mai.com for this).")
+ds.heading(doc, "8.  Domain & the front door", 1)
+ds.para(doc, "All frameworks are reached under one domain — **apps.p3mai.com** — via the `apps-gateway` "
+        "reverse proxy, which routes `/prince2`, `/msp` and `/safe` (and the PMO apps) to their "
+        "services. Each service is also directly reachable at `<service>.onrender.com`. This front "
+        "door replaced the earlier per-app subdomain approach (e.g. prince2.p3mai.com), so no new "
+        "custom-domain slots are consumed per framework.")
+ds.para(doc, "Adding a framework to the front door is one line in `apps-gateway`'s `ORIGINS` map "
+        "(`<slug>` → `<service>.onrender.com`) plus a landing-page card — then push (it auto-deploys).")
 
 # 9 website
 ds.heading(doc, "9.  Website integration", 1)
-ds.para(doc, "The P3MAI website's Services page (Project Management card) has a **PRINCE2 Method Map** "
-        "button. It is env-aware in the site's `script.js`: `localhost:5175` in local dev, the live app "
-        "in production. When the custom domain is live, change the production swap target in `script.js` "
-        "from `method-map.onrender.com` to `prince2.p3mai.com`.")
+ds.para(doc, "The P3MAI website's Services page links to the maps: a **PRINCE2 Method Map** and a "
+        "**SAFe Method Map** button on the Project Management card, and an **MSP Method Map** button "
+        "on the Programme Management card. Each is env-aware in the site's `script.js`: a "
+        "`localhost:<port>` sentinel in local dev, rewritten to the front-door URL "
+        "(`apps.p3mai.com/<slug>`) in production. The site is on Rise hosting (not auto-deployed from "
+        "GitHub), so publishing a button means uploading `services.html` + `script.js` to Rise; bump "
+        "the `script.js?v=` query to bust Rise's edge cache.")
 ds.callout(doc, "pitfall", "Don't hardcode the localhost link",
-           ["The `localhost:5175` href in the website's services.html is intentional — script.js rewrites "
-            "it in production. Replacing it with a hardcoded URL breaks local dev."])
+           ["The `localhost:<port>` href in the website's services.html is intentional — script.js "
+            "rewrites it in production. Replacing it with a hardcoded URL breaks local dev."])
 
 # 10 monitoring
 ds.heading(doc, "10.  Monitoring & health", 1)
@@ -189,9 +230,11 @@ ds.para(doc, "Add an entry to `CORRECTIONS` in `extract_prince2.py`, regenerate 
         "(`python -m app.seed --force`), commit and push.")
 ds.heading(doc, "14.3  Rotate the admin password", 2)
 ds.para(doc, "Render dashboard → service → **Environment** → edit `ADMIN_PASSWORD` → save (redeploys).")
-ds.heading(doc, "14.4  Go live on the custom domain", 2)
-ds.para(doc, "Add the CNAME (§8), wait for Render to verify + issue TLS, confirm https://prince2.p3mai.com "
-        "loads, then update the website link's swap target (§9) and publish the site.")
+ds.heading(doc, "14.4  Bring a new framework online", 2)
+ds.para(doc, "Build the seed (§5.5) and commit it; add the `render.yaml` service and push; **sync the "
+        "Blueprint** in Render and set the new service's `ADMIN_PASSWORD`; add the `apps-gateway` "
+        "route and push; confirm `apps.p3mai.com/<slug>/api/health` is OK; add the website button "
+        "(§9) and publish to Rise.")
 
 # appendix
 ds.heading(doc, "Appendix A — API endpoints", 1)

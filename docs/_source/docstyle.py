@@ -165,7 +165,7 @@ def title_page(doc, doc_id, title, subtitle, version, date, author, classificati
         doc.add_paragraph()
     meta = [("Document", f"{doc_id} — {title}"), ("Version", version),
             ("Date", date), ("Author", author),
-            ("Classification", classification), ("Applies to", "P3MAI Method Map (PRINCE2 7)")]
+            ("Classification", classification), ("Applies to", "P3MAI Method Map (PRINCE2 7 · MSP 5th ed · SAFe 6.0 Essential)")]
     t = doc.add_table(rows=0, cols=2); t.alignment = WD_TABLE_ALIGNMENT.CENTER
     t.autofit = False
     for k, v in meta:
