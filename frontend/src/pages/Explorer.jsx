@@ -22,6 +22,7 @@ export default function Explorer() {
   const [derived, setDerived] = useState(true);
   const [layout, setLayout] = useState('structured');
   const [search, setSearch] = useState('');
+  const [controlsOpen, setControlsOpen] = useState(false); // mobile control-panel drawer
   const [selectedId, setSelectedId] = useState(null);
   const [loadingGraph, setLoadingGraph] = useState(true);
   const [dataToken, setDataToken] = useState(0);
@@ -233,7 +234,17 @@ export default function Explorer() {
   }
 
   return (
-    <div className="explorer">
+    <div className={`explorer ${controlsOpen ? 'controls-open' : ''}`}>
+      <button
+        className="mobile-controls-toggle"
+        onClick={() => setControlsOpen((o) => !o)}
+        aria-label="Toggle controls"
+      >
+        {controlsOpen ? '✕ Close' : '☰ Controls'}
+      </button>
+      {controlsOpen && (
+        <div className="mobile-drawer-backdrop" onClick={() => setControlsOpen(false)} />
+      )}
       <ControlPanel
         frameworkKey={fkey}
         theme={theme}
