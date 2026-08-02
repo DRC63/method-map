@@ -204,10 +204,14 @@ export default function Explorer() {
       ctx.fillStyle = '#0B2545';
       ctx.font = `600 ${Math.round(24 * scale)}px system-ui, -apple-system, sans-serif`;
       ctx.fillText(`${framework.name} Method Map`, pad, bandH / 2);
-      ctx.fillStyle = '#C9A227';
       ctx.font = `700 ${Math.round(18 * scale)}px system-ui, -apple-system, sans-serif`;
-      const brand = 'P3MAI';
-      ctx.fillText(brand, c.width - pad - ctx.measureText(brand).width, bandH / 2);
+      const wP3M = ctx.measureText('P3M').width;
+      const wAI = ctx.measureText('AI').width;
+      const brandX = c.width - pad - wP3M - wAI;
+      ctx.fillStyle = '#0B2545'; // "P3M" navy
+      ctx.fillText('P3M', brandX, bandH / 2);
+      ctx.fillStyle = '#C9A227'; // "AI" gold
+      ctx.fillText('AI', brandX + wP3M, bandH / 2);
       ctx.fillStyle = '#E3E8EF';
       ctx.fillRect(0, bandH - Math.max(1, Math.round(scale)), c.width, Math.max(1, Math.round(scale)));
       ctx.drawImage(img, 0, bandH);
