@@ -84,8 +84,10 @@ Graph nodes carry `parent_id`, `sort_order`, `sequence`, `lifecycle_level`,
   swimlane shows **every stage at full strength until the scrubber is used**, so it
   reads as a full swimlane on entry, then spotlights on interaction. NOTE the PNG
   export (`graphRef.exportPng`) only works in Matrix — it's a no-op in Timeline
-  (there's no canvas); CSV/Excel still work. Styles are the `.tl-*` classes in
-  `theme/theme.css`.
+  (there's no canvas); CSV/Excel still work. A framework-driven **legend**
+  (`.tl-legend`, above the grid) shows a colour swatch + label per node type
+  (from `theme.colorOf`/`labelOf`) plus a lit/faded scrubber hint. Styles are the
+  `.tl-*` classes in `theme/theme.css`.
 - **Search spotlights matches** — the Search box folds `searchMatches` into
   GraphCanvas's effective `highlightSet` (precedence hover → timeline → search →
   selection), so an active query dims every non-match (nodes **and** links) and the
