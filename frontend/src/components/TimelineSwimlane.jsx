@@ -85,6 +85,26 @@ export default function TimelineSwimlane({ data, theme, selectedId, onSelectNode
 
   return (
     <div className="tl-swim">
+      <div className="tl-legend">
+        <span className="tl-leg-item">
+          <span className="tl-leg-sw" style={{ background: theme.colorOf(containerType) }} />
+          {theme.labelOf(containerType)}
+        </span>
+        <span className="tl-leg-item">
+          <span className="tl-leg-dot" style={{ background: theme.colorOf(hubType) }} />
+          {theme.labelOf(hubType)}
+        </span>
+        {(theme.nodeTypes || []).map((t) => (
+          <span key={t.key} className="tl-leg-item">
+            <span className="tl-leg-sw" style={{ background: theme.colorOf(t.key) }} />
+            {theme.labelOf(t.key)}
+          </span>
+        ))}
+        <span className="tl-leg-hint">
+          Scrub the timeline to spotlight a stage — lit&nbsp;=&nbsp;in that stage,
+          faded&nbsp;=&nbsp;outside it.
+        </span>
+      </div>
       <div
         className="tl-grid"
         style={{ gridTemplateColumns: `168px repeat(${phaseCols.length}, minmax(180px, 1fr))` }}
