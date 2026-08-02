@@ -76,6 +76,16 @@ Graph nodes carry `parent_id`, `sort_order`, `sequence`, `lifecycle_level`,
   computed in `Explorer.jsx`, passed to GraphCanvas as `timelineSet`, feeding the
   same dim/highlight machinery as hover/selection — nodes light up in place across
   the swimlanes + bands as you scrub.
+- **Search spotlights matches** — the Search box folds `searchMatches` into
+  GraphCanvas's effective `highlightSet` (precedence hover → timeline → search →
+  selection), so an active query dims every non-match (nodes **and** links) and the
+  matches stay lit. (Before, it only drew a faint gold ring → looked broken.)
+- **Control-panel blurbs are framework-driven** — the Timeline/Matrix description
+  text in `ControlPanel.jsx` derives lane names from `theme.lanes` and layer
+  positions from the config **zones** (`container` top / `hub` below / `below` under
+  / `left`/`right`/`bottom`). The PRINCE2 lane/layer names in the two bullets above
+  are just the PRINCE2 case; MSP shows Sponsoring/Managing/Delivering + Roles/Themes/
+  Principles. Don't re-hardcode PRINCE2 terms here.
 
 ## The graph builder (`app/graph.py`)
 Given the selected entity-type layers it emits three link kinds:
@@ -118,6 +128,13 @@ and gates authoring UI via `AdminContext`. Not real accounts — deliberate for 
 - The graph uses `requestAnimationFrame`; in a **non-displayed browser pane** the
   canvas won't paint and hit-testing/screenshots won't work. This is an
   environment limitation, not a bug — verify the graph in a real displayed browser.
+  In the Claude Code session specifically there is **no way to screen-capture the
+  force-graph**: the in-app pane never composites it, `claude-in-chrome` blocks both
+  `localhost` and the live domain, and the app's PNG export needs a painted canvas.
+  To "show" the graph (e.g. the Timeline swimlanes), build a **faithful SVG/HTML
+  schematic from the live API data** and `SendUserFile` it. Non-canvas DOM (control
+  panel, blurbs, search input, Guide, sidebar) IS readable via the pane's
+  `javascript_tool`/`read_page`, so verify those there.
 - Project tree is under OneDrive: expect a ~2s write-commit tax on SQLite that
   pragmas can't remove (it's OneDrive's sync driver). WAL keeps reads snappy.
 
