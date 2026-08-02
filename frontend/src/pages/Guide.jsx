@@ -1,42 +1,123 @@
-import { entityColors, entityTypeLabels } from '../theme/theme';
+import { makeFrameworkTheme } from '../theme/theme';
 import { useDeploymentFramework } from '../lib/useDeploymentFramework';
-import { lifecycleLabel } from '../theme/labels';
+import { lifecycleLabel, lifecycleNoun } from '../theme/labels';
 
-const TYPES = ['process', 'activity', 'role', 'practice', 'approach', 'product'];
+// Join a list into "A, B and C".
+function andList(arr) {
+  const a = arr.filter(Boolean);
+  if (a.length <= 1) return a[0] || '';
+  return `${a.slice(0, -1).join(', ')} and ${a[a.length - 1]}`;
+}
+
+// Prose that genuinely differs by framework — the sourcing/accuracy note and the
+// short name for the time-ordered process model. Everything else on this page is
+// derived from the framework's own config, so a new framework needs no code here.
+const FRAMEWORK_PROSE = {
+  'prince2-7': {
+    modelName: 'the classic PRINCE2 process model',
+    accuracy: (
+      <>
+        Process, role, practice, approach and product <em>names</em> are corroborated
+        across public sources. The activity-level breakdown and its codes are a
+        best-effort reconstruction (from prince2.wiki, CC-BY 4.0) and are shown with a
+        dashed{' '}
+        <span className="confidence-flag confidence-indicative">◌ indicative</span> marker.
+        Verify against the licensed PRINCE2 manual before using any of this as formal
+        audit, training or certification evidence.
+      </>
+    ),
+  },
+  'msp-5': {
+    modelName: 'the MSP transformational flow',
+    accuracy: (
+      <>
+        Programme process, role, theme, product and principle <em>names</em> follow MSP
+        5th edition (<em>Managing Successful Programmes</em>, 2020). The activity-level
+        breakdown and every cross-reference mark are an <strong>indicative</strong>,
+        best-effort reconstruction — shown with a dashed{' '}
+        <span className="confidence-flag confidence-indicative">◌ indicative</span> marker —
+        and must be SME-verified against the licensed MSP manual before use as formal
+        audit, training or certification evidence.
+      </>
+    ),
+  },
+};
 
 export default function Guide() {
   const fw = useDeploymentFramework();
+  if (!fw) {
+    return (
+      <div className="prose">
+        <div className="card">Loading…</div>
+      </div>
+    );
+  }
+
+  const theme = makeFrameworkTheme(fw);
+  const noun = lifecycleNoun(fw);
+  const counts = fw.entity_counts || {};
+  const prose = FRAMEWORK_PROSE[fw.key] || {
+    modelName: `the ${fw.name} process model`,
+    accuracy: fw.description,
+  };
+
+  // Time-ordered lifecycle flow + swimlanes, straight from config.
+  const phaseFlow = theme.phases
+    .filter((p) => p.column)
+    .map((p) => p.header || p.label)
+    .join(' → ');
+  const laneShort = theme.lanes.map((l) => l.label.replace(/\s*\(.*$/, ''));
+
+  // Which layers each edge-code group labels (roles group may cover several types).
+  const layersForGroup = (group) =>
+    theme.types.filter((t) => t.code_group === group).map((t) => theme.labelOf(t.key));
+
+  const nodeLayerLabels = theme.nodeTypes.map((t) => t.label);
+
   return (
     <div className="prose">
       <div className="card section-gap">
         <h2 style={{ marginTop: 0 }}>What this is</h2>
+        <p className="muted" style={{ marginTop: -4 }}>
+          {fw.name}
+          {fw.edition ? ` · ${fw.edition}` : ''}
+        </p>
         <p>
-          The Method Map turns PRINCE2 7 into an interactive network. Every
-          management <strong>activity</strong> is cross-referenced to the roles that
-          perform it, the practices and management approaches it draws on, and the
-          management products it takes in or creates. Explore how any one element
-          connects to the rest of the method — useful when tailoring a project,
-          onboarding a team, or explaining governance to a client.
+          The Method Map turns {fw.name} into an interactive network. Every management{' '}
+          <strong>activity</strong> is cross-referenced to the {andList(nodeLayerLabels)}{' '}
+          that surround it. Explore how any one element connects to the rest of the
+          method — useful when tailoring a {noun}, onboarding a team, or explaining
+          governance to a client.
         </p>
       </div>
 
       <div className="card section-gap">
         <h2 style={{ marginTop: 0 }}>Two ways to look at it</h2>
         <ul className="bullets">
-          <li><strong>Method Explorer</strong> — the interdependency network. Best for "what connects to what": pick any element and trace its links across the whole method.</li>
-          <li><strong>{lifecycleLabel(fw)}</strong> — the same processes laid out in time. The classic PRINCE2 process model: time runs left→right (Pre-project → Initiation → Delivery stages ⟳ → Final stage) across three swimlanes (Directing / Managing / Delivering). Click a process to see its activities in sequence.</li>
+          <li>
+            <strong>Method Explorer</strong> — the interdependency network. Best for
+            &ldquo;what connects to what&rdquo;: pick any element and trace its links
+            across the whole method.
+          </li>
+          <li>
+            <strong>{lifecycleLabel(fw)}</strong> — the same processes laid out in time.{' '}
+            {prose.modelName.charAt(0).toUpperCase() + prose.modelName.slice(1)}: time
+            runs left→right ({phaseFlow}) across {laneShort.length} swimlanes (
+            {laneShort.join(' / ')}). Click a process to see its activities in sequence.
+          </li>
         </ul>
       </div>
 
       <div className="card section-gap">
-        <h2 style={{ marginTop: 0 }}>The six layers</h2>
+        <h2 style={{ marginTop: 0 }}>The layers</h2>
         <div style={{ display: 'grid', gap: 8 }}>
-          {TYPES.map((t) => (
-            <div key={t} className="legend-item" style={{ fontSize: '0.95rem' }}>
-              <span className="layer-swatch" style={{ background: entityColors[t] }} />
-              <strong style={{ textTransform: 'capitalize', color: 'var(--color-text)' }}>
-                {entityTypeLabels[t]}
-              </strong>
+          {theme.types.map((t) => (
+            <div key={t.key} className="legend-item" style={{ fontSize: '0.95rem' }}>
+              <span className="layer-swatch" style={{ background: theme.colorOf(t.key) }} />
+              <strong style={{ color: 'var(--color-text)' }}>{theme.labelOf(t.key)}</strong>
+              {typeof counts[t.key] === 'number' && (
+                <span className="muted">&nbsp;({counts[t.key]})</span>
+              )}
             </div>
           ))}
         </div>
@@ -51,27 +132,26 @@ export default function Guide() {
 
       <div className="card section-gap">
         <h2 style={{ marginTop: 0 }}>Reading the codes</h2>
-        <p>Edges are labelled with the standard PRINCE2 cross-reference codes:</p>
+        <p>Edges are labelled with {fw.name}&rsquo;s cross-reference codes:</p>
         <ul className="bullets">
-          <li><strong>C</strong> Responsible · <strong>P</strong> Participates · <strong>N</strong> Assists — for roles, practices and management approaches.</li>
-          <li><strong>I</strong> Input · <strong>O</strong> Output · <strong>U</strong> Update · <strong>A</strong> Authorise — for management products.</li>
+          {theme.codeGroups.map(({ group, codes }) => (
+            <li key={group}>
+              {codes.map((c, i) => (
+                <span key={c.code}>
+                  {i > 0 ? ' · ' : ''}
+                  <strong>{c.code}</strong> {c.label}
+                </span>
+              ))}
+              {' — for '}
+              {andList(layersForGroup(group)).toLowerCase()}.
+            </li>
+          ))}
         </ul>
       </div>
 
       <div className="card">
         <h2 style={{ marginTop: 0 }}>A note on accuracy</h2>
-        <p>
-          Process, role, practice, approach and product <em>names</em> are corroborated
-          across public sources. The activity-level breakdown and its codes are a
-          best-effort reconstruction (from prince2.wiki, CC-BY 4.0) and are shown with a
-          dashed <span className="confidence-flag confidence-indicative">◌ indicative</span>{' '}
-          marker. Verify against the licensed PRINCE2 manual before using any of this as
-          formal audit, training or certification evidence.
-        </p>
-        <p className="muted">
-          MSP 5th Edition is on the roadmap — the app is built to hold multiple
-          frameworks, so it slots in alongside PRINCE2 without a rebuild.
-        </p>
+        <p>{prose.accuracy}</p>
       </div>
     </div>
   );
