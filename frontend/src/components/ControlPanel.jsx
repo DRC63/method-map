@@ -20,6 +20,14 @@ export default function ControlPanel({
   const laneNames = (theme?.lanes || [])
     .map((l) => l.label.replace(/\s*\(.*$/, ''))
     .join(' / ');
+
+  // Matrix blurb describes each layer's fixed zone, pulled from the framework
+  // config so it names the right layers (PRINCE2: roles/practices/approaches;
+  // MSP: roles/themes/principles) instead of hardcoding PRINCE2's.
+  const zoneLabel = (z) => (theme?.types || []).find((t) => t.zone === z)?.label || '';
+  const matrixBlurb = theme
+    ? `Fixed hierarchy: ${theme.labelOf(theme.container)} top, ${theme.labelOf(theme.hub)} below, ${zoneLabel('below')} under; ${zoneLabel('left')} left, ${zoneLabel('right')} right, ${zoneLabel('bottom')} bottom.`
+    : '';
   return (
     <div className="control-panel">
       <div className="control-group">
@@ -51,7 +59,7 @@ export default function ControlPanel({
         <p className="muted" style={{ marginTop: 8, fontSize: '0.76rem' }}>
           {layout === 'timeline'
             ? `Lifecycle swimlanes (${laneNames}) left→right in sequence, with resource bands below. Scrub the timeline to light up each stage.`
-            : 'Fixed hierarchy: processes top, activities below, products under; roles left, practices right, approaches bottom.'}
+            : matrixBlurb}
         </p>
       </div>
 
