@@ -28,9 +28,11 @@ const FRAMEWORK_PROSE = {
     ),
     related: (
       <>
-        <strong>Managing Successful Programmes (MSP) 5th Edition</strong> is now live as
-        its own Method Map — the app holds multiple frameworks side by side.{' '}
-        <a href="https://apps.p3mai.com/msp/">Open the MSP Method Map →</a>
+        This is one of several frameworks the Method Map holds side by side, each as its
+        own map: <strong>Managing Successful Programmes (MSP) 5th Edition</strong> for
+        programmes (<a href="https://apps.p3mai.com/msp/">open →</a>) and{' '}
+        <strong>SAFe&reg; 6.0 Essential</strong> for scaled agile (
+        <a href="https://apps.p3mai.com/safe/">open →</a>).
       </>
     ),
   },
@@ -45,6 +47,40 @@ const FRAMEWORK_PROSE = {
         <span className="confidence-flag confidence-indicative">◌ indicative</span> marker —
         and must be SME-verified against the licensed MSP manual before use as formal
         audit, training or certification evidence.
+      </>
+    ),
+    related: (
+      <>
+        This is one of several frameworks the Method Map holds side by side, each as its
+        own map: <strong>PRINCE2 7</strong> for projects (
+        <a href="https://apps.p3mai.com/prince2/">open →</a>) and{' '}
+        <strong>SAFe&reg; 6.0 Essential</strong> for scaled agile (
+        <a href="https://apps.p3mai.com/safe/">open →</a>).
+      </>
+    ),
+  },
+  'safe-essential': {
+    modelName: 'the SAFe PI (Program Increment) cadence',
+    accuracy: (
+      <>
+        Event, role, artifact, competency and principle <em>names</em> follow SAFe 6.0
+        Essential. The activity breakdown of each event and every cross-reference mark
+        are an <strong>indicative</strong>, best-effort reconstruction — shown with a
+        dashed{' '}
+        <span className="confidence-flag confidence-indicative">◌ indicative</span> marker —
+        and must be SME-verified against the licensed SAFe body of knowledge before use as
+        formal audit, training or certification evidence. SAFe&reg; and Scaled Agile
+        Framework&reg; are trademarks of Scaled Agile, Inc.; this is an independent
+        reference tool, not affiliated with or endorsed by Scaled Agile, Inc.
+      </>
+    ),
+    related: (
+      <>
+        This is one of several frameworks the Method Map holds side by side, each as its
+        own map: <strong>PRINCE2 7</strong> for projects (
+        <a href="https://apps.p3mai.com/prince2/">open →</a>) and{' '}
+        <strong>Managing Successful Programmes (MSP)</strong> for programmes (
+        <a href="https://apps.p3mai.com/msp/">open →</a>).
       </>
     ),
   },
