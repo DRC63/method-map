@@ -75,8 +75,10 @@ Graph nodes carry `parent_id`, `sort_order`, `sequence`, `lifecycle_level`,
   `column`, header `Delivery ⟳` etc.); each process sits in its `(lane, phase)`
   cell (non-column phases like `throughout`/`stage-boundary` fold into the delivery
   column) with its activities as dots beneath; node-type layers (`theme.nodeTypes`)
-  render as static **resource bands** below. Fully framework-driven (works for
-  PRINCE2 + MSP). Clicking any process/activity/resource → `onSelectNode` → detail
+  render as static **resource bands** below. Fully framework-driven — **verified
+  live on PRINCE2, MSP AND SAFe** (SAFe has only 2 lanes and uses `event` as the
+  container, yet rendered with zero code changes). Clicking any
+  process/activity/resource → `onSelectNode` → detail
   panel. **Scrubber (`TimelineScrubber.jsx`) retained**, one stage per process:
   `timelineSet` (computed in `Explorer.jsx`, spotlight = current stage's ids,
   cumulative = 0..i) is passed to the swimlane, which dims non-members (`.tl-dim`)
