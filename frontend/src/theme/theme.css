@@ -70,9 +70,9 @@ p { color: var(--color-text-muted); }
   height: 100vh;
   overflow-y: auto;
 }
-.sidebar-logo { display: flex; align-items: center; gap: 10px; padding: 0 8px 20px; }
-.sidebar-logo img { height: 30px; width: auto; }
-.sidebar-logo span { color: var(--color-white); font-weight: 700; font-size: 1rem; line-height: 1.15; }
+.sidebar-logo { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; padding: 0 8px 20px; }
+.sidebar-logo img { width: 100%; max-width: 172px; height: auto; }
+.sidebar-logo span { color: rgba(255,255,255,0.72); font-weight: 600; font-size: 0.9rem; line-height: 1.2; }
 
 .sidebar-nav { display: flex; flex-direction: column; gap: 4px; }
 .sidebar-nav a {

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router';
-import logo from '../assets/logo-triangle-white.svg';
+import logo from '../assets/logo-lockup.svg';
 import { api } from '../api/client';
 import { useAdmin } from '../context/AdminContext';
 
