@@ -15,8 +15,9 @@ paired with a PowerPoint summary, plus a house style and generated diagram asset
 | DOC-02 | **User Manual** — using the Explorer (Matrix/Timeline), Lifecycle, detail panel, exports, codes | [02_User_Manual.docx](02_User_Manual.docx) | [02_…_Summary.pptx](02_User_Manual_Summary.pptx) |
 | DOC-03 | **Operation Manual** — configuration, data management, per-framework deployment, the front door, monitoring, troubleshooting, runbooks | [03_Operation_Manual.docx](03_Operation_Manual.docx) | [03_…_Summary.pptx](03_Operation_Manual_Summary.pptx) |
 
-All three are **v1.2, 2 August 2026** (multi-framework: MSP, SAFe and PMBOK 6th
-ed added as the second, third and fourth live frameworks). DOC-03 is marked **OFFICIAL-SENSITIVE**
+DOC-01 & DOC-02 are **v1.3**, DOC-03 is **v1.2** (2 August 2026) — multi-framework
+(MSP, SAFe and PMBOK 6th ed added as the second, third and fourth live frameworks;
+v1.3 adds the Timeline Reset control and the `label_below` Matrix option). DOC-03 is marked **OFFICIAL-SENSITIVE**
 (it references deployment specifics and the admin secret); the others are **OFFICIAL**.
 
 ## Folder layout

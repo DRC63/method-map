@@ -4,7 +4,7 @@ import docstyle as ds
 
 OUT = os.path.join(os.path.dirname(__file__), "..", "02_User_Manual.docx")
 ASSETS = os.path.join(os.path.dirname(__file__), "..", "assets")
-VERSION = "v1.2"
+VERSION = "v1.3"
 DATE = "2 August 2026"
 
 doc = ds.new_doc()
@@ -21,6 +21,9 @@ ds.doc_control(doc, [
     ["v1.2", "2026-08-02", "Douglas Colvin",
      "Added PMBOK 6th ed (the 5×10 process matrix) as the fourth framework — address "
      "and a §12 section covering its grid, layers and I/O/T codes."],
+    ["v1.3", "2026-08-02", "Douglas Colvin",
+     "Timeline Reset button documented; note on PMBOK's Tools & Techniques band "
+     "sitting under Inputs & Outputs in the Matrix."],
 ])
 ds.add_toc(doc)
 
@@ -141,6 +144,7 @@ ds.table(doc, ["Control", "Effect"], [
     ["Slider / stage ticks", "Jump to any stage (SU, DP, IP, CS, MP, SB, CP)"],
     ["Spotlight", "Highlight only the current stage's process, activities and what they touch"],
     ["Cumulative", "Highlight everything from the start up to the current stage — watch the footprint grow"],
+    ["Reset (gold button)", "Clear everything at once — deselect the current element, close the detail panel, and return the scrubber to the first stage / full-strength view"],
 ], col_widths=[4.2, 11.3])
 ds.callout(doc, "tip", "Tell the story of a project",
            ["Switch to Cumulative and press Play. Watch products and involvement accumulate as the "
@@ -240,7 +244,9 @@ ds.para(doc, "PMBOK is the classic **process matrix**: its Lifecycle view is a g
         "Unlike the other maps, the cells hold the processes themselves (the layer that carries the "
         "cross-references), so a cell can contain more than one process (e.g. Schedule / Planning "
         "holds five). Layers: **Processes**, cross-referenced to their **Inputs & Outputs** "
-        "(artefacts/documents) and **Tools & Techniques**.")
+        "(artefacts/documents) and **Tools & Techniques**. In the Matrix view the Tools & "
+        "Techniques band sits directly **under** Inputs & Outputs (its heading at the very "
+        "bottom), keeping the layout centred rather than lopsided.")
 ds.table(doc, ["Where", "PMBOK codes"], [
     ["Inputs & Outputs (artefacts)", "I = Input · O = Output"],
     ["Tools & Techniques", "T = Tool / Technique"],

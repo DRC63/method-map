@@ -4,7 +4,7 @@ import docstyle as ds
 
 OUT = os.path.join(os.path.dirname(__file__), "..", "01_Architecture_and_Design.docx")
 ASSETS = os.path.join(os.path.dirname(__file__), "..", "assets")
-VERSION = "v1.2"
+VERSION = "v1.3"
 DATE = "2 August 2026"
 
 doc = ds.new_doc()
@@ -22,6 +22,9 @@ ds.doc_control(doc, [
      "PMBOK 6th ed added as the fourth framework; the hub-layer grid (config "
      "lifecycle_layer='hub') that renders PMBOK's 5×10 process matrix; four-service "
      "deployment."],
+    ["v1.3", "2026-08-02", "Douglas Colvin",
+     "Documented the `label_below` zone-heading option and the Timeline Reset "
+     "control."],
 ])
 ds.add_toc(doc)
 
@@ -129,7 +132,9 @@ ds.para(doc, "The model is framework-agnostic on purpose. A **framework** owns a
         "and **relationships** connect them. Adding MSP or SAFe means adding a data file — no schema "
         "change. Each framework row carries a **`config` JSON** that makes the whole app generic:")
 ds.bullet(doc, "**types** — the entity types in order, each with a `kind` (container / hub / node), a "
-          "`zone` (where it sits in the Matrix), a colour and an optional `code_group`;")
+          "`zone` (where it sits in the Matrix), a colour and an optional `code_group`. A `below`-zone "
+          "type may set `label_below: true` so its Matrix heading is drawn under the band rather than "
+          "above it (PMBOK's Tools & Techniques, so the spine stays centred);")
 ds.bullet(doc, "**codes** — the relationship-code vocabulary, grouped (e.g. a role group and a product/"
           "artefact group), so the legend and edge labels are framework-correct;")
 ds.bullet(doc, "**lanes** / **phases** — the timeline swimlanes and the left→right lifecycle columns.")
@@ -242,7 +247,9 @@ ds.bullet(doc, "**Matrix** — a fixed hierarchy: processes across the top, acti
 ds.bullet(doc, "**Timeline** — echoes the Lifecycle view: processes in three swimlanes (Directing / "
           "Managing / Delivering) laid left→right by sequence; activities in each process's time-column; "
           "roles/practices/approaches/products as static resource bands below. A scrubber walks the "
-          "lifecycle, lighting up each stage's sub-graph (spotlight or cumulative), with a play button.")
+          "lifecycle, lighting up each stage's sub-graph (spotlight or cumulative), with a play button "
+          "and a **Reset** control that clears the current node selection and the scrubber spotlight "
+          "back to the full-strength view (clears `selectedId` and resets the scrubber state).")
 ds.heading(doc, "8.3  Interaction", 2)
 ds.para(doc, "Selecting a node enlarges it with a gold glow halo and highlights its neighbourhood; the "
         "detail panel lists every relationship. Hovering highlights a node's neighbours. Search flags "

@@ -80,6 +80,7 @@ d.bullets("The Timeline layout", [
     "Processes in swimlanes (Directing / Managing / Delivering), left→right in order.",
     "A scrubber walks the lifecycle stage by stage.",
     "Play to auto-advance; Spotlight one stage, or Cumulative to build up.",
+    "Reset (gold button) clears the selection and scrubber back to the full view.",
 ], lead="Watch the project unfold over time.")
 d.bullets("Select a node → the detail panel", [
     "The node glows gold; its neighbours stay bright, the rest dim.",
