@@ -287,6 +287,14 @@ p { color: var(--color-text-muted); }
 }
 .timeline-mode-opt.active { background: var(--color-primary); color: var(--color-white); }
 
+.timeline-reset {
+  flex-shrink: 0; align-self: stretch;
+  font-size: 0.74rem; font-weight: 600; padding: 5px 12px; border-radius: 999px;
+  color: var(--color-text-muted); background: var(--color-bg-alt);
+  transition: background var(--transition), color var(--transition);
+}
+.timeline-reset:hover { background: var(--color-primary); color: var(--color-white); }
+
 /* ---------- Detail panel ---------- */
 .detail-panel {
   width: 360px;

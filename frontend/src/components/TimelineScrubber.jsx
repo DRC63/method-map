@@ -11,6 +11,7 @@ export default function TimelineScrubber({
   onTogglePlay,
   mode,
   onSetMode,
+  onReset,
 }) {
   if (!stages.length) return null;
   const current = stages[Math.min(index, stages.length - 1)];
@@ -76,6 +77,16 @@ export default function TimelineScrubber({
           Cumulative
         </button>
       </div>
+
+      {onReset && (
+        <button
+          className="timeline-reset"
+          onClick={onReset}
+          title="Clear the selection and reset the timeline to the full view"
+        >
+          ↺ Reset
+        </button>
+      )}
     </div>
   );
 }

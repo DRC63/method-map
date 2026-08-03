@@ -309,6 +309,12 @@ export default function Explorer() {
               setTimelineTouched(true);
               setTimelineMode(m);
             }}
+            onReset={() => {
+              setSelectedId(null);
+              setTimelineIndex(0);
+              setPlaying(false);
+              setTimelineTouched(false);
+            }}
           />
         )}
         {isAdmin && (
