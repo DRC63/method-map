@@ -2,6 +2,10 @@
 
 _Last updated: 2 August 2026._
 
+> **Visual version:** a shareable, branded web roadmap of this backlog is published at
+> <https://claude.ai/code/artifact/b506a9ef-9199-46e8-9cc0-7e6dab2d6046>
+> (private by default — share it from the page's share menu). Keep it in step with this file.
+
 A living view of where the Method Map is and where it could go. Grouped **Now /
 Next / Later**; the **Done** section keeps recent milestones for context. Nothing
 below is a commitment — it's a shared backlog to prioritise against.
