@@ -131,7 +131,12 @@
         "Programme Plan": "examples/msp/programme-plan.pdf",
         "Information Mgmt Approach": "examples/msp/information-management-approach.pdf",
         "Quality & Assurance Approach": "examples/msp/assurance-approach-and-plan.pdf",
-        "Risk & Issue Register": "examples/msp/programme-risk-register.pdf"
+        "Risk & Issue Register": "examples/msp/programme-risk-register.pdf",
+        "Organisation Structure & RACI": "examples/msp/programme-governance-approach.pdf",
+        "Tranche / Stage Plan": "examples/msp/projects-dossier.pdf",
+        "Lessons Log": "examples/msp/end-of-tranche-review-report.pdf",
+        "Audit / Assurance Log": "examples/msp/assurance-approach-and-plan.pdf",
+        "Programme Board Decision Log": "examples/msp/issue-and-change-management-approach.pdf"
       }
     }
   },

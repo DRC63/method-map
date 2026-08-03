@@ -51,10 +51,17 @@ CONFIG = {
     # Worked-example documents (the "Helios" sample programme), keyed by the exact
     # product entity name; the value is a bundled PDF path relative to the SPA base
     # (frontend/public/examples/msp/*.pdf). Drives the detail panel's "View worked
-    # example" button. Sourced from the PMO Template Library. Five MSP products have
-    # no matching library document (Organisation Structure & RACI, Tranche / Stage
-    # Plan, Lessons Log, Audit / Assurance Log, Programme Board Decision Log) and are
-    # intentionally left without a button rather than mapped to a loose approximation.
+    # example" button. Sourced from the PMO Template Library. All 14 products are now
+    # mapped (Douglas's call, 2026-08-03). The last five have no exact MSP document and
+    # use the CLOSEST available approximation, flagged here for later review:
+    #   Organisation Structure & RACI -> Programme Governance Approach (defines the
+    #     org structure, roles and decision rights)
+    #   Tranche / Stage Plan -> Projects Dossier (the tranche-grouped delivery content)
+    #   Lessons Log -> End of Tranche Review Report (where lessons are captured)
+    #   Audit / Assurance Log -> Assurance Approach and Plan (shared with Quality &
+    #     Assurance Approach; the regime the log would track)
+    #   Programme Board Decision Log -> Issue and Change Management Approach (the
+    #     nearest decision-governance document)
     "examples": {
         "Vision Statement": "examples/msp/vision-statement.pdf",
         "Target Operating Model": "examples/msp/target-operating-model.pdf",
@@ -65,6 +72,11 @@ CONFIG = {
         "Information Mgmt Approach": "examples/msp/information-management-approach.pdf",
         "Quality & Assurance Approach": "examples/msp/assurance-approach-and-plan.pdf",
         "Risk & Issue Register": "examples/msp/programme-risk-register.pdf",
+        "Organisation Structure & RACI": "examples/msp/programme-governance-approach.pdf",
+        "Tranche / Stage Plan": "examples/msp/projects-dossier.pdf",
+        "Lessons Log": "examples/msp/end-of-tranche-review-report.pdf",
+        "Audit / Assurance Log": "examples/msp/assurance-approach-and-plan.pdf",
+        "Programme Board Decision Log": "examples/msp/issue-and-change-management-approach.pdf",
     },
 }
 
