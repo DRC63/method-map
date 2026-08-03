@@ -121,7 +121,18 @@
           "key": "throughout",
           "label": "Throughout"
         }
-      ]
+      ],
+      "examples": {
+        "Vision Statement": "examples/msp/vision-statement.pdf",
+        "Target Operating Model": "examples/msp/target-operating-model.pdf",
+        "Business Case": "examples/msp/programme-business-case.pdf",
+        "Benefit Profile(s)": "examples/msp/benefit-profile.pdf",
+        "Benefits Realisation Plan": "examples/msp/benefits-realisation-plan.pdf",
+        "Programme Plan": "examples/msp/programme-plan.pdf",
+        "Information Mgmt Approach": "examples/msp/information-management-approach.pdf",
+        "Quality & Assurance Approach": "examples/msp/assurance-approach-and-plan.pdf",
+        "Risk & Issue Register": "examples/msp/programme-risk-register.pdf"
+      }
     }
   },
   "entities": [

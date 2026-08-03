@@ -48,6 +48,24 @@ CONFIG = {
         {"key": "close", "label": "Close", "column": True, "header": "Close"},
         {"key": "throughout", "label": "Throughout"},
     ],
+    # Worked-example documents (the "Helios" sample programme), keyed by the exact
+    # product entity name; the value is a bundled PDF path relative to the SPA base
+    # (frontend/public/examples/msp/*.pdf). Drives the detail panel's "View worked
+    # example" button. Sourced from the PMO Template Library. Five MSP products have
+    # no matching library document (Organisation Structure & RACI, Tranche / Stage
+    # Plan, Lessons Log, Audit / Assurance Log, Programme Board Decision Log) and are
+    # intentionally left without a button rather than mapped to a loose approximation.
+    "examples": {
+        "Vision Statement": "examples/msp/vision-statement.pdf",
+        "Target Operating Model": "examples/msp/target-operating-model.pdf",
+        "Business Case": "examples/msp/programme-business-case.pdf",
+        "Benefit Profile(s)": "examples/msp/benefit-profile.pdf",
+        "Benefits Realisation Plan": "examples/msp/benefits-realisation-plan.pdf",
+        "Programme Plan": "examples/msp/programme-plan.pdf",
+        "Information Mgmt Approach": "examples/msp/information-management-approach.pdf",
+        "Quality & Assurance Approach": "examples/msp/assurance-approach-and-plan.pdf",
+        "Risk & Issue Register": "examples/msp/programme-risk-register.pdf",
+    },
 }
 
 # --- Processes (confirmed MSP vocabulary; objectives paraphrased) ------------

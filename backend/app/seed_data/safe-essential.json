@@ -126,6 +126,17 @@
         "start_label": "PI Start",
         "end_label": "Inspect & Adapt",
         "intro": "Time flows left to right across a Program Increment (PI) — a fixed timebox of roughly 8–12 weeks that repeats. Each swimlane is a level of the Agile Release Train; an event sits where it runs in the PI cadence. Iterations repeat until the PI closes with Inspect & Adapt, then the next PI begins. Click any event to see its activities in sequence."
+      },
+      "examples": {
+        "Vision": "examples/safe/solution-vision.pdf",
+        "Features": "examples/safe/feature-definition.pdf",
+        "Enablers": "examples/safe/architectural-runway-and-enabler-backlog.pdf",
+        "Team Backlog": "examples/safe/team-backlog-and-user-story-template.pdf",
+        "Stories": "examples/safe/team-backlog-and-user-story-template.pdf",
+        "PI Objectives": "examples/safe/pi-objectives.pdf",
+        "ART Planning Board": "examples/safe/program-board-and-dependency-register.pdf",
+        "Iteration Goals": "examples/safe/iteration-planning-and-review-record.pdf",
+        "Integrated Increment": "examples/safe/system-demo-pack.pdf"
       }
     }
   },

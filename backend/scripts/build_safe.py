@@ -75,6 +75,23 @@ CONFIG = {
             "its activities in sequence."
         ),
     },
+    # Worked-example documents (the "Helios" sample), keyed by the exact artifact
+    # entity name; the value is a bundled PDF path relative to the SPA base
+    # (frontend/public/examples/safe/*.pdf). Drives the detail panel's "View worked
+    # example" button. Team Backlog and Stories intentionally share one combined
+    # library document (SAFE-18). Roadmap and ART Backlog have no matching document
+    # (they are living backlogs, not templates) and are left without a button.
+    "examples": {
+        "Vision": "examples/safe/solution-vision.pdf",
+        "Features": "examples/safe/feature-definition.pdf",
+        "Enablers": "examples/safe/architectural-runway-and-enabler-backlog.pdf",
+        "Team Backlog": "examples/safe/team-backlog-and-user-story-template.pdf",
+        "Stories": "examples/safe/team-backlog-and-user-story-template.pdf",
+        "PI Objectives": "examples/safe/pi-objectives.pdf",
+        "ART Planning Board": "examples/safe/program-board-and-dependency-register.pdf",
+        "Iteration Goals": "examples/safe/iteration-planning-and-review-record.pdf",
+        "Integrated Increment": "examples/safe/system-demo-pack.pdf",
+    },
 }
 
 # --- Events (containers) — confirmed SAFe vocabulary; descriptions paraphrased --

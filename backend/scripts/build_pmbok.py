@@ -370,6 +370,51 @@ def build():
                 "in the graph and see its Inputs, Tools & Techniques and Outputs."
             ),
         },
+        # Worked-example documents (the "Helios" sample), keyed by the exact artifact
+        # entity name; the value is a bundled PDF path relative to the SPA base
+        # (frontend/public/examples/pmbok/*.pdf). Drives the detail panel's "View
+        # worked example" button. Several artifacts share one combined library
+        # document (e.g. Requirements Documentation + Traceability Matrix share PMB-08;
+        # Cost Estimates + Basis of Estimates share PMB-15). The ~31 low-level ITTO
+        # work products (Work Performance Data/Information, EEFs, forecasts, transient
+        # deliverables) have no standalone template and are left without a button.
+        "examples": {
+            "Project Charter": "examples/pmbok/project-charter.pdf",
+            "Assumption Log": "examples/pmbok/assumption-log.pdf",
+            "Stakeholder Register": "examples/pmbok/stakeholder-register.pdf",
+            "Stakeholder Engagement Plan": "examples/pmbok/stakeholder-engagement-plan.pdf",
+            "Project Management Plan": "examples/pmbok/project-management-plan.pdf",
+            "Scope Management Plan": "examples/pmbok/scope-management-plan.pdf",
+            "Requirements Documentation": "examples/pmbok/requirements-documentation-and-traceability-matrix.pdf",
+            "Requirements Traceability Matrix": "examples/pmbok/requirements-documentation-and-traceability-matrix.pdf",
+            "Project Scope Statement": "examples/pmbok/project-scope-statement.pdf",
+            "Scope Baseline": "examples/pmbok/work-breakdown-structure-and-wbs-dictionary.pdf",
+            "Schedule Management Plan": "examples/pmbok/schedule-management-plan.pdf",
+            "Activity List": "examples/pmbok/activity-and-milestone-list.pdf",
+            "Milestone List": "examples/pmbok/activity-and-milestone-list.pdf",
+            "Schedule Baseline": "examples/pmbok/schedule-baseline-and-network-analysis.pdf",
+            "Project Schedule Network Diagram": "examples/pmbok/schedule-baseline-and-network-analysis.pdf",
+            "Cost Management Plan": "examples/pmbok/cost-management-plan.pdf",
+            "Cost Estimates": "examples/pmbok/cost-estimates-and-basis-of-estimates.pdf",
+            "Basis of Estimates": "examples/pmbok/cost-estimates-and-basis-of-estimates.pdf",
+            "Cost Baseline": "examples/pmbok/cost-baseline-and-funding-requirements.pdf",
+            "Project Funding Requirements": "examples/pmbok/cost-baseline-and-funding-requirements.pdf",
+            "Quality Management Plan": "examples/pmbok/quality-management-plan.pdf",
+            "Resource Management Plan": "examples/pmbok/resource-management-plan.pdf",
+            "Team Charter": "examples/pmbok/team-charter-and-raci.pdf",
+            "Communications Management Plan": "examples/pmbok/communications-management-plan.pdf",
+            "Risk Management Plan": "examples/pmbok/risk-management-plan.pdf",
+            "Risk Register": "examples/pmbok/risk-register-and-risk-report.pdf",
+            "Risk Report": "examples/pmbok/risk-register-and-risk-report.pdf",
+            "Procurement Management Plan": "examples/pmbok/procurement-management-plan.pdf",
+            "Source Selection Criteria": "examples/pmbok/procurement-statement-of-work-and-source-selection-criteria.pdf",
+            "Change Log": "examples/pmbok/change-request-form-and-change-log.pdf",
+            "Change Requests": "examples/pmbok/change-request-form-and-change-log.pdf",
+            "Issue Log": "examples/pmbok/issue-log.pdf",
+            "Work Performance Reports": "examples/pmbok/work-performance-report.pdf",
+            "Lessons Learned Register": "examples/pmbok/lessons-learned-register.pdf",
+            "Final Report": "examples/pmbok/project-closure-report.pdf",
+        },
     }
 
     doc = {
