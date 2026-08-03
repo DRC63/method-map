@@ -84,7 +84,7 @@ export default function TimelineScrubber({
           onClick={onReset}
           title="Clear the selection and reset the timeline to the full view"
         >
-          ↺ Reset
+          Reset
         </button>
       )}
     </div>

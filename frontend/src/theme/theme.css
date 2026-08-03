@@ -287,13 +287,15 @@ p { color: var(--color-text-muted); }
 }
 .timeline-mode-opt.active { background: var(--color-primary); color: var(--color-white); }
 
+/* Same pill as the mode toggles, but gold (the app's accent action colour) so it
+   reads as a distinct action rather than another mode option. */
 .timeline-reset {
-  flex-shrink: 0; align-self: stretch;
+  flex-shrink: 0;
   font-size: 0.74rem; font-weight: 600; padding: 5px 12px; border-radius: 999px;
-  color: var(--color-text-muted); background: var(--color-bg-alt);
-  transition: background var(--transition), color var(--transition);
+  color: var(--color-primary-dark); background: var(--color-accent);
+  transition: background var(--transition);
 }
-.timeline-reset:hover { background: var(--color-primary); color: var(--color-white); }
+.timeline-reset:hover { background: var(--color-accent-dark); }
 
 /* ---------- Detail panel ---------- */
 .detail-panel {
