@@ -2,11 +2,16 @@ import { useMemo, useState } from 'react';
 import { api } from '../api/client';
 import Modal from './Modal';
 
+// PRINCE2 code sets (same known limitation as EntityForm — not yet read from the
+// framework config, so the SAFe/MSP/PMBOK code vocabularies aren't offered here).
 const ROLE_CODES = ['C', 'P', 'N'];
 const PRODUCT_CODES = ['I', 'O', 'U', 'A'];
 
-// Add a relationship: activity -> (role/practice/approach/product) with a code.
-// `presetFrom` / `presetTo` pre-fill one endpoint based on the selected entity.
+// Add-relationship form (activity → role/practice/approach/product, with a code),
+// shown in a modal in authoring mode. `presetFrom`/`presetTo` pre-fill one endpoint
+// from the entity the editor started from. New relationships are saved as
+// 'indicative' because anything entered by hand is, by definition, unverified until
+// an SME confirms it against the licensed source.
 export default function RelationshipForm({ frameworkId, entities, presetFrom, presetTo, onClose, onSaved }) {
   const activities = useMemo(
     () => entities.filter((e) => e.type === 'activity'),

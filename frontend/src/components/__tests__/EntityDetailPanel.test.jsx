@@ -1,3 +1,8 @@
+// Unit test for the entity detail panel. The API client is mocked so the test
+// runs without a backend and asserts purely on rendering: given a role entity and
+// its relationships, the panel shows the name, the confidence flag, and the
+// "referenced by activities" section. Keeps a regression guard on the panel's
+// role-dependent wording.
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import EntityDetailPanel from '../EntityDetailPanel';

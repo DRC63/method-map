@@ -2,10 +2,15 @@ import { useState } from 'react';
 import { api } from '../api/client';
 import Modal from './Modal';
 
+// NOTE: these Type and Product-group options are the PRINCE2 vocabulary. Unlike
+// the rest of the app (which reads the framework's own config types), this admin
+// form has not yet been generalised, so authoring an MSP/SAFe/PMBOK-specific type
+// (event, knowledge-area, tool, …) isn't offered here — a known limitation.
 const TYPES = ['process', 'activity', 'role', 'practice', 'approach', 'product'];
 const SUBGROUPS = { '': '—', baseline: 'Baseline', log: 'Project Log', report: 'Report' };
 
-// Create or edit an entity. `entity` null => create mode.
+// Create/edit form for a single entity, shown in a modal in authoring mode.
+// `entity` is null in create mode and the existing entity in edit mode.
 export default function EntityForm({ frameworkId, entity, processes, onClose, onSaved }) {
   const editing = Boolean(entity);
   const [form, setForm] = useState({
@@ -26,6 +31,9 @@ export default function EntityForm({ frameworkId, entity, processes, onClose, on
     e.preventDefault();
     setSaving(true);
     setError(null);
+    // Normalise before sending: trim text, send null (not "") for empty optional
+    // fields, and only attach a parent process for activities — the parent_id has
+    // no meaning for any other type.
     const payload = {
       type: form.type,
       name: form.name.trim(),

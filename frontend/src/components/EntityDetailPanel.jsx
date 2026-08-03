@@ -2,6 +2,15 @@ import { useEffect, useState } from 'react';
 import { api } from '../api/client';
 import { useAdmin } from '../context/AdminContext';
 
+// Right-hand panel shown when an entity is selected in the graph. It fetches the
+// entity's full detail (name, description, confidence, and every relationship it
+// takes part in) and lists those relationships, grouped and worded to match the
+// entity's role in the model. Export buttons (PDF/CSV for this one entity) are
+// always available; edit/delete/add-relationship appear only in authoring mode.
+
+// One relationship line in the list: a coded pill, the related entity's name and
+// the code's meaning, and a colour dot for its type. Clicking it selects that
+// entity, so the panel doubles as a way to walk the graph.
 function RelatedRow({ rel, onSelect, colorOf, codeColors }) {
   // Known relationship codes get their code colour; numeric "step N" pills
   // (a container's child hubs) get the related node's own type colour.
@@ -42,6 +51,10 @@ export default function EntityDetailPanel({
   const [detail, setDetail] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  // Reload the detail whenever the selected entity changes, or when reloadToken
+  // is bumped after an edit. The `alive` flag guards against a slow response
+  // arriving after the user has already moved on — without it, a stale fetch
+  // could overwrite the newer selection.
   useEffect(() => {
     let alive = true;
     setLoading(true);
@@ -64,6 +77,9 @@ export default function EntityDetailPanel({
     );
   }
 
+  // Relationships are stored as hub → target, so "outgoing" are the links this
+  // entity is the source of and "incoming" are the ones pointing at it. Which set
+  // is meaningful depends on the entity's role (see the sections below).
   const outgoing = detail.related.filter((r) => r.direction === 'out');
   const incoming = detail.related.filter((r) => r.direction === 'in');
 
@@ -114,6 +130,10 @@ export default function EntityDetailPanel({
         )}
       </div>
 
+      {/* The relationship list is worded to match the entity's role: a container
+          (process/event) lists its child activities in sequence; a hub (activity)
+          lists what it uses and produces; a node (role/product/tool…) lists the
+          activities that reference it, plus any co-occurring links. */}
       <div className="detail-body">
         {detail.type === theme.container ? (
           <>

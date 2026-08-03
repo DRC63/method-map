@@ -1,5 +1,14 @@
 import { api } from '../api/client';
 
+// The left-hand control panel for the Method Explorer, with five sections: Search,
+// Layout (Matrix/Timeline plus a one-line description), Layers (toggle each entity
+// type on/off and the indirect-links switch), Edge codes (the legend), and Export.
+//
+// It is presentational: all state lives in Explorer and is passed in as props, and
+// user actions are reported back up through the callbacks (onSearch, onSetLayout,
+// onToggleType, …). Every label, colour, lane name and edge code is read from the
+// framework `theme`, so the panel names the right things for any framework without
+// hardcoding one method's terminology.
 export default function ControlPanel({
   frameworkKey,
   theme,

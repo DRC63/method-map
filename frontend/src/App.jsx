@@ -1,3 +1,8 @@
+// Top-level component: wraps the app in the authoring-mode provider and the router,
+// and declares the four routes (Method Explorer, Lifecycle, Guide, Admin), each
+// rendered inside the shared AppLayout frame. The router basename is derived from
+// the Vite base path, so one build works at the root locally and under /prince2,
+// /msp, /safe or /pmbok behind the shared front door with no code change.
 import { BrowserRouter, Route, Routes } from 'react-router';
 import AppLayout from './layout/AppLayout';
 import { AdminProvider } from './context/AdminContext';

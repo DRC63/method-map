@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import { useAdmin } from '../context/AdminContext';
 
+// The Authoring & Admin page. When locked it shows a password form; when unlocked
+// it explains which editing controls appear in the Explorer. The auth state itself
+// lives in AdminContext — this page only drives unlock()/lock() and surfaces the
+// result (wrong password, or a request error).
 export default function Admin() {
   const { isAdmin, unlock, lock } = useAdmin();
   const [password, setPassword] = useState('');

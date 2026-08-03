@@ -15,6 +15,12 @@ export function setAdminPassword(pw) {
   else localStorage.removeItem(PW_KEY);
 }
 
+// Single fetch wrapper behind every API call. Sets the JSON content type, attaches
+// the admin-password header only for writes (options.admin), and converts any
+// non-2xx response into a thrown Error carrying the method, path, status and body
+// so callers can show a real message instead of a silent failure. A 204 (No
+// Content, e.g. a successful delete) returns null rather than trying to parse a
+// body that isn't there.
 async function request(path, options = {}) {
   const headers = { 'Content-Type': 'application/json', ...(options.headers || {}) };
   if (options.admin) headers['X-Admin-Password'] = getAdminPassword();
@@ -61,6 +67,9 @@ export const api = {
   pdfUrl: (key, entityId) => `${BASE}/frameworks/${key}/entities/${entityId}/report.pdf`,
 };
 
+// Build a query string from a params object, dropping empty/undefined/null values
+// so the URL only carries parameters that are actually set (avoids sending
+// "?types=&derived=" and the like). Returns '' when nothing remains.
 function qs(params) {
   const entries = Object.entries(params).filter(
     ([, v]) => v !== undefined && v !== null && v !== '',

@@ -1,8 +1,11 @@
 import { entityColors } from '../theme/theme';
 
-// Floating control bar for the Timeline mode: play/pause, a slider that scrubs
-// through the lifecycle stages, the current stage label, and a spotlight /
-// cumulative toggle.
+// Control bar for the Timeline view. Left to right: play/pause (auto-advances
+// through the lifecycle stages), a slider + labelled stage ticks to scrub to any
+// stage, a Spotlight/Cumulative toggle (show one stage, or everything up to it),
+// and a Reset button. It holds no state of its own — every control calls back up
+// to Explorer, which owns the stage index, mode and selection. `onReset` is
+// optional; the button only renders when the parent provides it.
 export default function TimelineScrubber({
   stages,
   index,

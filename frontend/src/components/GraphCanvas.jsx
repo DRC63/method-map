@@ -3,12 +3,14 @@ import ForceGraph2D from 'react-force-graph-2d';
 import { linkKindColors } from '../theme/theme';
 import { computeStructuredLayout, computeTimelineLayout } from '../theme/graphLayout';
 
-// Renders the node/link graph. Handles sizing, neighbour highlighting on
-// hover/selection, per-type node colouring, and code-coloured edges. In
-// 'structured' layout the nodes are pinned into a fixed matrix (processes top,
-// activities below, products under them, roles left, practices right, approaches
-// bottom); in 'force' layout they float freely. Exposes `exportPng()` and
-// `zoomToFit()` to the parent via ref.
+// Renders the node/link graph on a canvas (react-force-graph-2d). Handles sizing,
+// neighbour highlighting on hover/selection, per-type node colouring, and
+// code-coloured edges. There is no free-floating physics: both layouts pin every
+// node into a fixed position — 'structured' is the Matrix (container top, hubs
+// below, node bands around), 'timeline' echoes the lifecycle swimlanes — computed
+// in theme/graphLayout.js. Exposes `exportPng()` and `zoomToFit()` to the parent
+// via ref. (The Explorer's Timeline view now uses a DOM component, TimelineSwimlane;
+// this canvas is used for the Matrix.)
 export default function GraphCanvas({ ref, data, selectedId, onSelectNode, search, layout = 'structured', timelineSet = null, theme }) {
   const wrapRef = useRef(null);
   const fgRef = useRef(null);
