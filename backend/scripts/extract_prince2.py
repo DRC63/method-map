@@ -194,6 +194,34 @@ data = {
                 {"key": "final", "label": "Final delivery stage", "column": True, "header": "Final"},
                 {"key": "throughout", "label": "Throughout"},
             ],
+            # Worked-example documents (the "Helios" sample project). Keyed by the
+            # exact product entity name; the value is the path, relative to the SPA
+            # base, of a bundled PDF (frontend/public/examples/prince2/*.pdf). The
+            # detail panel shows a "View worked example" button when a selected
+            # product has an entry here. Sourced from the PMO Template Library; the
+            # PRINCE2-7 "Product Register" uses the Product Status Account example.
+            "examples": {
+                "Business Case": "examples/prince2/business-case.pdf",
+                "Plan": "examples/prince2/plan.pdf",
+                "Product Description": "examples/prince2/product-description.pdf",
+                "Project Brief": "examples/prince2/project-brief.pdf",
+                "Project Initiation Documentation": "examples/prince2/project-initiation-documentation.pdf",
+                "Project Product Description": "examples/prince2/project-product-description.pdf",
+                "Work Package": "examples/prince2/work-package.pdf",
+                "Daily Log": "examples/prince2/daily-log.pdf",
+                "Issue Register": "examples/prince2/issue-register.pdf",
+                "Lessons Log": "examples/prince2/lessons-log.pdf",
+                "Product Register": "examples/prince2/product-register.pdf",
+                "Quality Register": "examples/prince2/quality-register.pdf",
+                "Risk Register": "examples/prince2/risk-register.pdf",
+                "Checkpoint Report": "examples/prince2/checkpoint-report.pdf",
+                "End Project Report": "examples/prince2/end-project-report.pdf",
+                "End Stage Report": "examples/prince2/end-stage-report.pdf",
+                "Exception Report": "examples/prince2/exception-report.pdf",
+                "Highlight Report": "examples/prince2/highlight-report.pdf",
+                "Issue Report": "examples/prince2/issue-report.pdf",
+                "Lessons Report": "examples/prince2/lessons-report.pdf",
+            },
         },
     },
     "entities": list(entities.values()),

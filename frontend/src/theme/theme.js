@@ -89,6 +89,9 @@ export function makeFrameworkTheme(framework) {
     // Which layer fills the swimlane cells: 'container' (default) or 'hub' (PMBOK,
     // where the processes themselves grid into KA×Process-Group cells).
     lifecycleLayer: cfg.lifecycle_layer || 'container',
+    // Optional map of entity name -> bundled worked-example PDF path (relative to
+    // the SPA base). Drives the "View worked example" button in the detail panel.
+    examples: cfg.examples || {},
     container: types.find((t) => t.kind === 'container')?.key,
     hub: types.find((t) => t.kind === 'hub')?.key,
     nodeTypes: types.filter((t) => t.kind === 'node'),

@@ -83,6 +83,10 @@ export default function EntityDetailPanel({
   const outgoing = detail.related.filter((r) => r.direction === 'out');
   const incoming = detail.related.filter((r) => r.direction === 'in');
 
+  // A bundled worked-example PDF for this entity, if the framework config lists one
+  // (currently the PRINCE2 products → Helios sample documents). Undefined otherwise.
+  const examplePath = theme.examples?.[detail.name];
+
   const remove = async () => {
     if (!window.confirm(`Delete "${detail.name}" and all its relationships?`)) return;
     await api.deleteEntity(detail.id);
@@ -110,6 +114,28 @@ export default function EntityDetailPanel({
         </div>
         {detail.description && (
           <p style={{ marginTop: 10, fontSize: '0.85rem' }}>{detail.description}</p>
+        )}
+        {/* Worked-example document, when this entity has one in the framework
+            config's `examples` map. The value is a bundled PDF path relative to the
+            SPA base, so it resolves correctly both locally ("/…") and behind the
+            front door ("/prince2/…"). Opens in a new tab; distinct from the
+            "PDF summary" below, which is the generated per-entity relationship report. */}
+        {examplePath && (
+          <div style={{ marginTop: 12 }}>
+            <a
+              className="btn btn-accent btn-sm"
+              href={`${import.meta.env.BASE_URL}${examplePath}`}
+              target="_blank"
+              rel="noreferrer"
+              style={{ display: 'flex', alignItems: 'center', gap: 8, width: '100%' }}
+            >
+              <span style={{ flex: 1, textAlign: 'left' }}>View worked example</span>
+              <span aria-hidden="true">↗</span>
+            </a>
+            <div className="muted" style={{ fontSize: '0.72rem', marginTop: 4 }}>
+              Helios worked example · PDF, opens in a new tab
+            </div>
+          </div>
         )}
         <div className="admin-actions">
           <a className="btn btn-outline btn-sm" href={api.pdfUrl(frameworkKey, detail.id)} target="_blank" rel="noreferrer">
