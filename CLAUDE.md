@@ -1,9 +1,12 @@
 # P3MAI Method Map — project notes for Claude
 
-Interactive network-graph reference tool for project-management methods. v1 =
-PRINCE2 7. Part of the P3MAI suite; same stack and conventions as the PMO Service
-app (`../pmo-service`). Read `README.md` for the full picture; this file is the
-quick orientation + the decisions that aren't obvious from the code.
+Interactive network-graph reference tool for project-management methods. **Four
+frameworks live** (2026-08-02), each its own Render deployment behind
+`apps.p3mai.com/<slug>`: **PRINCE2 7** (`/prince2`), **MSP 5th ed** (`/msp`),
+**SAFe 6.0 Essential** (`/safe`), **PMBOK 6th ed** (`/pmbok`). Part of the P3MAI
+suite; same stack and conventions as the PMO Service app (`../pmo-service`). Read
+`README.md` for the full picture; this file is the quick orientation + the
+decisions that aren't obvious from the code.
 
 ## Stack & ports
 - Backend: FastAPI + SQLAlchemy + SQLite (`methodmap.db`), WAL + synchronous=NORMAL.
@@ -15,24 +18,34 @@ quick orientation + the decisions that aren't obvious from the code.
 ## Framework config (per-framework definition — the generalization)
 Each framework carries a `config` JSON (on the `frameworks` row, seeded from the
 JSON's `framework.config`) that makes the whole app framework-agnostic:
-- `types`: ordered `[{key,label,color,kind,zone,code_group}]`. **kind**: `container`
-  (owns children via parent_id) · `hub` (carries the coded relationships) · `node`
-  (a relationship target). **zone**: Matrix placement (`top`/`center`/`below`/`left`/
-  `right`/`bottom`). The graph builder derives container/hub from `kind` (no
-  hardcoded process/activity); the frontend derives colours/labels/layout from this.
-- `codes`: `{group:{code:label}}` (role → C/P/N, product → I/O/U/A).
+- `types`: ordered `[{key,label,color,kind,zone,code_group,label_below?}]`. **kind**:
+  `container` (owns children via parent_id) · `hub` (carries the coded relationships) ·
+  `node` (a relationship target). **zone**: Matrix placement (`top`/`center`/`below`/
+  `left`/`right`/`bottom`). `label_below: true` on a `below`-zone node type puts its
+  Matrix zone heading UNDER the band (PMBOK Tools & Techniques). The graph builder
+  derives container/hub from `kind` (no hardcoded process/activity); the frontend
+  derives colours/labels/layout from this.
+- `codes`: `{group:{code:label}}` (PRINCE2 role → C/P/N, product → I/O/U/A; PMBOK
+  artifact → I/O, tool → T; etc.). Unknown codes auto-get a legend colour.
 - `lanes`: Timeline swimlanes `[{key,label}]`; `phases`: `[{key,label,column?,header?}]`.
-Frontend builds a theme from it via `makeFrameworkTheme` (theme/theme.js), threaded
-through GraphCanvas/ControlPanel/EntityDetailPanel and the layout fns (graphLayout.js,
-now zone/lane-driven). **A new framework = a new seed JSON with its own config; no
-code change** for the graph/Explorer/Lifecycle/swimlane. The **only** hand-written
-per-framework code is in `pages/Guide.jsx` → `FRAMEWORK_PROSE[key]` = `{modelName,
-accuracy, related}`: a framework missing a key falls back to generic prose, but the
-**`related` cross-links are hardcoded** (each framework's Guide links to the other
-live apps — currently 3-way PRINCE2↔MSP↔SAFe), so adding a 4th framework means
-editing every existing entry's `related`. Env `FRAMEWORK_KEY` makes a deployment
-seed+default to one framework (exposed via `/api/meta` `default_framework`) — this
-is how PRINCE2, MSP and SAFe deploy separately from one codebase.
+- `lifecycle_layer`: `"container"` (default) or **`"hub"`** — which layer fills the
+  Lifecycle/Timeline swimlane cells. PMBOK sets `"hub"` so the **processes** grid into
+  their own (lane=KA, phase=Process-Group) cell (the 5×10 matrix), instead of the
+  container filling cells with child hubs beneath. Honoured by `get_lifecycle`
+  (backend), `Lifecycle.jsx` and `TimelineSwimlane.jsx` (both check
+  `theme.lifecycleLayer`); `timeline.heading`/`intro`/`start_label`/`end_label` in
+  config override the Lifecycle page wording (cyclic frameworks, PMBOK).
+Frontend builds a theme from it via `makeFrameworkTheme` (theme/theme.js). **A new
+framework = a new seed JSON with its own config; no code change** for the graph/
+Explorer/Lifecycle/swimlane (PMBOK's hub-grid was the one small, opt-in exception).
+The **only** hand-written per-framework code is `pages/Guide.jsx` →
+`FRAMEWORK_PROSE[key]` = `{modelName, accuracy, related}`; the `related` cross-links
+are now generated from a **data-driven `APPS` list + `relatedNote()` helper** →
+**4-way**, and a new framework is a **ONE-line add** to `APPS` (no longer "edit every
+entry"). NOTE those links are template literals (`https://apps.p3mai.com/${slug}/`) →
+grepping a prod bundle for the concatenated URL FALSE-NEGATIVES (check `holds side by
+side` / `PMI process standard`). Env `FRAMEWORK_KEY` makes a deployment seed+default
+to one framework (`/api/meta` `default_framework`) — how all four deploy separately.
 
 ## Data model (framework-agnostic on purpose)
 `frameworks` → `entities` → `relationships`.
@@ -72,8 +85,11 @@ view-independently in `build_graph`. Colour-coded zone labels via
 `onRenderFramePre` → `paintZones` (per-zone `scale` shrinks secondary labels).
 Graph nodes carry `parent_id`, `sort_order`, `sequence`, `lifecycle_level`,
 `lifecycle_phase` (all added to `GraphNode`/`build_graph`).
-- **Matrix** (`computeStructuredLayout`) — hierarchy: processes top, activities
-  beneath, products band below; roles left, practices right, approaches bottom.
+- **Matrix** (`computeStructuredLayout`) — hierarchy: container top, hubs beneath,
+  `below`-zone bands under them; `left`/`right`/`bottom` node types flank. A
+  `below`-zone type with `label_below:true` draws its heading UNDER the band (PMBOK
+  Tools & Techniques sits under Inputs & Outputs so the spine is centred, not
+  lopsided). PMBOK = Knowledge-Areas top, Processes, then Inputs&Outputs + Tools bands.
 - **Timeline** (`components/TimelineSwimlane.jsx`) — a **CSS-grid swimlane**, NOT
   the force-graph (rewritten 2026-08-02; it used to be `computeTimelineLayout` on
   the canvas). Rows = lanes (`theme.lanes`, e.g. Directing/Managing/Delivering or
@@ -82,15 +98,23 @@ Graph nodes carry `parent_id`, `sort_order`, `sequence`, `lifecycle_level`,
   cell (non-column phases like `throughout`/`stage-boundary` fold into the delivery
   column) with its activities as dots beneath; node-type layers (`theme.nodeTypes`)
   render as static **resource bands** below. Fully framework-driven — **verified
-  live on PRINCE2, MSP AND SAFe** (SAFe has only 2 lanes and uses `event` as the
-  container, yet rendered with zero code changes). Clicking any
-  process/activity/resource → `onSelectNode` → detail
-  panel. **Scrubber (`TimelineScrubber.jsx`) retained**, one stage per process:
+  live on all four** (SAFe has only 2 lanes and uses `event` as the container).
+  **PMBOK hub-grid (2026-08-02):** when `theme.lifecycleLayer === 'hub'` the swimlane
+  fills cells with the **hub** layer (the 49 processes) by their own
+  `lifecycle_level`/`lifecycle_phase` — NOT the container — with no child dots; this
+  is what renders the 10 KA × 5 Process-Group matrix. (Without this fix the Timeline
+  was blank for PMBOK: KAs-as-containers have no lifecycle_level/phase, so every cell
+  was empty.) `Lifecycle.jsx` also generates a lane palette (HSL by index) for
+  frameworks with >3 lanes. Clicking any process/activity/resource → `onSelectNode`
+  → detail panel. **Scrubber (`TimelineScrubber.jsx`) retained**, one stage per process:
   `timelineSet` (computed in `Explorer.jsx`, spotlight = current stage's ids,
   cumulative = 0..i) is passed to the swimlane, which dims non-members (`.tl-dim`)
   and rings the selection (`.tl-sel`). Key UX: a `timelineTouched` flag means the
   swimlane shows **every stage at full strength until the scrubber is used**, so it
-  reads as a full swimlane on entry, then spotlights on interaction. NOTE the PNG
+  reads as a full swimlane on entry, then spotlights on interaction. A **Reset button**
+  (gold pill in the scrubber, `.timeline-reset`, `onReset` → Explorer clears
+  `selectedId` + `timelineIndex=0` + `playing=false` + `timelineTouched=false`) clears
+  the node selection AND the scrub spotlight back to the full view. NOTE the PNG
   export (`graphRef.exportPng`) only works in Matrix — it's a no-op in Timeline
   (there's no canvas); CSV/Excel still work. A framework-driven **legend**
   (`.tl-legend`, above the grid) shows a colour swatch + label per node type
@@ -135,6 +159,13 @@ Given the selected entity-type layers it emits three link kinds:
 - `prince2-7.json` was generated from
   `OneDrive/Documents/Methodologies/PRINCE2_MSP_Updated_Cross_Reference_Skeleton.xlsx`
   by `backend/scripts/extract_prince2.py`. Re-run that if the spreadsheet changes.
+- **MSP / SAFe / PMBOK have NO source spreadsheet** — each is an inline builder:
+  `scripts/build_msp.py` (msp-5), `build_safe.py` (safe-essential), `build_pmbok.py`
+  (pmbok-6). Framework vocab is confirmed; the activity/ITTO breakdown + every
+  cross-ref mark are an **indicative** reconstruction (SME-verify). PMBOK = 187 ent /
+  400 marks (10 KAs, 49 processes, 66 artifacts, 62 tools); the PG×KA grid + process
+  names are confirmed, ITTOs curated-indicative. Trademark disclaimers in each
+  framework `description` (AXELOS/PeopleCert, Scaled Agile, PMI).
 - Manual corrections/additions not in the source spreadsheet go in the
   `CORRECTIONS` list in `extract_prince2.py` (so they survive regeneration), then
   re-run the extractor + `python -m app.seed --force`. Schema changes need the
@@ -147,16 +178,28 @@ writes require the `X-Admin-Password` header. Frontend stores it in localStorage
 and gates authoring UI via `AdminContext`. Not real accounts — deliberate for v1.
 
 ## Deployment
-- GitHub: `https://github.com/DRC63/method-map` (private, DRC63). Pushing to
-  `main` **auto-deploys** (Render `autoDeploy: true`) — a push redeploys prod.
-- **LIVE** on Render at `https://method-map.onrender.com` (Docker web service,
-  Starter plan, region oregon) via the `render.yaml` Blueprint. Health check
-  `/api/health`; `ADMIN_PASSWORD` is a dashboard secret (`sync: false`).
-- Custom domain **prince2.p3mai.com** added in Render — live once a DNS
-  `CNAME prince2 → method-map.onrender.com` exists at the p3mai.com DNS provider.
-- Render disk is ephemeral → app auto-seeds on boot; authoring edits don't survive
-  a redeploy (use a persistent disk / Postgres if they must).
-- TODO: cross-link "Method Map" from the p3mai.com Services page (website side).
+- GitHub: `https://github.com/DRC63/method-map` (private, DRC63). Pushing to `main`
+  **auto-deploys ALL FOUR services** (they share the repo) — one `render.yaml`
+  Blueprint, one Docker service **per framework**, differing only in `FRAMEWORK_KEY`
+  + the `APP_BASE` build arg (`/prince2/`, `/msp/`, `/safe/`, `/pmbok/`). Each Starter,
+  oregon; health `/api/health`; `ADMIN_PASSWORD` a per-service dashboard secret
+  (`sync:false`). Services: `method-map` (prince2), `msp-method-map`, `safe-method-map`,
+  `pmbok-method-map`. **Adding a framework = new render.yaml service block → push →
+  sync the Blueprint in Render + set its ADMIN_PASSWORD.**
+- **Front door** `apps.p3mai.com` (separate repo **DRC63/apps-gateway**, a Node reverse
+  proxy) routes `/prince2 /msp /safe /pmbok` (+ /pmo /p3m3) to each service — one line
+  in its `ORIGINS`. Replaced the old per-app subdomains (no `prince2.p3mai.com`).
+- **Architecture decision (Douglas, 2026-08-02): keep apps SEPARATE** (one service
+  each, "Option 1"). A single-service + in-app framework switcher ("Option C", ~2 days,
+  $0 extra — rendering is already config-driven, only the `list[0]` selection is
+  hardcoded) was sketched but **declined**. Free-tier per-service also available.
+- Render disk is ephemeral → auto-seeds its `FRAMEWORK_KEY` on boot; authoring edits
+  don't survive a redeploy (use a persistent disk / Postgres if they must).
+- **Website**: p3mai.com Services page (Project Management card) has PRINCE2 + SAFe +
+  PMBOK buttons, Programme card has MSP — env-aware in `business-website/script.js`
+  (localhost sentinel → `apps.p3mai.com/<slug>`). Site is on **Rise** (NOT git-auto-
+  deployed) → publishing a button = upload `services.html`+`script.js` to Rise + bump
+  `script.js?v=` to bust the edge cache.
 
 ## Known environment gotchas
 - The graph uses `requestAnimationFrame`; in a **non-displayed browser pane** the
