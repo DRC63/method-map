@@ -28,19 +28,28 @@ export default function TimelineSwimlane({ data, theme, selectedId, onSelectNode
   const hubType = theme?.hub;
   const nodes = data?.nodes || [];
 
+  // Normally containers fill the (lane, stage) cells with their child hubs listed
+  // beneath. When the framework grids the hub layer instead
+  // (config.lifecycle_layer === 'hub', e.g. PMBOK's 49 processes across the
+  // 10 Knowledge Areas × 5 Process Groups matrix), the hubs fill the cells
+  // directly by their own lifecycle_level/phase and there is no child layer.
+  const hubGrid = theme?.lifecycleLayer === 'hub';
+  const cellType = hubGrid ? hubType : containerType;
+
   const processes = useMemo(
     () =>
       nodes
-        .filter((n) => n.type === containerType)
+        .filter((n) => n.type === cellType)
         .sort(
           (a, b) =>
             (a.sequence ?? a.sort_order ?? 0) - (b.sequence ?? b.sort_order ?? 0),
         ),
-    [nodes, containerType],
+    [nodes, cellType],
   );
 
   const actsByProc = useMemo(() => {
     const m = new Map();
+    if (hubGrid) return m; // hubs are the cells themselves; no child layer
     nodes.forEach((n) => {
       if (n.type === hubType && n.parent_id != null) {
         if (!m.has(n.parent_id)) m.set(n.parent_id, []);
@@ -50,7 +59,7 @@ export default function TimelineSwimlane({ data, theme, selectedId, onSelectNode
     for (const arr of m.values())
       arr.sort((a, b) => (a.sort_order ?? 0) - (b.sort_order ?? 0));
     return m;
-  }, [nodes, hubType]);
+  }, [nodes, hubType, hubGrid]);
 
   const resourceBands = useMemo(
     () =>

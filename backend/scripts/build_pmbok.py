@@ -344,7 +344,7 @@ def build():
             {"key": "knowledge-area", "label": "Knowledge Areas", "color": "#0B2545", "kind": "container", "zone": "top", "order": 1},
             {"key": "process", "label": "Processes", "color": "#3D5A80", "kind": "hub", "zone": "center", "order": 2},
             {"key": "artifact", "label": "Inputs & Outputs", "color": "#C0392B", "kind": "node", "code_group": "io", "zone": "below", "order": 3},
-            {"key": "tool", "label": "Tools & Techniques", "color": "#2E7D5B", "kind": "node", "code_group": "tool", "zone": "below", "order": 4},
+            {"key": "tool", "label": "Tools & Techniques", "color": "#2E7D5B", "kind": "node", "code_group": "tool", "zone": "below", "order": 4, "label_below": True},
         ],
         "codes": {
             "io": {"I": "Input", "O": "Output"},

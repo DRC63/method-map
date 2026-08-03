@@ -39,7 +39,8 @@
           "kind": "node",
           "code_group": "tool",
           "zone": "below",
-          "order": 4
+          "order": 4,
+          "label_below": true
         }
       ],
       "codes": {

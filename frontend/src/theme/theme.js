@@ -86,6 +86,9 @@ export function makeFrameworkTheme(framework) {
     types,
     lanes: cfg.lanes || [],
     phases: cfg.phases || [],
+    // Which layer fills the swimlane cells: 'container' (default) or 'hub' (PMBOK,
+    // where the processes themselves grid into KA×Process-Group cells).
+    lifecycleLayer: cfg.lifecycle_layer || 'container',
     container: types.find((t) => t.kind === 'container')?.key,
     hub: types.find((t) => t.kind === 'hub')?.key,
     nodeTypes: types.filter((t) => t.kind === 'node'),

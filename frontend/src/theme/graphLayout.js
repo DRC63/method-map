@@ -73,8 +73,12 @@ export function computeStructuredLayout(nodes, theme) {
       pos.set(p.id, { x: -((inRow - 1) * PCOL) / 2 + col * PCOL, y: top + row * PROW });
     });
     const rows = Math.max(1, Math.ceil(items.length / per));
-    zones.push({ label: UP(td.key), x: 0, y: top - PROD_GAP * 0.5, color: colorOf(td.key) });
-    top += (rows - 1) * PROW;
+    const bandBottom = top + (rows - 1) * PROW;
+    // Label sits above the band by default; a type can set `label_below: true`
+    // (e.g. PMBOK's Tools & Techniques) to place its heading under its nodes.
+    const labelY = td.label_below ? bandBottom + PROD_GAP * 0.5 : top - PROD_GAP * 0.5;
+    zones.push({ label: UP(td.key), x: 0, y: labelY, color: colorOf(td.key) });
+    top = bandBottom;
     spineBottom = top;
   });
 
