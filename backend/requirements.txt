@@ -5,3 +5,4 @@ pydantic
 python-dotenv
 openpyxl
 reportlab
+sentry-sdk[fastapi]
