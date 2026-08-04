@@ -228,3 +228,18 @@ P3MAI-branded style. Word TOCs are auto-fields (press F9 to populate on first op
 ## Tests
 - Backend: `pytest` (isolated per-test SQLite DB; seeds the real framework).
 - Frontend: `npm test` (Vitest). DetailPanel test mocks the api client.
+- **CI**: `.github/workflows/ci.yml` runs both on push/PR to main (Python 3.12 / Node 20);
+  `dependabot.yml` raises weekly update PRs. NOTE: CI reports status but does not block
+  Render's auto-deploy unless "Wait for CI to pass" is enabled per service.
+
+## Recent additions (2026-08-03/04) — not to be mistaken as missing
+- **Worked-example PDFs** in the detail panel: config-driven `framework.config.examples`
+  (entity name → bundled `frontend/public/examples/<fw>/*.pdf`) drives a generic "View
+  worked example" button in `EntityDetailPanel.jsx`. All 4 frameworks wired.
+- **Auth fails closed** (`app/security.py`): no default password — writes are rejected
+  unless `ADMIN_PASSWORD` is set (an unconfigured service is read-only, not wide open).
+- **Optional Sentry** (`app/observability.py`): `init_sentry()` is inert (lazy import)
+  unless `SENTRY_DSN` is set.
+- **Security headers + uptime**: applied at the gateway (`../apps-gateway/server.js`) and
+  a scheduled uptime workflow lives in the gateway repo — not here.
+- Full history for these is in the auto-memory `project_method_map`.
