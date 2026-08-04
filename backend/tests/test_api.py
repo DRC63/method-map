@@ -92,6 +92,19 @@ def test_write_requires_admin_password(client):
     assert ok.json()["name"] == "QA Lead"
 
 
+def test_authoring_fails_closed_without_password(client, monkeypatch):
+    """With ADMIN_PASSWORD unset, writes are rejected even with the old default
+    'change-me' - an unconfigured deployment is read-only, not wide open. This
+    guards the fix for the live services that accepted 'change-me' (SEC-05)."""
+    monkeypatch.setenv("ADMIN_PASSWORD", "")
+    payload = {"framework_id": 1, "type": "role", "name": "Should Not Persist"}
+    assert client.post("/api/entities", json=payload, headers=ADMIN).status_code == 401
+    assert client.post("/api/entities", json=payload).status_code == 401
+    # And with the env var absent entirely (not just blank).
+    monkeypatch.delenv("ADMIN_PASSWORD", raising=False)
+    assert client.post("/api/entities", json=payload, headers=ADMIN).status_code == 401
+
+
 def test_create_relationship_and_appears_in_detail(client):
     ents = client.get("/api/frameworks/prince2-7/entities").json()
     activity = next(e for e in ents if e["type"] == "activity")

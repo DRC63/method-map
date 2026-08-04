@@ -17,6 +17,9 @@ def client(tmp_path, monkeypatch):
     PRINCE2-specific assertions are unaffected by other bundled frameworks (MSP).
     Never touches the real methodmap.db."""
     monkeypatch.setenv("FRAMEWORK_KEY", "prince2-7")
+    # Authoring now fails closed (no default password), so tests must configure one
+    # explicitly. The ADMIN header below uses this same value.
+    monkeypatch.setenv("ADMIN_PASSWORD", "change-me")
     url = f"sqlite:///{tmp_path / 'test.db'}"
     engine = create_engine(url, connect_args={"check_same_thread": False})
     TestingSession = sessionmaker(bind=engine, autocommit=False, autoflush=False)
