@@ -1,0 +1,29 @@
+# Automated dependency-update PRs (SEC-03). Dependabot watches each ecosystem
+# and opens grouped PRs weekly; CI (ci.yml) then tests them before merge. Weekly
+# (not daily) keeps the PR volume manageable for a solo maintainer.
+version: 2
+updates:
+  # Python backend
+  - package-ecosystem: pip
+    directory: /backend
+    schedule:
+      interval: weekly
+    groups:
+      # One PR for all minor/patch bumps - review as a batch, not one-by-one.
+      backend-minor:
+        update-types: [minor, patch]
+
+  # Vite/React frontend
+  - package-ecosystem: npm
+    directory: /frontend
+    schedule:
+      interval: weekly
+    groups:
+      frontend-minor:
+        update-types: [minor, patch]
+
+  # The workflow actions themselves (checkout, setup-python, ...).
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
