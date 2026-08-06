@@ -4,8 +4,8 @@ import docstyle as ds
 
 OUT = os.path.join(os.path.dirname(__file__), "..", "02_User_Manual.docx")
 ASSETS = os.path.join(os.path.dirname(__file__), "..", "assets")
-VERSION = "v1.3"
-DATE = "2 August 2026"
+VERSION = "v1.4"
+DATE = "6 August 2026"
 
 doc = ds.new_doc()
 ds.footer(doc, "OFFICIAL", VERSION)
@@ -24,6 +24,9 @@ ds.doc_control(doc, [
     ["v1.3", "2026-08-02", "Douglas Colvin",
      "Timeline Reset button documented; note on PMBOK's Tools & Techniques band "
      "sitting under Inputs & Outputs in the Matrix."],
+    ["v1.4", "2026-08-06", "Douglas Colvin",
+     "View worked example: product detail panels link the corresponding completed Helios "
+     "document (PDF) across all four frameworks."],
 ])
 ds.add_toc(doc)
 

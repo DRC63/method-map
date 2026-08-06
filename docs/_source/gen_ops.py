@@ -3,8 +3,8 @@ import os
 import docstyle as ds
 
 OUT = os.path.join(os.path.dirname(__file__), "..", "03_Operation_Manual.docx")
-VERSION = "v1.2"
-DATE = "2 August 2026"
+VERSION = "v1.3"
+DATE = "6 August 2026"
 
 doc = ds.new_doc()
 ds.footer(doc, "OFFICIAL-SENSITIVE", VERSION)
@@ -20,6 +20,10 @@ ds.doc_control(doc, [
     ["v1.2", "2026-08-02", "Douglas Colvin",
      "Fourth framework: PMBOK 6th ed (pmbok-method-map service, /pmbok route, "
      "build_pmbok.py)."],
+    ["v1.3", "2026-08-06", "Douglas Colvin",
+     "Fail-closed admin auth (SEC-05): no default password, unset = read-only; per-service "
+     "passwords still to be set (SEC-07). CI + Dependabot (ENG-01/SEC-03); optional Sentry "
+     "(ENG-05, activates on SENTRY_DSN)."],
 ])
 ds.add_toc(doc)
 
@@ -50,7 +54,7 @@ ds.para(doc, "All configuration is via environment variables (a local `.env` fil
 ds.table(doc, ["Variable", "Default", "Purpose"], [
     ["FRAMEWORK_KEY", "(unset)", "Which framework this deployment seeds + serves (prince2-7 / msp-5 / safe-essential / pmbok-6). Unset = seed all (local dev)."],
     ["APP_BASE", "/", "Build-time base path the SPA is built under (/prince2/, /msp/, /safe/) so it works behind the front door."],
-    ["ADMIN_PASSWORD", "change-me", "Unlocks authoring mode. CHANGE for any real deployment; set per-service."],
+    ["ADMIN_PASSWORD", "(no default — fail-closed)", "Unlocks authoring mode. Unset = service is read-only; set a distinct generated secret per service (SEC-07)."],
     ["DATABASE_URL", "sqlite:///…/methodmap.db", "SQLAlchemy URL; point at Postgres to persist."],
     ["CORS_ORIGINS", "http://localhost:5173", "Allowed origins (only relevant in split local dev)."],
     ["PORT", "8000", "Set by Render automatically; the container binds to it."],

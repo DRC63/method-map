@@ -127,7 +127,7 @@ d.table("System at a glance", ["Item", "Value"], [
 d.table("Configuration (env vars)", ["Variable", "Purpose"], [
     ["FRAMEWORK_KEY", "Which framework this service seeds + serves (prince2-7 / msp-5 / safe-essential)"],
     ["APP_BASE", "SPA base path for the front door (/prince2/ · /msp/ · /safe/)"],
-    ["ADMIN_PASSWORD", "Unlocks authoring — CHANGE for production; per-service"],
+    ["ADMIN_PASSWORD", "Fail-closed: no default; unset = read-only; distinct secret per service"],
     ["DATABASE_URL", "SQLAlchemy URL; point at Postgres to persist"],
     ["PORT", "Set by Render automatically"],
 ], col_widths=[3.8, 8.3])

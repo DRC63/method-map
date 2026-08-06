@@ -4,8 +4,8 @@ import docstyle as ds
 
 OUT = os.path.join(os.path.dirname(__file__), "..", "01_Architecture_and_Design.docx")
 ASSETS = os.path.join(os.path.dirname(__file__), "..", "assets")
-VERSION = "v1.3"
-DATE = "2 August 2026"
+VERSION = "v1.4"
+DATE = "6 August 2026"
 
 doc = ds.new_doc()
 ds.footer(doc, "OFFICIAL", VERSION)
@@ -25,6 +25,10 @@ ds.doc_control(doc, [
     ["v1.3", "2026-08-02", "Douglas Colvin",
      "Documented the `label_below` zone-heading option and the Timeline Reset "
      "control."],
+    ["v1.4", "2026-08-06", "Douglas Colvin",
+     "Worked-example wiring: every product across all four frameworks links its Helios PDF "
+     "(MSP uses five closest-match approximations); fail-closed admin auth (no default "
+     "password; unset means read-only); CI + Dependabot; optional Sentry."],
 ])
 ds.add_toc(doc)
 
@@ -279,7 +283,7 @@ ds.callout(doc, "pitfall", "Indicative vs confirmed",
 ds.heading(doc, "10.  Security & access control", 1)
 ds.para(doc, "Read access is fully open — the app is a public reference tool with no personal data. "
         "Write operations (authoring) require a single shared password sent as an `X-Admin-Password` "
-        "header and checked against the `ADMIN_PASSWORD` environment variable. This is a deliberate, "
+        "header and checked against the `ADMIN_PASSWORD` environment variable — **fail-closed**: if the variable is unset the service is read-only and no password (including old defaults) is accepted. This is a deliberate, "
         "lightweight gate — enough to stop casual edits, not a full account system.")
 ds.callout(doc, "note", "Security posture",
            ["No authentication for reads (by design). Single admin password for writes. Single origin, "
